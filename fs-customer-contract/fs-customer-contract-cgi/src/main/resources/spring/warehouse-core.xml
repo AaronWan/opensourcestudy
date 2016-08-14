@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="contractZipDealTaskManager"
+          class="com.facishare.contract.core.service.impl.ContractZipDealTaskManagerImpl"
+          p:configName="${contract_zip_deal_task_config}">
+    </bean>
+    <bean class="com.facishare.contract.common.log.LoggerLevelConfig" p:configName="${contract_logger_config}"></bean>
+    <bean id="contractAction" class="com.facishare.contract.core.facade.ContractActionImpl">
+    </bean>
+
+</beans>

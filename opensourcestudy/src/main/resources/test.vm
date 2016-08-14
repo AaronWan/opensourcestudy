@@ -1,0 +1,10 @@
+# member:$size
+
+#foreach($person in $persons)
+1.  $person.name
+
+|name|age|
+|:--:|:--:|
+|$person.name|$person.age|
+
+#end

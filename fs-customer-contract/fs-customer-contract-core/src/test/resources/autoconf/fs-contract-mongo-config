@@ -1,0 +1,5 @@
+mongo.servers= mongodb://172.31.160.2:27017
+mongo.mapPackage=com.facishare.contract.core.storage.model
+mongo.dbName=CustomerContract
+mongo.connectTimeout= 5000
+mongo.socketTimeout= 10000

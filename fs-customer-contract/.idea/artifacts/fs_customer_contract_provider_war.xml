@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fs-customer-contract-provider:war">
+    <output-path>$PROJECT_DIR$/fs-customer-contract-provider/target</output-path>
+    <root id="archive" name="fs-customer-contract-provider.war">
+      <element id="artifact" artifact-name="fs-customer-contract-provider:war exploded" />
+    </root>
+  </artifact>
+</component>

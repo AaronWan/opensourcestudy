@@ -1,0 +1,4 @@
+NAMESERVER=172.31.109.239:9876
+GROUP=fs_contract_ceshi
+TOPICS=fs_contract_zip_deal_ceshi
+MAXMESSAGESIZE=1
