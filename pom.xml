@@ -17,7 +17,16 @@
       </plugin>
     </plugins>
   </build>
-  <packaging>jar</packaging>
+  <modules>
+    <module>wsexcel</module>
+    <module>id</module>
+    <module>distributionlock</module>
+    <module>commontest</module>
+    <module>thread</module>
+    <module>netty</module>
+    <module>activiti</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>study</name>
   <url>http://maven.apache.org</url>
@@ -77,6 +86,26 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.16.10</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.13</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.21</version>
     </dependency>
   </dependencies>
 </project>
