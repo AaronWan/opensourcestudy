@@ -1,6 +1,6 @@
 package com.opensource.rest.proxy.model;
 
-import com.facishare.bpm.util.JsonUtil;
+import com.opensource.rest.proxy.common.JsonUtil;
 import lombok.Data;
 
 /**

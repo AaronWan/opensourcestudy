@@ -7,7 +7,7 @@ import org.springframework.beans.factory.FactoryBean;
  * Created by Aaron on 26/12/2016.
  */
 @Data
-public class RestServiceProxyFactoryBean<T> implements FactoryBean<T> {
+public class RestServiceProxyFactoryBean<T> implements FactoryBean {
     private RestServiceProxyFactory factory;
     private Class<T> type;
 
