@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="Examples" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="definitions" name="" targetNamespace="Examples" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="executionAndTaskListenerDelegation" isClosed="false" processType="None">
+    <extensionElements>
+      <activiti:executionListener class="com.easyway.activiti.servicetask.FieldInjectedExecutionListener" event="start">
+        <activiti:field name="fixedValue" stringValue="Yes, I am"/>
+        <activiti:field expression="${sentenceGenerator.getSentence()}" name="dynamicValue"/>
+      </activiti:executionListener>
+    </extensionElements>
+    <startEvent id="start"/>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="userTask"/>
+    <userTask activiti:exclusive="true" id="userTask" name="张三">
+      <extensionElements>
+        <activiti:executionListener delegateExpression="${myExecutionListenerBean}" event="start"/>
+        <activiti:taskListener delegateExpression="${myTaskListenerBean}" event="create"/>
+        <activiti:formProperty default="3" id="days" variable="days"/>
+      </extensionElements>
+    </userTask>
+    <endEvent id="end"/>
+    <userTask activiti:exclusive="true" id="_3" name="admin"/>
+    <userTask activiti:exclusive="true" id="_4" name="manage"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="_5" name="ExclusiveGateway"/>
+    <sequenceFlow id="_6" sourceRef="userTask" targetRef="_5"/>
+    <sequenceFlow id="_7" sourceRef="_5" targetRef="_3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days>3}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_8" sourceRef="_5" targetRef="_4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days<=3}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_9" sourceRef="_4" targetRef="end"/>
+    <sequenceFlow id="_10" sourceRef="_3" targetRef="end"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="executionAndTaskListenerDelegation">
+      <bpmndi:BPMNShape bpmnElement="end" id="Shape-end">
+        <dc:Bounds height="32.0" width="32.0" x="760.0" y="240.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask" id="Shape-userTask">
+        <dc:Bounds height="55.0" width="85.0" x="112.0" y="188.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="start" id="Shape-start">
+        <dc:Bounds height="32.0" width="32.0" x="20.0" y="200.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" id="Shape-_3">
+        <dc:Bounds height="55.0" width="85.0" x="450.0" y="90.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" id="Shape-_4">
+        <dc:Bounds height="55.0" width="85.0" x="475.0" y="325.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" id="Shape-_5" isMarkerVisible="false">
+        <dc:Bounds height="32.0" width="32.0" x="235.0" y="215.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1" sourceElement="start" targetElement="userTask">
+        <di:waypoint x="52.492185591719476" y="216.0"/>
+        <di:waypoint x="112.5" y="216.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="userTask" targetElement="_5">
+        <di:waypoint x="196.5" y="216.0"/>
+        <di:waypoint x="235.0" y="231.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="_5" targetElement="_3">
+        <di:waypoint x="250.0" y="216.0"/>
+        <di:waypoint x="250.0" y="120.0"/>
+        <di:waypoint x="450.5" y="120.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_5" targetElement="_4">
+        <di:waypoint x="250.0" y="247.0"/>
+        <di:waypoint x="250.0" y="365.0"/>
+        <di:waypoint x="474.5" y="365.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="_4" targetElement="end">
+        <di:waypoint x="560.5" y="352.5"/>
+        <di:waypoint x="775.0" y="315.0"/>
+        <di:waypoint x="775.0" y="271.429532322074"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="_3" targetElement="end">
+        <di:waypoint x="534.5" y="117.5"/>
+        <di:waypoint x="775.0" y="170.0"/>
+        <di:waypoint x="775.0" y="239.570467677926"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
