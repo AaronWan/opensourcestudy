@@ -25,10 +25,8 @@
     <module>thread</module>
     <module>netty</module>
     <module>activiti</module>
-      <module>bpmengine</module>
-    <module>bpmmongo</module>
-    <module>bpmapi</module>
-      <module>rest-proxy-client</module>
+    <module>rest-proxy-client</module>
+    <module>event</module>
   </modules>
   <packaging>pom</packaging>
 
