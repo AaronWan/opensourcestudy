@@ -27,6 +27,7 @@
     <module>activiti</module>
     <module>rest-proxy-client</module>
     <module>event</module>
+      <module>weakreference</module>
   </modules>
   <packaging>pom</packaging>
 
