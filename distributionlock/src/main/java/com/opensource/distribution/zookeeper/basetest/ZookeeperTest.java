@@ -3,7 +3,6 @@ package com.opensource.distribution.zookeeper.basetest;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
-import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
 
