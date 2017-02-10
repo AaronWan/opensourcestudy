@@ -1,4 +1,4 @@
-package com.opensource.plan;
+package com.opensource.threadJob.plan;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
