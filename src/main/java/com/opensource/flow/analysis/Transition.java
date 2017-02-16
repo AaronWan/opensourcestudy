@@ -1,7 +1,5 @@
 package com.opensource.flow.analysis;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 /**
  * Created by Aaron on 16/02/2017.

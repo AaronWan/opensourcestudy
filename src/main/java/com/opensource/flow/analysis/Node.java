@@ -15,6 +15,7 @@ public class Node {
     private Map<Object,Node> allPreNodes = Maps.newHashMap();
     private Map<Object,Node> allNextNodes = Maps.newHashMap();
     private Object activityId;
+    private int count;
 
     public Node(Object activityId){
         this.activityId=activityId;
@@ -25,16 +26,23 @@ public class Node {
         }
         preNode.add(node);
         allPreNodes.put(node.getActivityId(),node);
-        node.setNextNode(this);
+        allNextNodes.forEach((k,v)->{v.setPreNode(node);});
+        if(node.getAllNextNodes().get(this.getActivityId())==null){
+            node.setNextNode(this);
+        }
         return this;
     }
     public Node setNextNode(Node node){
+        if(allPreNodes.get(node.getActivityId())!=null){
+            return this;
+        }
         if(allNextNodes.get(node.getActivityId())!=null){
             return this;
         }
         nextNode.add(node);
-        node.setPreNode(this);
         allNextNodes.put(node.getActivityId(),node);
+        allPreNodes.forEach((k,v)->{v.setNextNode(node);});
+        node.setPreNode(this);
         return this;
     }
 
@@ -76,5 +84,17 @@ public class Node {
 
     public void setActivityId(Object activityId) {
         this.activityId = activityId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void inc() {
+        count++;
     }
 }
