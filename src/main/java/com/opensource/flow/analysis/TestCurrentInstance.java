@@ -15,8 +15,8 @@ import java.util.Scanner;
  * Created by Aaron on 16/02/2017.
  */
 public class TestCurrentInstance {
-    private Workflow workflow;
-    private Instance instance;
+    private Workflow workflow=new Workflow();
+    private Instance instance=new Instance();
     public static final String START = "start", END = "end";
 
     @Before
@@ -35,7 +35,7 @@ public class TestCurrentInstance {
         String cmd = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            if(scanner.hasNext())
+            if (scanner.hasNext())
                 line = scanner.nextLine();
             while (line != null) {
                 if (line.equals("wf")) {
@@ -61,23 +61,13 @@ public class TestCurrentInstance {
         }
     }
 
-    @Test
-    public void testMain(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("请输入字符串：");
-        while (true) {
-            String line = s.nextLine();
-            if (line.equals("exit")) break;
-            System.out.println(">>>" + line);
-        }
-    }
 
     @Test
     public void testPreData() {
         caculate(workflow, instance);
     }
 
-    public void caculate(Workflow workflow, Instance instance) {
+    public String caculate(Workflow workflow, Instance instance) {
         Node root = null;
         for (int i = 0; i < workflow.getTransitions().size(); i++) {
             Transition transition = workflow.getTransitions().get(i);
@@ -103,14 +93,16 @@ public class TestCurrentInstance {
             temp.remove(activityInstance);
             temp.add(activityInstance);
         });
+        StringBuilder sb=new StringBuilder();
         for (int i = 0; i < temp.size(); i++) {
-            System.out.printf(temp.get(i) + "-");
+            sb.append(temp.get(i) + "-");
             if (rootNode.getAllNextNodes().get(temp.get(i)) != null) {
-                System.out.printf("(" + rootNode.getAllNextNodes().get(temp.get(i)).getCount() + ")\t");
+                sb.append("(" + rootNode.getAllNextNodes().get(temp.get(i)).getCount() + "),");
             } else {
-                System.out.printf("(" + rootNode.getCount() + ")\t");
+                sb.append("(" + rootNode.getCount() + "),");
             }
         }
+        return sb.toString();
     }
 
     public void setNode(Node node, Object from, Object to) {
@@ -125,8 +117,24 @@ public class TestCurrentInstance {
     }
 
 
-    public void testBpmExtension() {
-        Map<String, Object> bpmExtension = Maps.newHashMap();
+    public Workflow getWorkflow() {
+        return workflow;
+    }
 
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
+    }
+
+    public Instance getInstance() {
+        return instance;
+    }
+
+    public void setInstance(Instance instance) {
+        this.instance = instance;
+    }
+
+    public void clear() {
+        this.getInstance().getActivityInstances().clear();
+        this.getWorkflow().getTransitions().clear();
     }
 }
