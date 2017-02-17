@@ -36,9 +36,6 @@ public class Node {
         if(allPreNodes.get(node.getActivityId())!=null){
             return this;
         }
-        if(allNextNodes.get(node.getActivityId())!=null){
-            return this;
-        }
         nextNode.add(node);
         allNextNodes.put(node.getActivityId(),node);
         allPreNodes.forEach((k,v)->{v.setNextNode(node);});
