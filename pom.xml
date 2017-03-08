@@ -24,11 +24,12 @@
     <module>commontest</module>
     <module>thread</module>
     <module>netty</module>
-    <module>activiti</module>
     <module>rest-proxy-client</module>
     <module>event</module>
       <module>weakreference</module>
     <module>comettest</module>
+    <module>functionstudy</module>
+    <module>workflow</module>
   </modules>
   <packaging>pom</packaging>
 

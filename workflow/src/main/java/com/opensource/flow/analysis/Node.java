@@ -15,6 +15,7 @@ public class Node {
     private Map<Object,Node> allPreNodes = Maps.newHashMap();
     private Map<Object,Node> allNextNodes = Maps.newHashMap();
     private Object activityId;
+    private List<String> instanceIds=Lists.newArrayList();
     private int count;
 
     public Node(Object activityId){
@@ -41,6 +42,17 @@ public class Node {
         allPreNodes.forEach((k,v)->{v.setNextNode(node);});
         node.setPreNode(this);
         return this;
+    }
+    public void addInstanceId(String instanceId){
+        this.instanceIds.add(instanceId);
+    }
+
+    public List<String> getInstanceIds() {
+        return instanceIds;
+    }
+
+    public void setInstanceIds(List<String> instanceIds) {
+        this.instanceIds = instanceIds;
     }
 
     public List<Node> getPreNode() {

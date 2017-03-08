@@ -8,7 +8,7 @@ import java.awt.*;
  * Created by Aaron on 17/02/2017.
  */
 public class WorkflowFrame extends JFrame {
-    TestCurrentInstance model = new TestCurrentInstance();
+    WorkflowInstanceUtils model = new WorkflowInstanceUtils();
 
     public static void main(String[] args) {
         WorkflowFrame workflowFrame = new WorkflowFrame();
