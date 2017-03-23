@@ -30,6 +30,7 @@
     <module>comettest</module>
     <module>functionstudy</module>
     <module>workflow</module>
+    <module>regextest</module>
   </modules>
   <packaging>pom</packaging>
 
