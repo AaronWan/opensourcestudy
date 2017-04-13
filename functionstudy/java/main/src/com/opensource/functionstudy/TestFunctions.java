@@ -3,6 +3,7 @@ package com.opensource.functionstudy;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.lang.*;
 import java.util.List;
 
 /**
@@ -16,11 +17,14 @@ public class TestFunctions {
 
         addPerson(testFunction);
     }
+
     @Test
     public void testOtherFunction(){
         addPerson(Object::notifyAll);
     }
-    private void addPerson(TestFunction<Person> testFunction) {
+
+
+    public  void addPerson(TestFunction<Person> testFunction) {
         testFunction.callTest(new Person());
     }
 
