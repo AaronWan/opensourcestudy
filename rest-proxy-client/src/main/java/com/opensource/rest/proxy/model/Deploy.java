@@ -1,20 +1,13 @@
 package com.opensource.rest.proxy.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
+/**
+ * Created by Aaron on 13/04/2017.
+ */
 public interface Deploy {
-    /**
-     * Created by Aaron on 26/12/2016.
-     */
-    @Setter
-    @Getter
-    class Arg extends BaseArg{
-        private String workflowJson;
+    class Arg{
+
     }
-    @Setter
-    @Getter
-    class Result extends BaseResult{
-        private String result;
+    class Result{
+
     }
 }
