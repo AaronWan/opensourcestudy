@@ -36,6 +36,8 @@
         <module>sparkjavastudy</module>
         <module>akkastudy</module>
         <module>datetime</module>
+        <module>instancefromtype</module>
+        <module>iotest</module>
     </modules>
     <packaging>pom</packaging>
 
