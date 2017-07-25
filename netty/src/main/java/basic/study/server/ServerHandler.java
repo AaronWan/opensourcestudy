@@ -7,15 +7,20 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Aaron on 19/06/2017.
  */
 public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        for (int i = 0; i < 2; i++) {
+            TimeUnit.SECONDS.sleep(2);
+        }
         ByteBuf in = (ByteBuf) msg;
-        System.out.println(in.toString(CharsetUtil.UTF_8));
         ctx.write(in);
+        ctx.flush();
     }
 
     @Override

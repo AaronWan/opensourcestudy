@@ -38,6 +38,8 @@
         <module>datetime</module>
         <module>instancefromtype</module>
         <module>iotest</module>
+        <module>hashmaptest</module>
+        <module>validatestudy</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -11,7 +11,7 @@ import java.lang.annotation.Annotation;
 public class BackOperateTypeTest {
     public static void main(String[] args) {
         Gson gson=new GsonBuilder().create();
-        String qn="{title:\"test\",type:\"qixinNotify\",content:\"content\"}";
+        String qn="{sheetName:\"test\",type:\"qixinNotify\",content:\"content\"}";
         OperateType operateType=gson.fromJson(qn,OperateType.class);
         System.out.println(operateType.getType());
 
