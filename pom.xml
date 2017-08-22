@@ -40,6 +40,10 @@
         <module>iotest</module>
         <module>hashmaptest</module>
         <module>validatestudy</module>
+        <module>groovyscript</module>
+        <module>shirotest</module>
+        <module>scriptengine</module>
+        <module>servlettest</module>
     </modules>
     <packaging>pom</packaging>
 

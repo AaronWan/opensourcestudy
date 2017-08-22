@@ -1,3 +1,4 @@
+import lombok.Data;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
@@ -31,5 +32,14 @@ public class ValidateTest {
 
 
         System.out.println("----------");
+    }
+
+    @Data
+     class A{
+        private String a;
+
+        public A(String a) {
+            this.a = a;
+        }
     }
 }

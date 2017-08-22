@@ -2,13 +2,9 @@ package com.opensource.rest.proxy;
 
 import com.google.common.base.Strings;
 import com.google.common.reflect.Reflection;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensource.rest.proxy.annotation.RestResource;
 import com.opensource.rest.proxy.annotation.RestUri;
 import com.opensource.rest.proxy.exception.RestInvokeException;
-import com.opensource.rest.proxy.model.BaseResult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -66,9 +62,6 @@ public class RestServiceProxyFactory {
             }
             if (BaseResult.class.isInstance(ret)) {
                 BaseResult result = (BaseResult) ret;
-                if (!result.isSuccess()) {
-                    throw new RestInvokeException(result.getErrMessage());
-                }
             }
             return ret;
         });
