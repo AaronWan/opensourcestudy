@@ -44,6 +44,7 @@
         <module>shirotest</module>
         <module>scriptengine</module>
         <module>servlettest</module>
+        <module>reflecttest</module>
     </modules>
     <packaging>pom</packaging>
 
