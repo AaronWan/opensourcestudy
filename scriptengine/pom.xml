@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>scriptengine</artifactId>
-
+<dependencies>
+    <dependency>
+        <groupId>com.github.subchen</groupId>
+        <artifactId>jetbrick-template</artifactId>
+        <version>2.1.2</version>
+    </dependency>
+</dependencies>
 
 </project>
