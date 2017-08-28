@@ -45,6 +45,7 @@
         <module>scriptengine</module>
         <module>servlettest</module>
         <module>reflecttest</module>
+        <module>lambdasudy</module>
     </modules>
     <packaging>pom</packaging>
 
