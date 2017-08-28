@@ -46,6 +46,7 @@
         <module>servlettest</module>
         <module>reflecttest</module>
         <module>lambdasudy</module>
+        <module>algorithm</module>
     </modules>
     <packaging>pom</packaging>
 
