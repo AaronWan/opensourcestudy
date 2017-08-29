@@ -47,6 +47,7 @@
         <module>reflecttest</module>
         <module>lambdasudy</module>
         <module>algorithm</module>
+        <module>httpclientstudy</module>
     </modules>
     <packaging>pom</packaging>
 
