@@ -33,9 +33,7 @@ public class JetbrickTemplate2Test {
         StringWriter writer = new StringWriter();
         template.render(data, writer);
 
-        System.out.println(writer.toString());
     }
-
 
     public Map<String, Object> getData() {
         Map<String, Object> datas = Maps.newHashMap();
