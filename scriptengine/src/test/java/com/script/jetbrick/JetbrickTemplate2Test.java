@@ -41,9 +41,6 @@ public class JetbrickTemplate2Test {
         datas.put("AccountObj.Lean.age", 60);
         datas.put("AccountObj.name", "account name");
         datas.put("AccountObj.Temp.name", "account name");
-        datas.put("AccountObj.Temp.Temp2.name", "account name");
-        datas.put("AccountObj.Temp.Temp2.Temp3.name", "account name");
-
 
         return transfer(datas);
     }
