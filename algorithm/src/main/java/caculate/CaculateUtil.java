@@ -36,7 +36,7 @@ public class CaculateUtil {
                     Double left=value.pop();
                     value.push(op.equals("+")?left+right:op.equals("-")?left-right:op.equals("*")?left*right:op.equals("/")?left/right:0);
                 }else if(temp.equals("(")){
-
+                    operate.push(temp);
                 }else{
                     value.push(Double.valueOf(temp));
                 }
