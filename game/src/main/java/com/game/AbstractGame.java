@@ -30,7 +30,6 @@ public abstract class AbstractGame extends JFrame{
             while (running) {
 
                 if (AbstractGame.this.isActive()) {
-
                     update(AbstractGame.this.getGraphics());
                 }
                 try {
