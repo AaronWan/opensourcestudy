@@ -1,35 +1,45 @@
 package com.game;
 
 import com.game.chilken.Egg;
-import com.game.snake.SnakeGame;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 /**
  * @author 万松(Aaron)
  * @since 5.7
  */
-public abstract class AbstractGame extends JFrame{
+public abstract class AbstractGame extends JFrame {
     protected PaintThread paintThread = new PaintThread();// 这样也可以定义一个新线程，并非只有那种定义
     public List<Part> parts = Lists.newArrayList();
     protected Image offScreenImage = null;
     public int ROWS;
     public int CLOS;
     public static final int Block_SIZE = 15;
-    boolean gameOver = false;
+    public boolean gameOver = false;
+
+    {
+        this.addKeyListener(new KeyMonitor());
+        this.addMouseListener(new MouseMonitor());
+    }
 
     private class PaintThread extends Thread {
         boolean running = true;
 
+        public PaintThread() {
+            this.setDaemon(true);
+        }
+
         public void run() {
             while (running) {
 
-                if (AbstractGame.this.isActive()) {
+                 if (AbstractGame.this.isActive()) {
                     update(AbstractGame.this.getGraphics());
                 }
                 try {
@@ -54,11 +64,27 @@ public abstract class AbstractGame extends JFrame{
 
         public void keyPressed(KeyEvent e) {
             parts.forEach(part -> {
-                if (part instanceof SnakeGame.KeyHandler) {
-                    ((SnakeGame.KeyHandler) part).keyPressed(e);
+                if (part instanceof KeyHandler) {
+                    ((KeyHandler) part).keyEventProcess(e);
                 }
             });
+            if(AbstractGame.this instanceof KeyHandler){
+                ((KeyHandler)AbstractGame.this).keyEventProcess(e);
+            }
+        }
+    }
 
+    public class MouseMonitor extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            parts.forEach(part -> {
+                if (part instanceof KeyHandler) {
+                    ((KeyHandler) part).mouseClickHandler(e);
+                }
+            });
+            if(AbstractGame.this instanceof KeyHandler){
+                ((KeyHandler)AbstractGame.this).mouseClickHandler(e);
+            }
         }
     }
 
@@ -78,7 +104,7 @@ public abstract class AbstractGame extends JFrame{
     @SuppressWarnings("static-access")
     public void paint(Graphics g) {
         Color c = g.getColor();
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.GREEN);
         g.drawString("Score:" + Egg.count * 5, 10, 60);
 
         if (gameOver) {
@@ -88,7 +114,7 @@ public abstract class AbstractGame extends JFrame{
         }
 
         g.setColor(c);
-        parts.forEach(part -> part.draw(g));
+        parts.forEach(part -> part.paint(g));
 
     }
 
@@ -101,5 +127,19 @@ public abstract class AbstractGame extends JFrame{
         });
     }
 
-   public abstract void lanch();
+    public interface KeyHandler {
+        default void keyEventProcess(KeyEvent e){
+
+        }
+
+        default void mouseClickHandler(MouseEvent e){
+
+        }
+
+        default void mouseMoveHandler(MouseEvent e){
+
+        }
+    }
+
+    public abstract void lanch();
 }

@@ -1,12 +1,14 @@
 package com.game.snake;
 
+import com.game.AbstractGame;
 import com.game.Part;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.Collection;
 
-public class Snake extends Thread implements Part, SnakeGame.KeyHandler{
+public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
     private final Collection<Egg> eggs;
     Node head;
     Node tail;
@@ -22,6 +24,7 @@ public class Snake extends Thread implements Part, SnakeGame.KeyHandler{
         size = 1;
         this.y = y;
         this.eggs = eggs;
+        this.setDaemon(true);
     }
 
     public void eat() {
@@ -44,6 +47,11 @@ public class Snake extends Thread implements Part, SnakeGame.KeyHandler{
     private Rectangle getRect() {
         return new Rectangle(Yard.Block_SIZE * head.col, Yard.Block_SIZE
                 * head.row, head.w, head.h);
+
+    }
+
+    @Override
+    public void mouseClickHandler(MouseEvent e) {
 
     }
 
@@ -70,7 +78,7 @@ public class Snake extends Thread implements Part, SnakeGame.KeyHandler{
         tail = node;
     }
 
-    public void draw(Graphics g) {
+    public void paint(Graphics g) {
         if (size <= 0) {
             return;
         }
@@ -166,7 +174,7 @@ public class Snake extends Thread implements Part, SnakeGame.KeyHandler{
         }
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyEventProcess(KeyEvent e) {
         int key = e.getKeyCode();
         if(e.getKeyCode() == KeyEvent.VK_SPACE){
             this.isStop=!this.isStop;

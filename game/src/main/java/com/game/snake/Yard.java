@@ -14,7 +14,7 @@ public class Yard implements Part {
         this.CLOS=clos;
     }
 
-    public void draw(Graphics g){
+    public void paint(Graphics g){
         g.setColor(Color.DARK_GRAY);
 
         g.drawRect(0, 0, this.Block_SIZE * this.ROWS, this.Block_SIZE

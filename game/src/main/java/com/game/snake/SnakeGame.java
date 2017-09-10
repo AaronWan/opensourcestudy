@@ -4,7 +4,6 @@ import com.game.AbstractGame;
 import com.google.common.collect.Sets;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.Set;
 
 /**
@@ -25,7 +24,6 @@ public class SnakeGame extends AbstractGame {
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.setSize(this.Block_SIZE * this.CLOS, this.Block_SIZE * this.ROWS);
         this.setBackground(Color.GRAY);
-        this.addKeyListener(new KeyMonitor());
 //        this.setResizable(false);
         this.setVisible(true);
 
@@ -46,7 +44,4 @@ public class SnakeGame extends AbstractGame {
 
     }
 
-    public interface KeyHandler {
-        void keyPressed(KeyEvent e);
-    }
 }

@@ -18,6 +18,7 @@ public class Egg extends Thread implements Part {
         this.col = col;
         this.row = row;
         this.yard = yard;
+        this.setDaemon(true);
     }
 
     public Egg(Yard yard) {
@@ -53,8 +54,8 @@ public class Egg extends Thread implements Part {
 
     }
 
-    public void draw(Graphics g) {
-        // System.out.println("draw egg");
+    public void paint(Graphics g) {
+        // System.out.println("paint egg");
         Color c = g.getColor();
         g.setColor(color);
         g.fillOval(Yard.Block_SIZE * col, Yard.Block_SIZE * row, w, h);
