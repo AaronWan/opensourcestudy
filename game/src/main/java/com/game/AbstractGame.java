@@ -1,6 +1,7 @@
 package com.game;
 
 import com.game.chilken.Egg;
+import com.google.common.collect.Lists;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * @author 万松(Aaron)
@@ -17,7 +17,7 @@ import java.util.Vector;
  */
 public abstract class AbstractGame extends JFrame {
     protected PaintThread paintThread = new PaintThread();// 这样也可以定义一个新线程，并非只有那种定义
-    public List<Part> parts = new Vector<>();
+    public List<Part> parts = Lists.newArrayList();
     protected Image offScreenImage = null;
     public int ROWS;
     public int CLOS;
@@ -114,7 +114,10 @@ public abstract class AbstractGame extends JFrame {
         }
 
         g.setColor(c);
-        parts.forEach(part -> part.paint(g));
+        for (int i = 0; i < parts.size(); i++) {
+            Part part=parts.get(i);
+            part.paint(g);
+        }
 
     }
 

@@ -2,12 +2,14 @@ package com.game.chilken;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.google.common.collect.Lists;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 /**
  * @author 万松(Aaron)
@@ -17,12 +19,47 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     private int number;
     private int errTimes;
     private Random random = new Random();
+    private List<NumberButton> numbers = Lists.newArrayList();
+
+    {
+        for (int i = 0; i < 10; i++) {
+            numbers.add(new NumberButton(i));
+        }
+    }
+
     private boolean start;
+
+    private Thread changeEggStatThread = new Thread(() -> {
+        while (true) {
+            for (int i = 0; i < parts.size(); i++) {
+                Part part = parts.get(i);
+                if (part instanceof Egg) {
+                    Egg egg = (Egg) part;
+                    if (egg.needToBeChilken()) {
+                        parts.add(new Chilken(egg.getSize(), egg.getX(), egg.getY()));
+                        parts.remove(part);
+                        System.out.println("change to chilken");
+                    }
+                }
+                if (part instanceof Deadable) {
+                    if (((Deadable) part).isDead()) {
+                        parts.remove(part);
+                    }
+                }
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+        }
+    });
 
     public ChilkenGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
         this.number = random.nextInt(10);
+        this.changeEggStatThread.start();
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lanch();
     }
 
@@ -32,20 +69,12 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
         this.setLocation(300, 300);
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.setSize(this.Block_SIZE * this.CLOS, this.Block_SIZE * this.ROWS);
-        this.setBackground(Color.orange);
+        this.setBackground(Color.white);
+        this.setLayout(new GridLayout(1, 10));
+        numbers.forEach(numberButton -> this.add(numberButton));
         this.setVisible(true);
     }
 
-    @Override
-    public void keyEventProcess(KeyEvent e) {
-        if (!this.start)
-            if (e.getKeyChar() == (number + "").charAt(0)) {
-                say("开始下蛋吧");
-                this.start = true;
-            } else {
-                warn(e.getKeyChar() + "");
-            }
-    }
 
     public void warn(String e) {
         errTimes++;
@@ -64,7 +93,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
             return 1;
         }
 
-        if (parts.size() == 50) {
+        if (parts.size() >= 10000) {
             this.gameOver = true;
             return 2;
         }
@@ -89,13 +118,8 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
             say("真棒，今天的蛋下完了，明天再来吧");
         } else if (checkSuccess() == 1) {
             say("今天的蛋被压碎的太多了，今天任务失败，明天再来吧");
-            try {
-                TimeUnit.SECONDS.sleep(1000);
-                say("bye bye");
-                System.exit(0);
-            } catch (InterruptedException e) {
-
-            }
+            say("bye bye");
+            System.exit(0);
         }
 
         if (egg.isWell) {
@@ -110,9 +134,50 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
         }
     }
 
+    void addGlasses(){
+        for(int i=0;i<100;i++)
+        this.parts.add(new Glass(random.nextInt(ROWS*Block_SIZE),random.nextInt(CLOS*Block_SIZE)));
+    }
+
+    class NumberButton extends JButton {
+        private int number;
+
+        public NumberButton(int number) {
+            super("" + number);
+            this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
+            this.setBackground(getRandomColor());
+            this.number = number;
+            this.addLisner();
+        }
+
+        public void addLisner() {
+            this.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (number == ChilkenGame.this.number) {
+                        ChilkenGame.this.init();
+                    } else {
+                        warn(number + "");
+                    }
+                }
+            });
+
+        }
+    }
+
+    private void init() {
+        numbers.forEach(numberButton -> {
+            remove(numberButton);
+        });
+        addGlasses();
+        if (!start)
+            say("开始下蛋吧");
+        start = true;
+        start();
+    }
+
     public static void main(String[] args) {
         ChilkenGame chilkenGame = new ChilkenGame(100, 100);
-        chilkenGame.start();
     }
 
 }
