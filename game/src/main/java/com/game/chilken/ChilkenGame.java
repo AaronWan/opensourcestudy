@@ -27,7 +27,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     }
 
     public void lanch() {
-        this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码数字 " + number);
+        this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码数字," + number);
         this.setTitle("小鸡下蛋");
         this.setLocation(300, 300);
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
@@ -40,6 +40,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     public void keyEventProcess(KeyEvent e) {
         if (!this.start)
             if (e.getKeyChar() == (number + "").charAt(0)) {
+                say("开始下蛋吧");
                 this.start = true;
             } else {
                 warn(e.getKeyChar() + "");
@@ -49,22 +50,22 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     public void warn(String e) {
         errTimes++;
         if (errTimes < 10) {
-            this.say("万铮，你输入的是" + e + "请输入 数字 " + number);
+            this.say("万铮，你输入的是," + e + "请输入 数字 ," + number);
         } else {
             this.say("万铮，可以问一下妈妈和爸爸哪个是 数字 " + number);
         }
     }
 
 
-    public int checkSuccess(){
+    public int checkSuccess() {
 
-        if(Egg.badCount>10){
-            this.gameOver=true;
+        if (Egg.badCount > 10) {
+            this.gameOver = true;
             return 1;
         }
 
-        if(parts.size()==50){
-            this.gameOver=true;
+        if (parts.size() == 50) {
+            this.gameOver = true;
             return 2;
         }
 
@@ -84,9 +85,9 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
 
     public void tips(Egg egg) {
 
-        if(checkSuccess()==2){
+        if (checkSuccess() == 2) {
             say("真棒，今天的蛋下完了，明天再来吧");
-        }else if(checkSuccess()==1){
+        } else if (checkSuccess() == 1) {
             say("今天的蛋被压碎的太多了，今天任务失败，明天再来吧");
             try {
                 TimeUnit.SECONDS.sleep(1000);
@@ -110,7 +111,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     }
 
     public static void main(String[] args) {
-        ChilkenGame chilkenGame = new ChilkenGame(50, 50);
+        ChilkenGame chilkenGame = new ChilkenGame(100, 100);
         chilkenGame.start();
     }
 

@@ -19,6 +19,8 @@ public class Egg implements Part {
     public static int badCount;
     private int x;
     private int y;
+    private int width;
+    private int height;
     private Color color;
     boolean isWell = true;
     private BufferedImage icon;
@@ -26,6 +28,7 @@ public class Egg implements Part {
     public Egg(int x, int y) {
         this.x = x;
         this.y = y;
+        this.setSize();
         this.color = getRandomColor();
         count++;
         this.intersects();
@@ -54,13 +57,19 @@ public class Egg implements Part {
         return new Ellipse2D.Double(x, y, 20, 25);
 
     }
-
+    private void setSize(){
+        int size=random.nextInt(40);
+        if(size<10){
+            size=10;
+        }
+        this.width=size;
+        this.height=size*6/5;
+    }
     @Override
     public void paint(Graphics g) {
-//        g.drawImage(image,x,y,40,40,null);
         if (this.isWell) {
             g.setColor(color);
-            g.fillOval(x, y, 20, 25);
+            g.fillOval(x, y, width, height);
         }else{
             g.setColor(Color.gray);
             g.fillOval(x,y,20,2);
