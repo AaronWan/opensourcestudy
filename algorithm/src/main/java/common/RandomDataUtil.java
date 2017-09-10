@@ -26,7 +26,7 @@ public class RandomDataUtil {
     public static Integer[] createIntArrays(int n) {
         Integer[] rst = new Integer[n];
         while (n > 0) {
-            rst[--n] = random.nextInt(10000);
+            rst[--n] = random.nextInt(rst.length);
         }
         return rst;
     }

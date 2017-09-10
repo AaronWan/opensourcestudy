@@ -15,10 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class SortCompare {
     public static SortBean[] compare(List<ISort> sorts, int n, TimeUnit unit) {
-        Integer[] data = RandomDataUtil.createIntArrays(n);
+
         SortBean[] sortBeans = new SortBean[sorts.size()];
         for (int i = 0; i < sorts.size(); i++) {
             ISort sort = sorts.get(i);
+            Integer[] data = RandomDataUtil.createIntArrays(n);
             Stopwatch stopwatch = Stopwatch.createStarted();
             sort.sort(data);
             sortBeans[i] = new SortBean(sort.getClass().getSimpleName(), stopwatch.elapsed(unit));
@@ -50,6 +51,6 @@ public class SortCompare {
 
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(compare(Lists.newArrayList(new Insertion(), new Selection()), 10000, TimeUnit.MILLISECONDS)));
+        System.out.println(Arrays.toString(compare(Lists.newArrayList(new Selection(),new Insertion()), 10000, TimeUnit.MILLISECONDS)));
     }
 }

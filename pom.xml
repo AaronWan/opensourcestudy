@@ -48,6 +48,7 @@
         <module>lambdasudy</module>
         <module>algorithm</module>
         <module>httpclientstudy</module>
+        <module>game</module>
     </modules>
     <packaging>pom</packaging>
 
