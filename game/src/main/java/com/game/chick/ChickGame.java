@@ -23,7 +23,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
 
     {
         for (int i = 0; i < 10; i++) {
-            numbers.add(new NumberButton(i));
+            numbers.add(new NumberButton(i,getWidth()/10,50));
         }
     }
 
@@ -65,13 +65,15 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
 
     public void lanch() {
         this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码数字," + number);
-        this.setTitle("小鸡下蛋");
+        this.setTitle("小鸡下蛋"+number);
         this.setLocation(300, 300);
+        setLocationByPlatform(true);
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.setSize(this.Block_SIZE * this.CLOS, this.Block_SIZE * this.ROWS);
         this.setBackground(Color.white);
-        this.setLayout(new GridLayout(1, 10));
-        numbers.forEach(numberButton -> this.add(numberButton));
+        this.setLayout(new GridLayout(0, 10));
+        numbers.forEach(numberButton -> this.getContentPane().add(numberButton));
+        this.pack();
         this.setVisible(true);
     }
 
@@ -142,8 +144,9 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     class NumberButton extends JButton {
         private int number;
 
-        public NumberButton(int number) {
+        public NumberButton(int number,int width,int height) {
             super("" + number);
+            this.setSize(width,height);
             this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
             this.setBackground(getRandomColor());
             this.number = number;
@@ -166,6 +169,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     private void init() {
+        this.pack();
         numbers.forEach(numberButton -> {
             remove(numberButton);
         });
