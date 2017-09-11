@@ -1,11 +1,10 @@
-package com.game.chilken;
+package com.game.chick;
 
 import com.game.Part;
 import com.google.common.collect.Lists;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.util.Random;
 import java.util.List;
 
 /**

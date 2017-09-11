@@ -1,8 +1,7 @@
-package com.game.chilken;
+package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
-import com.game.snake.Dir;
 import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
@@ -15,7 +14,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class Chilken extends Thread implements Deadable, Part, AbstractGame.KeyHandler {
+public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHandler {
     private Point center;
     private Point currentLocation;
     private long r=100;
@@ -36,7 +35,7 @@ public class Chilken extends Thread implements Deadable, Part, AbstractGame.KeyH
         }
     }
 
-    public Chilken(int grow_time, int x, int y) {
+    public Chick(int grow_time, int x, int y) {
         this.center=new Point(x,y);
         this.currentLocation=new Point(x,y);
         this.grow_time = grow_time;

@@ -1,6 +1,6 @@
 package com.game;
 
-import com.game.chilken.Egg;
+import com.game.chick.Egg;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;

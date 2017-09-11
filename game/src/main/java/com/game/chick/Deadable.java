@@ -1,4 +1,4 @@
-package com.game.chilken;
+package com.game.chick;
 
 /**
  * @author 万松(Aaron)

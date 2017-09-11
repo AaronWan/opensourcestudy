@@ -1,4 +1,4 @@
-package com.game.chilken;
+package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler, Part {
+public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, Part {
     private int number;
     private int errTimes;
     private Random random = new Random();
@@ -36,7 +36,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
                 if (part instanceof Egg) {
                     Egg egg = (Egg) part;
                     if (egg.needToBeChilken()) {
-                        parts.add(new Chilken(egg.getSize(), egg.getX(), egg.getY()));
+                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY()));
                         parts.remove(part);
                         System.out.println("change to chilken");
                     }
@@ -54,7 +54,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
         }
     });
 
-    public ChilkenGame(int rows, int clos) {
+    public ChickGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
         this.number = random.nextInt(10);
@@ -154,8 +154,8 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
             this.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    if (number == ChilkenGame.this.number) {
-                        ChilkenGame.this.init();
+                    if (number == ChickGame.this.number) {
+                        ChickGame.this.init();
                     } else {
                         warn(number + "");
                     }
@@ -177,7 +177,7 @@ public class ChilkenGame extends AbstractGame implements AbstractGame.KeyHandler
     }
 
     public static void main(String[] args) {
-        ChilkenGame chilkenGame = new ChilkenGame(100, 100);
+        ChickGame chickGame = new ChickGame(100, 100);
     }
 
 }
