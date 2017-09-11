@@ -94,6 +94,7 @@ public abstract class AbstractGame extends JFrame {
      */
     @SuppressWarnings("static-access")
     public void update(Graphics g) {
+        super.update(g);
         offScreenImage = this.createImage(this.Block_SIZE * this.CLOS,
                 this.Block_SIZE * this.ROWS);
         Graphics gcs = offScreenImage.getGraphics();
@@ -103,6 +104,7 @@ public abstract class AbstractGame extends JFrame {
 
     @SuppressWarnings("static-access")
     public void paint(Graphics g) {
+        super.paint(g);
         Color c = g.getColor();
         g.setColor(Color.GREEN);
         g.drawString("Score:" + Egg.count * 5, 10, 60);

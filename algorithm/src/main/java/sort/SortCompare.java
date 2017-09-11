@@ -21,6 +21,7 @@ public class SortCompare {
             ISort sort = sorts.get(i);
             Integer[] data = RandomDataUtil.createIntArrays(n);
             Stopwatch stopwatch = Stopwatch.createStarted();
+            System.out.println("-----------"+sort.getClass().getSimpleName()+"------------");
             sort.sort(data);
             sortBeans[i] = new SortBean(sort.getClass().getSimpleName(), stopwatch.elapsed(unit));
         }
@@ -51,6 +52,6 @@ public class SortCompare {
 
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(compare(Lists.newArrayList(new Selection(),new Insertion()), 10000, TimeUnit.MILLISECONDS)));
+        System.out.println(Arrays.toString(compare(Lists.newArrayList(new Selection(),new Insertion(),new Shell()), 20, TimeUnit.MILLISECONDS)));
     }
 }

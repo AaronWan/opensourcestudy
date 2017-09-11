@@ -1,5 +1,6 @@
 package sort;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,6 @@ public class Selection<T> implements ISort<T> {
 
     @Override
     public void sort(Comparable<T>[] objects) {
-
         for (int i = 0; i < objects.length; i++) {
             int min=i;
             for (int j = i; j <objects.length ; j++) {

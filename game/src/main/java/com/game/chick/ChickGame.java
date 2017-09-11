@@ -18,61 +18,39 @@ import java.util.List;
 public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, Part {
     private int number;
     private int errTimes;
+    private JPanel btnPanel;
     private Random random = new Random();
     private List<NumberButton> numbers = Lists.newArrayList();
 
     {
         for (int i = 0; i < 10; i++) {
-            numbers.add(new NumberButton(i,getWidth()/10,50));
+            numbers.add(new NumberButton(i, getWidth() / 10, 50));
         }
     }
 
     private boolean start;
 
-    private Thread changeEggStatThread = new Thread(() -> {
-        while (true) {
-            for (int i = 0; i < parts.size(); i++) {
-                Part part = parts.get(i);
-                if (part instanceof Egg) {
-                    Egg egg = (Egg) part;
-                    if (egg.needToBeChilken()) {
-                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY()));
-                        parts.remove(part);
-                        System.out.println("change to chilken");
-                    }
-                }
-                if (part instanceof Deadable) {
-                    if (((Deadable) part).isDead()) {
-                        parts.remove(part);
-                    }
-                }
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-        }
-    });
 
     public ChickGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
-        this.number = random.nextInt(10);
-        this.changeEggStatThread.start();
+        this.number = 4;//random.nextInt(10);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lanch();
     }
 
     public void lanch() {
         this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码数字," + number);
-        this.setTitle("小鸡下蛋"+number);
+        this.setTitle("小鸡下蛋" + number);
         this.setLocation(300, 300);
-        setLocationByPlatform(true);
-        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.setSize(this.Block_SIZE * this.CLOS, this.Block_SIZE * this.ROWS);
         this.setBackground(Color.white);
-        this.setLayout(new GridLayout(0, 10));
-        numbers.forEach(numberButton -> this.getContentPane().add(numberButton));
+        btnPanel = new JPanel(new GridLayout(2, 5, 5, 4));
+        for (int i = 0; i < numbers.size(); i++) {
+            NumberButton btn = numbers.get(i);
+            btnPanel.add(btn);
+        }
+        this.add(btnPanel);
+        this.setResizable(false);
         this.pack();
         this.setVisible(true);
     }
@@ -136,17 +114,17 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
         }
     }
 
-    void addGlasses(){
-        for(int i=0;i<100;i++)
-        this.parts.add(new Glass(random.nextInt(ROWS*Block_SIZE),random.nextInt(CLOS*Block_SIZE)));
+    void addGlasses() {
+        for (int i = 0; i < 100; i++)
+            this.parts.add(new Glass(random.nextInt(ROWS * Block_SIZE), random.nextInt(CLOS * Block_SIZE)));
     }
 
     class NumberButton extends JButton {
         private int number;
 
-        public NumberButton(int number,int width,int height) {
+        public NumberButton(int number, int width, int height) {
             super("" + number);
-            this.setSize(width,height);
+            this.setSize(width, height);
             this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
             this.setBackground(getRandomColor());
             this.number = number;
@@ -169,16 +147,54 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     private void init() {
-        this.pack();
-        numbers.forEach(numberButton -> {
-            remove(numberButton);
-        });
+        this.remove(btnPanel);
+        setCenter();
         addGlasses();
-        if (!start)
+        if (!start) {
             say("开始下蛋吧");
+        }
         start = true;
+        this.changeEggStatThread.start();
         start();
     }
+
+    private void setCenter() {
+        this.setSize(this.Block_SIZE * this.CLOS, this.Block_SIZE * this.ROWS);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int centerX = screenSize.width / 2;
+
+        int centerY = screenSize.height / 2;
+
+        this.setLocation(centerX - this.getWidth() / 2, centerY - this.getHeight() / 2);
+
+    }
+
+    private Thread changeEggStatThread = new Thread(() -> {
+        while (true) {
+            for (int i = 0; i < parts.size(); i++) {
+                Part part = parts.get(i);
+                if (part instanceof Egg) {
+                    Egg egg = (Egg) part;
+                    if (egg.needToBeChilken()) {
+                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY()));
+                        parts.remove(part);
+                        System.out.println("change to chilken");
+                    }
+                }
+                if (part instanceof Deadable) {
+                    if (((Deadable) part).isDead()) {
+                        parts.remove(part);
+                    }
+                }
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+        }
+    });
 
     public static void main(String[] args) {
         ChickGame chickGame = new ChickGame(100, 100);

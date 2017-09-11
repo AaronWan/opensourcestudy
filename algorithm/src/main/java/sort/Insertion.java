@@ -24,9 +24,7 @@ public class Insertion<T> implements ISort<T> {
     }
 
     public static void main(String[] args) {
-        Integer[] arr= RandomDataUtil.createIntArrays(10000);
-        System.out.println(Arrays.toString(arr));
+        Integer[] arr= RandomDataUtil.createIntArrays(10);
         new Insertion().sort(arr);
-        System.out.println(Arrays.toString(arr));
     }
 }
