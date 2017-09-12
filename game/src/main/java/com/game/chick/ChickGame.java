@@ -2,6 +2,7 @@ package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.snake.Snake;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     private int number;
     private int errTimes;
     private JPanel btnPanel;
+    private Snake snake;
     private Random random = new Random();
     private List<NumberButton> numbers = Lists.newArrayList();
 
@@ -34,7 +36,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public ChickGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
-        this.number = 4;//random.nextInt(10);
+        this.number = random.nextInt(10);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lanch();
     }
@@ -115,7 +117,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     void addGlasses() {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 1; i++)
             this.parts.add(new Glass(random.nextInt(ROWS * Block_SIZE), random.nextInt(CLOS * Block_SIZE)));
     }
 
@@ -150,12 +152,18 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
         this.remove(btnPanel);
         setCenter();
         addGlasses();
+        addSnake();
         if (!start) {
             say("开始下蛋吧");
         }
         start = true;
         this.changeEggStatThread.start();
         start();
+    }
+
+    private void addSnake() {
+        this.snake=new Snake(ROWS,CLOS,parts);
+        this.parts.add(snake);
     }
 
     private void setCenter() {
@@ -180,7 +188,6 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
                     if (egg.needToBeChilken()) {
                         parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY()));
                         parts.remove(part);
-                        System.out.println("change to chilken");
                     }
                 }
                 if (part instanceof Deadable) {
@@ -197,7 +204,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     });
 
     public static void main(String[] args) {
-        ChickGame chickGame = new ChickGame(100, 100);
+        ChickGame chickGame = new ChickGame(80, 80);
     }
 
 }

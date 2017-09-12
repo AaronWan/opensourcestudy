@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
@@ -89,8 +90,19 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
 
     @Override
     public void paint(Graphics g) {
+        if(stat!=Stat.DEAD)
         g.drawImage(getIcon(), ((Double) this.currentLocation.getX()).intValue(),
                 ((Double) this.currentLocation.getY()).intValue(), getSize(), getSize(), null);
+    }
+
+    @Override
+    public Rectangle getRect() {
+        return new Ellipse2D.Double(this.currentLocation.getX(), this.currentLocation.getY(), getSize(), getSize()).getBounds();
+    }
+
+    @Override
+    public void rAppear() {
+        this.stat=Stat.DEAD;
     }
 
     private Image getIcon() {

@@ -11,7 +11,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class Egg implements Part {
+public class Egg implements Part,Deadable {
     private static List<Egg> eggs = Lists.newArrayList();
     public static int count;
     public static int badCount;
@@ -22,6 +22,7 @@ public class Egg implements Part {
     private Color color;
     private long createTime = System.currentTimeMillis();
     boolean isWell = true;
+    boolean hidden = false;
     private int growTime = 2000;
 
     public Egg(int x, int y) {
@@ -37,7 +38,7 @@ public class Egg implements Part {
 
     public boolean intersects() {
         for (Egg egg : eggs) {
-            if (egg.getRect().intersects(this.getRect().getBounds())) {
+            if (egg.getRect().intersects(this.getRect())) {
                 isWell = false;
                 badCount++;
                 this.say("鸡蛋压坏了");
@@ -48,8 +49,8 @@ public class Egg implements Part {
     }
 
 
-    public Ellipse2D getRect() {
-        return new Ellipse2D.Double(x, y, 20, 25);
+    public Rectangle getRect() {
+        return new Ellipse2D.Double(x, y, 20, 25).getBounds();
 
     }
 
@@ -64,6 +65,9 @@ public class Egg implements Part {
 
     @Override
     public void paint(Graphics g) {
+        if (hidden)
+            return;
+
         if (this.isWell) {
             g.setColor(color);
             g.fillOval(x, y, width, height);
@@ -74,10 +78,20 @@ public class Egg implements Part {
     }
 
     public boolean needToBeChilken() {
-        if ((System.currentTimeMillis() - createTime) > growTime&&isWell) {
+        if ((System.currentTimeMillis() - createTime) > growTime && isWell && !hidden) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void rAppear() {
+        hidden = true;
+    }
+
+    @Override
+    public boolean isDead() {
+        return hidden;
     }
 
     public int getX() {

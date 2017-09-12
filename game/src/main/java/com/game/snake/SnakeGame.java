@@ -1,11 +1,11 @@
 package com.game.snake;
 
 import com.game.AbstractGame;
-import com.google.common.collect.Sets;
+import com.game.Part;
+import com.google.common.collect.Lists;
 
 import java.awt.*;
-import java.util.Set;
-
+import java.util.List;
 /**
  * @author 万松(Aaron)
  * @since 5.7
@@ -34,8 +34,8 @@ public class SnakeGame extends AbstractGame {
         int rows = 50;
         int cols = 50;
         Yard yard = new Yard(rows, cols);
-        Set<Egg> eggs = Sets.newHashSet(new Egg(yard), new Egg(yard));
-        Snake snake = new Snake(yard, eggs);
+        List<Part> eggs = Lists.newArrayList(new Egg(yard), new Egg(yard));
+        Snake snake = new Snake(rows,cols, eggs);
         SnakeGame snakeGame = new SnakeGame(rows, cols);
         snakeGame.parts.add(snake);
         snakeGame.parts.add(yard);

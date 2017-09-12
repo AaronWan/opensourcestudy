@@ -19,8 +19,15 @@ public interface Part {
 
         }
     }
-
     default Color getRandomColor() {
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
+    }
+
+    default Rectangle getRect(){
+        throw new RuntimeException("getRect no impl");
+    }
+
+    default void rAppear(){
+
     }
 }

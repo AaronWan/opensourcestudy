@@ -24,11 +24,6 @@ public abstract class AbstractGame extends JFrame {
     public static final int Block_SIZE = 15;
     public boolean gameOver = false;
 
-    {
-        this.addKeyListener(new KeyMonitor());
-        this.addMouseListener(new MouseMonitor());
-    }
-
     private class PaintThread extends Thread {
         boolean running = true;
 
@@ -61,13 +56,14 @@ public abstract class AbstractGame extends JFrame {
     }
 
     public class KeyMonitor extends KeyAdapter {
-
         public void keyPressed(KeyEvent e) {
-            parts.forEach(part -> {
+            for (int i = 0; i < parts.size(); i++) {
+                Part part=parts.get(i);
                 if (part instanceof KeyHandler) {
+                    System.out.println(part.getClass().getName());
                     ((KeyHandler) part).keyEventProcess(e);
                 }
-            });
+            }
             if (AbstractGame.this instanceof KeyHandler) {
                 ((KeyHandler) AbstractGame.this).keyEventProcess(e);
             }
@@ -77,11 +73,12 @@ public abstract class AbstractGame extends JFrame {
     public class MouseMonitor extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            parts.forEach(part -> {
+            for (int i = 0; i < parts.size(); i++) {
+                Part part=parts.get(i);
                 if (part instanceof KeyHandler) {
                     ((KeyHandler) part).mouseClickHandler(e);
                 }
-            });
+            }
             if (AbstractGame.this instanceof KeyHandler) {
                 ((KeyHandler) AbstractGame.this).mouseClickHandler(e);
             }
@@ -124,17 +121,22 @@ public abstract class AbstractGame extends JFrame {
     }
 
     public void start() {
+        this.requestFocusInWindow();
+        this.addKeyListener(new KeyMonitor());
+        this.addMouseListener(new MouseMonitor());
+
         paintThread.start();
         this.parts.forEach(part -> {
             if (part instanceof Thread) {
                 ((Thread) part).start();
             }
         });
+
+
     }
 
     public interface KeyHandler {
         default void keyEventProcess(KeyEvent e) {
-
         }
 
         default void mouseClickHandler(MouseEvent e) {

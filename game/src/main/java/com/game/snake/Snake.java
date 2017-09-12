@@ -2,35 +2,42 @@ package com.game.snake;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.chick.Chick;
+import com.game.chick.Deadable;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.Collection;
+import java.util.List;
 
 public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
-    private final Collection<Egg> eggs;
+    private final List<Part> eggs;
     Node head;
     Node tail;
     Node node = new Node(20, 30, Dir.L);
     static int size = 0;
-    private Yard y;
-    private int speed = 500;
-    public volatile boolean isStop = false;
-
-    public Snake(Yard y, Collection<Egg> eggs) {
+    private int speed = 200;
+    public int rows;
+    public int cols;
+    public Snake(int rows,int cols, List<Part> eggs) {
         this.head = node;
         this.tail = node;
         size = 1;
-        this.y = y;
+        this.rows=rows;
+        this.cols=cols;
         this.eggs = eggs;
         this.setDaemon(true);
     }
 
     public void eat() {
-        for (Egg e : eggs) {
+        for (int i = 0; i <eggs.size() ; i++) {
+            Part e=eggs.get(i);
+            if(e instanceof Egg||e instanceof com.game.chick.Egg||e instanceof Chick)
             if (this.getRect().intersects(e.getRect())) {//Intersects相交
                 e.rAppear();
+                if(e instanceof Deadable){
+                    eggs.remove(e);
+                }
                 this.addTail();
                 size++;
                 updateSpeed();
@@ -44,7 +51,7 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
         }
     }
 
-    private Rectangle getRect() {
+    public Rectangle getRect() {
         return new Rectangle(Yard.Block_SIZE * head.col, Yard.Block_SIZE
                 * head.row, head.w, head.h);
 
@@ -96,8 +103,8 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
     }
 
     private void checkDead() {
-        if (head.row < 2 || head.col < 0 || head.row >= y.ROWS + 1 || head.col >= 1 + y.CLOS) {
-            isStop = true;
+        if (head.row < 2 || head.col < 0 || head.row >= rows + 1 || head.col >= 1 + cols) {
+//            isStop = true;
         }
     }
 
@@ -134,8 +141,7 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
 
     @Override
     public void run() {
-        while (true)
-        while (!isStop) {
+        while (true){
             try {
                 Thread.sleep(speed);
             } catch (InterruptedException e) {
@@ -176,11 +182,12 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
 
     public void keyEventProcess(KeyEvent e) {
         int key = e.getKeyCode();
-        if(e.getKeyCode() == KeyEvent.VK_SPACE){
-            this.isStop=!this.isStop;
-            return ;
-        }
-        if(!isStop)
+        System.out.println("----------"+e.getKeyCode());
+//        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+//            this.isStop=!this.isStop;
+//            return ;
+//        }
+//        if(!isStop)
         switch (key) {
             case KeyEvent.VK_UP:
                 if (head.dir != Dir.D) head.dir = Dir.U;
