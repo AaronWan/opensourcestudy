@@ -22,12 +22,13 @@ public class Shell<T> implements ISort<T> {
                 for (int j = i; j >= h && less(objects[j], objects[j - h]) < 0; j -= h) {
                     exch(objects, j, j - h);
                 }
+                System.out.println(Arrays.toString(objects));
             }
             h = h / step;
         }
     }
 
     public static void main(String[] args) {
-        new Shell<Integer>().sort(RandomDataUtil.createIntArrays(20));
+        new Shell<Integer>().sort(RandomDataUtil.createIntArrays(10));
     }
 }

@@ -2,6 +2,7 @@ package com.game.snake;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.ScoreAble;
 import com.game.chick.Chick;
 import com.game.chick.Deadable;
 
@@ -10,44 +11,45 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
+public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHandler {
     private final List<Part> eggs;
     Node head;
     Node tail;
     Node node = new Node(20, 30, Dir.L);
+    public int score=0;
     static int size = 0;
-    private int speed = 200;
     public int rows;
     public int cols;
-    public Snake(int rows,int cols, List<Part> eggs) {
+
+    public Snake(int rows, int cols, List<Part> eggs) {
         this.head = node;
         this.tail = node;
         size = 1;
-        this.rows=rows;
-        this.cols=cols;
+        this.rows = rows;
+        this.cols = cols;
         this.eggs = eggs;
         this.setDaemon(true);
     }
 
     public void eat() {
-        for (int i = 0; i <eggs.size() ; i++) {
-            Part e=eggs.get(i);
-            if(e instanceof Egg||e instanceof com.game.chick.Egg||e instanceof Chick)
-            if (this.getRect().intersects(e.getRect())) {//Intersects相交
-                e.rAppear();
-                if(e instanceof Deadable){
-                    eggs.remove(e);
+        for (int i = 0; i < eggs.size(); i++) {
+            Part e = eggs.get(i);
+            if (e instanceof Egg || e instanceof com.game.chick.Egg || e instanceof Chick)
+                if (this.getRect().intersects(e.getRect())) {//Intersects相交
+                    e.rAppear();
+                    if (e instanceof Deadable) {
+                        eggs.remove(e);
+                    }
+                    this.addTail();
+                    size++;
+                    if(e instanceof ScoreAble){
+                        int add=((ScoreAble)e).getScore();
+                        if(add<0){
+                            this.removeTail();
+                        }
+                        this.score+=((ScoreAble)e).getScore();
+                    }
                 }
-                this.addTail();
-                size++;
-                updateSpeed();
-            }
-        }
-    }
-
-    private void updateSpeed() {
-        if (size % 20 == 0) {
-            setSpeed(size / 20);
         }
     }
 
@@ -84,6 +86,10 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
         node.pre = tail;
         tail = node;
     }
+    public void removeTail(){
+        if (this.tail!=this.head)
+            this.tail=this.tail.pre;
+    }
 
     public void paint(Graphics g) {
         if (size <= 0) {
@@ -97,9 +103,22 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
     }
 
     private void move() {
-        addToHead();
-        delFromTail();
-        checkDead();
+            autoControlHeadDir();
+            addToHead();
+            delFromTail();
+            checkDead();
+    }
+
+    private void autoControlHeadDir() {
+        if(this.head.col>=this.cols&&this.head.dir==Dir.R){
+            this.head.dir=Dir.L;
+        }else if(this.head.row>=this.rows&&this.head.dir==Dir.D){
+            this.head.dir=Dir.U;
+        }else if(this.head.col<=0&&this.head.dir==Dir.L){
+            this.head.dir=Dir.R;
+        }else if(this.head.row<=0&&this.head.dir==Dir.U){
+            this.head.dir=Dir.D;
+        }
     }
 
     private void checkDead() {
@@ -141,9 +160,9 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
-                Thread.sleep(speed);
+                Thread.sleep(getSleepTime());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -151,11 +170,15 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
             eat();
         }
     }
-
-    public void setSpeed(int level) {
-        this.speed = 500 / level;
+    public int getSleepTime(){
+       return Double.valueOf(200*Math.exp(-size/10)).intValue()+100;
     }
 
+    public static void main(String[] args) {
+        for (int i = 0; i <100 ; i++) {
+            System.out.println(i+"--"+Double.valueOf(300*Math.exp(-i/10)).intValue());
+        }
+    }
     private static class Node {
 
         int w = Yard.Block_SIZE;
@@ -182,7 +205,7 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
 
     public void keyEventProcess(KeyEvent e) {
         int key = e.getKeyCode();
-        System.out.println("----------"+e.getKeyCode());
+        System.out.println("----------" + e.getKeyCode());
 //        if(e.getKeyCode() == KeyEvent.VK_SPACE){
 //            this.isStop=!this.isStop;
 //            return ;
@@ -214,6 +237,9 @@ public class Snake extends Thread implements Part, AbstractGame.KeyHandler {
                 break;
         }
 
+    }
+    public int getScore(){
+        return size*5;
     }
 
 }

@@ -1,11 +1,12 @@
 package com.game.snake;
 
 import com.game.Part;
+import com.game.ScoreAble;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Egg extends Thread implements Part {
+public class Egg extends Thread implements Part ,ScoreAble{
     private Yard yard;
     private int h = Yard.Block_SIZE;
     private int w = Yard.Block_SIZE;
@@ -63,4 +64,8 @@ public class Egg extends Thread implements Part {
 
     }
 
+    @Override
+    public int getScore() {
+        return 10;
+    }
 }

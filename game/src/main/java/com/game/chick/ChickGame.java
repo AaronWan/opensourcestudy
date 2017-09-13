@@ -61,7 +61,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public void warn(String e) {
         errTimes++;
         if (errTimes < 10) {
-            this.say("万铮，你输入的是," + e + "请输入 数字 ," + number);
+            this.say("万铮，你输入的是," + e + ",请输入 数字 ," + number+",");
         } else {
             this.say("万铮，可以问一下妈妈和爸爸哪个是 数字 " + number);
         }

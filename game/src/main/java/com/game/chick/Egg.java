@@ -1,6 +1,7 @@
 package com.game.chick;
 
 import com.game.Part;
+import com.game.ScoreAble;
 import com.google.common.collect.Lists;
 
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class Egg implements Part,Deadable {
+public class Egg implements Part,Deadable,ScoreAble {
     private static List<Egg> eggs = Lists.newArrayList();
     public static int count;
     public static int badCount;
@@ -108,6 +109,14 @@ public class Egg implements Part,Deadable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int getScore() {
+        if(isWell){
+            return 10;
+        }
+        return -10;
     }
 
     public int getSize() {
