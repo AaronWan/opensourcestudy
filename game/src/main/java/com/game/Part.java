@@ -30,4 +30,8 @@ public interface Part {
     default void rAppear(){
 
     }
+
+    public enum Stat {
+        RUN, DEAD;
+    }
 }

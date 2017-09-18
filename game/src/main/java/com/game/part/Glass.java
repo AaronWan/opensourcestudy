@@ -1,4 +1,4 @@
-package com.game.chick;
+package com.game.part;
 
 import com.game.Part;
 

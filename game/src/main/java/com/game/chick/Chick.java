@@ -2,6 +2,7 @@ package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.part.Deadable;
 import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,8 @@ import java.util.List;
  * @since 5.7
  */
 public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHandler {
+    private final int maxX;
+    private final int maxY;
     private Point center;
     private Point currentLocation;
     private long r = 100;
@@ -25,27 +28,33 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
     private BufferedImage icon1;
     private List<BufferedImage> moveIcon = Lists.newArrayList();
 
+    private BufferedImage left;
+
+    private BufferedImage right;
+
     {
         try {
-            icon1 = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/1.png"));
-            moveIcon.add(ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/0.png")));
-            moveIcon.add(ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/0_1.png")));
+            icon1 = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/0.png"));
+            left = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/left.png"));
+            right = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/right.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public Chick(int grow_time, int x, int y) {
+    public Chick(int grow_time, int x, int y, int maxX, int maxY) {
         this.center = new Point(x, y);
         this.currentLocation = new Point(x, y);
+        this.maxX = maxX;
+        this.maxY = maxY;
         this.grow_time = grow_time;
         this.start();
     }
 
     @Override
     public void run() {
-        while (true && !isDead()) {
+        while (true && stat != Stat.DEAD) {
             try {
                 Thread.sleep(300);
             } catch (InterruptedException e) {
@@ -56,14 +65,54 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
         }
     }
 
-    private int dir = 1;
+    private int dirX = 1;
+    private int dirY = 1;
 
     private void move() {
-        if (this.currentLocation.distance(center) > r) {
-            this.dir = -dir;
+        if (this.currentLocation.x > maxX) {
+            if (this.currentLocation.y < maxY && this.currentLocation.y > 0) {
+                dirY = -1;
+            } else if (this.currentLocation.y < 0) {
+                dirY = 1;
+            } else {
+                dirY = -1;
+            }
+            dirX = -1;
         }
-        this.currentLocation.setLocation(this.currentLocation.getX() + dir, this.currentLocation.getY() + dir);
 
+        if (this.currentLocation.x < 0) {
+            if (this.currentLocation.y < maxY && this.currentLocation.y > 0) {
+                dirY = 1;
+            } else if (this.currentLocation.y < 0) {
+                dirY = 1;
+            } else {
+                dirY = -1;
+            }
+            dirX = 1;
+        }
+
+        if (this.currentLocation.y > maxY) {
+            if (this.currentLocation.x < maxX && this.currentLocation.x > 0) {
+                dirX = -1;
+            } else if (this.currentLocation.x < 0) {
+                dirX = 1;
+            } else {
+                dirX = -1;
+            }
+            dirY = -1;
+        }
+
+        if (this.currentLocation.y < 0) {
+            if (this.currentLocation.x < maxX && this.currentLocation.x > 0) {
+                dirX = 1;
+            } else if (this.currentLocation.x < 0) {
+                dirX = 1;
+            } else {
+                dirX = -1;
+            }
+            dirY = 1;
+        }
+        this.currentLocation.setLocation(this.currentLocation.x + dirX, this.currentLocation.y + dirY);
     }
 
     private void grow() {
@@ -79,20 +128,16 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
         }
     }
 
-    @Override
-    public boolean isDead() {
-        return this.stat == Stat.DEAD;
-    }
-
     private long getLifeTime() {
         return System.currentTimeMillis() - createTime;
     }
 
     @Override
     public void paint(Graphics g) {
-        if(stat!=Stat.DEAD)
-        g.drawImage(getIcon(), ((Double) this.currentLocation.getX()).intValue(),
-                ((Double) this.currentLocation.getY()).intValue(), getSize(), getSize(), null);
+        if (stat != Stat.DEAD) {
+            g.drawImage(getIcon(), ((Double) this.currentLocation.getX()).intValue(),
+                    ((Double) this.currentLocation.getY()).intValue(), getSize(), getSize(), null);
+        }
     }
 
     @Override
@@ -102,14 +147,17 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
 
     @Override
     public void rAppear() {
-        this.stat=Stat.DEAD;
+        this.stat = Stat.DEAD;
     }
 
     private Image getIcon() {
         if (getLifeTime() / 2.0 < 300) {
             return icon1;
         } else {
-            return moveIcon.get(0);
+            if (dirX > 0)
+                return right;
+            else
+                return left;
         }
     }
 
@@ -118,7 +166,4 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
     }
 
 
-    enum Stat {
-        RUN, DEAD;
-    }
 }

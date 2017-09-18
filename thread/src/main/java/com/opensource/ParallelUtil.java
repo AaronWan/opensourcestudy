@@ -58,7 +58,6 @@ public class ParallelUtil {
                         runnable.run();
                     }catch (RuntimeException e){
                         rst.getAndSet(false);
-                        System.out.println(e.getMessage());
                     }finally {
                         countDownLatch.countDown();
                     }
@@ -71,17 +70,24 @@ public class ParallelUtil {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ParallelTask parallelUtil=ParallelUtil.createParalleTask();
-        final List<String> kk=Lists.newArrayList();
-        for (int i = 0; i < 100; i++) {
-            parallelUtil.submit(() -> kk.add(new Random(10).nextInt(20000) + ""));
+        for (int i = 0; i < 10; i++) {
+            parallelUtil.submit(() -> {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("lksdjfkljsd");
+            });
         }
         try {
-            parallelUtil.await(10,TimeUnit.SECONDS);
+            parallelUtil.await(1,TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(kk);
+
+        Thread.sleep(20000);
     }
 }

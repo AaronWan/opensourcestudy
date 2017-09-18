@@ -4,7 +4,7 @@ import com.game.AbstractGame;
 import com.game.Part;
 import com.game.ScoreAble;
 import com.game.chick.Chick;
-import com.game.chick.Deadable;
+import com.game.part.Deadable;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHandler {
-    private final List<Part> eggs;
+    private final List<Part> parts;
     Node head;
     Node tail;
     Node node = new Node(20, 30, Dir.L);
@@ -21,24 +21,24 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
     public int rows;
     public int cols;
 
-    public Snake(int rows, int cols, List<Part> eggs) {
+    public Snake(int rows, int cols, List<Part> parts) {
         this.head = node;
         this.tail = node;
         size = 1;
         this.rows = rows;
         this.cols = cols;
-        this.eggs = eggs;
+        this.parts = parts;
         this.setDaemon(true);
     }
 
     public void eat() {
-        for (int i = 0; i < eggs.size(); i++) {
-            Part e = eggs.get(i);
+        for (int i = 0; i < parts.size(); i++) {
+            Part e = parts.get(i);
             if (e instanceof Egg || e instanceof com.game.chick.Egg || e instanceof Chick)
                 if (this.getRect().intersects(e.getRect())) {//Intersects相交
                     e.rAppear();
                     if (e instanceof Deadable) {
-                        eggs.remove(e);
+                        parts.remove(e);
                     }
                     this.addTail();
                     size++;

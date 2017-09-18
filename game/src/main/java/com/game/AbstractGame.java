@@ -39,7 +39,7 @@ public abstract class AbstractGame extends JFrame {
                 }
                 try {
 
-                    Thread.sleep(100);
+                    Thread.sleep(10);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -126,12 +126,12 @@ public abstract class AbstractGame extends JFrame {
         this.addMouseListener(new MouseMonitor());
 
         paintThread.start();
-        this.parts.forEach(part -> {
+        for (int i = 0; i < this.parts.size(); i++) {
+            Part part=parts.get(i);
             if (part instanceof Thread) {
                 ((Thread) part).start();
             }
-        });
-
+        }
 
     }
 

@@ -2,6 +2,9 @@ package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.part.Bird;
+import com.game.part.Flight;
+import com.game.part.Glass;
 import com.game.snake.Snake;
 import com.google.common.collect.Lists;
 
@@ -61,7 +64,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public void warn(String e) {
         errTimes++;
         if (errTimes < 10) {
-            this.say("万铮，你输入的是," + e + ",请输入 数字 ," + number+",");
+            this.say("万铮，你输入的是," + e + ",请输入 数字 ," + number + ",");
         } else {
             this.say("万铮，可以问一下妈妈和爸爸哪个是 数字 " + number);
         }
@@ -117,10 +120,17 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     void addGlasses() {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 100; i++)
             this.parts.add(new Glass(random.nextInt(ROWS * Block_SIZE), random.nextInt(CLOS * Block_SIZE)));
     }
 
+    void addFlight(){
+        this.parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE));
+    }
+    void addBirds(){
+        for (int i = 0; i < 1; i++)
+            this.parts.add(new Bird(ROWS * Block_SIZE,CLOS * Block_SIZE));
+    }
     class NumberButton extends JButton {
         private int number;
 
@@ -152,6 +162,8 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
         this.remove(btnPanel);
         setCenter();
         addGlasses();
+        addFlight();
+        addBirds();
         addSnake();
         if (!start) {
             say("开始下蛋吧");
@@ -162,7 +174,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     private void addSnake() {
-        this.snake=new Snake(ROWS,CLOS,parts);
+        this.snake = new Snake(ROWS, CLOS, parts);
         this.parts.add(snake);
     }
 
@@ -186,12 +198,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
                 if (part instanceof Egg) {
                     Egg egg = (Egg) part;
                     if (egg.needToBeChilken()) {
-                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY()));
-                        parts.remove(part);
-                    }
-                }
-                if (part instanceof Deadable) {
-                    if (((Deadable) part).isDead()) {
+                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY(),ROWS*Block_SIZE,CLOS*Block_SIZE));
                         parts.remove(part);
                     }
                 }

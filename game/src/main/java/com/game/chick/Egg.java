@@ -2,6 +2,7 @@ package com.game.chick;
 
 import com.game.Part;
 import com.game.ScoreAble;
+import com.game.part.Deadable;
 import com.google.common.collect.Lists;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 5.7
  */
 public class Egg implements Part,Deadable,ScoreAble {
-    private static List<Egg> eggs = Lists.newArrayList();
+    private volatile static List<Egg> eggs = Lists.newArrayList();
     public static int count;
     public static int badCount;
     private int x;
@@ -80,6 +81,7 @@ public class Egg implements Part,Deadable,ScoreAble {
 
     public boolean needToBeChilken() {
         if ((System.currentTimeMillis() - createTime) > growTime && isWell && !hidden) {
+            eggs.remove(this);
             return true;
         }
         return false;
@@ -87,12 +89,7 @@ public class Egg implements Part,Deadable,ScoreAble {
 
     @Override
     public void rAppear() {
-        hidden = true;
-    }
-
-    @Override
-    public boolean isDead() {
-        return hidden;
+        eggs.remove(this);
     }
 
     public int getX() {
