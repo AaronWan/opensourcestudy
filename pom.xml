@@ -34,7 +34,7 @@
         <!--<module>springaop</module>-->
         <!--<module>jsonutil</module>-->
         <!--<module>sparkjavastudy</module>-->
-        <!--<module>akkastudy</module>-->
+        <module>akkastudy</module>
         <!--<module>datetime</module>-->
         <!--<module>instancefromtype</module>-->
         <!--<module>iotest</module>-->
@@ -43,14 +43,15 @@
         <!--<module>groovyscript</module>-->
         <!--<module>shirotest</module>-->
         <!--<module>scriptengine</module>-->
-        <!--<module>servlettest</module>-->
+        <module>servlettest</module>
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
         <!--<module>algorithm</module>-->
-        <!--<module>httpclientstudy</module>-->
+        <module>httpclientstudy</module>
         <!--<module>game</module>-->
         <!--<module>dubbostudy</module>-->
         <module>mongosupport</module>
+        <module>fetch</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -135,6 +136,24 @@
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-actor_2.11</artifactId>
             <version>2.3.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.21</version>
         </dependency>
     </dependencies>
 </project>

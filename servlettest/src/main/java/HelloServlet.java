@@ -14,12 +14,11 @@ import java.util.Random;
 
 @WebServlet(name = "HelloServlet")
 public class HelloServlet extends HttpServlet {
-    Random r=new Random();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setStatus(200);
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
