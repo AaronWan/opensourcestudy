@@ -23,8 +23,14 @@ public class JsonUtilTest {
         Map<String, Object> data = Maps.newLinkedHashMap();
         data.put("test1", 200.0);
         data.put("test2", 200);
-        System.out.println(gson.toJson(data));
+        Map<String, Object> data1 = Maps.newLinkedHashMap();
+        data1.put("test1", 200.0);
+        data1.put("test2", 200);
+        data.put("data",data1);
         String json=gson.toJson(data);
+        System.out.println("gson:"+gson.fromJson(json, LinkedHashMap.class));
+        System.out.println("jackson:"+mapper.readValue(json.getBytes(), HashMap.class));
+        System.out.println("fastjson:"+JSON.parseObject(json,HashMap.class));
         long t1=System.currentTimeMillis();
         int n=100000;
         for(int i=0;i<n;i++){
@@ -44,5 +50,5 @@ public class JsonUtilTest {
         for(int i=0;i<n;i++){
             JSON.parseObject(json,HashMap.class);
         }
-        System.out.println("JSON"+(System.currentTimeMillis()-t1));
+        System.out.println("fastjson JSON"+(System.currentTimeMillis()-t1));
     }}
