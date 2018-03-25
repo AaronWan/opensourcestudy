@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.opensource</groupId>
-    <artifactId>study</artifactId>
+    <artifactId>opensourcestudy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -22,7 +22,7 @@
         <!--<module>id</module>-->
         <!--<module>distributionlock</module>-->
         <module>commontest</module>
-        <!--<module>thread</module>-->
+        <module>thread</module>
         <!--<module>netty</module>-->
         <!--<module>rest-proxy-client</module>-->
         <!--<module>event</module>-->
@@ -37,7 +37,7 @@
         <module>akkastudy</module>
         <!--<module>datetime</module>-->
         <!--<module>instancefromtype</module>-->
-        <!--<module>iotest</module>-->
+        <module>iotest</module>
         <!--<module>hashmaptest</module>-->
         <!--<module>validatestudy</module>-->
         <!--<module>groovyscript</module>-->
@@ -46,12 +46,13 @@
         <module>servlettest</module>
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
-        <!--<module>algorithm</module>-->
+        <module>algorithm</module>
         <module>httpclientstudy</module>
-        <!--<module>game</module>-->
+        <module>game</module>
         <!--<module>dubbostudy</module>-->
         <module>mongosupport</module>
         <module>fetch</module>
+        <module>mqtest</module>
     </modules>
     <packaging>pom</packaging>
 

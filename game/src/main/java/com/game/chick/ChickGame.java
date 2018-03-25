@@ -28,7 +28,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     private List<NumberButton> numbers = Lists.newArrayList();
 
     {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 7; i < 20; i++) {
             numbers.add(new NumberButton(i, getWidth() / 10, 50));
         }
     }
@@ -39,7 +39,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public ChickGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
-        this.number = random.nextInt(10);
+        this.number = numbers.get(random.nextInt(numbers.size())).number;
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lanch();
     }
