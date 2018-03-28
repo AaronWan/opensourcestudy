@@ -61,7 +61,7 @@ public class JiuGongGeUtil {
 
         for (int i = 1; i <= 9; i++) {
             System.out.printf("-------------------n=%d---------------------\n", i);
-            List<ImageCell> rst = createMergeCell(9, 150);
+            List<ImageCell> rst = createMergeCell(i, 150);
             rst.forEach(temp -> {
                 System.out.printf("\t\t\tx:%d,y:%d,width:%d\n", temp.getX(), temp.getY(), temp.getWidth());
             });
