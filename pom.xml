@@ -20,7 +20,7 @@
     <modules>
         <!--<module>wsexcel</module>-->
         <!--<module>id</module>-->
-        <!--<module>distributionlock</module>-->
+        <module>distributionlock</module>
         <module>commontest</module>
         <module>thread</module>
         <!--<module>netty</module>-->

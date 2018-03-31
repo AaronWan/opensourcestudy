@@ -18,7 +18,7 @@ public class Glass implements Part {
     private BufferedImage icon1;
     {
         try {
-            icon1 = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/glass.png"));
+            icon1 = getPartIcon("/icon/chick/glass.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

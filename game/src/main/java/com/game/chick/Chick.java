@@ -34,9 +34,9 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
 
     {
         try {
-            icon1 = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/0.png"));
-            left = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/left.png"));
-            right = ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/right.png"));
+            icon1 = getPartIcon("/icon/chick/0.png");
+            left = getPartIcon("/icon/chick/left.png");
+            right = getPartIcon("/icon/chick/right.png");
 
         } catch (Exception e) {
             e.printStackTrace();

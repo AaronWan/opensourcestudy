@@ -125,7 +125,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     void addFlight(){
-        this.parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE));
+        this.parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,this.parts));
     }
     void addBirds(){
         for (int i = 0; i < 1; i++)

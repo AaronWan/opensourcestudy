@@ -26,7 +26,7 @@ public class Bird extends Thread implements Deadable, Part {
 
     {
         try {
-            moveIcon.add(ImageIO.read(new File("/Users/Aaron/Documents/facishare/code/gitfirstshare/opensourcestudy/game/src/main/java/com/game/chick/icon/left.png")));
+            moveIcon.add(getPartIcon("/icon/chick/left.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
