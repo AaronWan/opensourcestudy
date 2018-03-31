@@ -38,6 +38,7 @@ public class Bird extends Thread implements Deadable, Part {
         this.currentLocation = new Point(this.center.x, this.center.y);
         this.maxX=maxX/3;
         this.maxY=maxY/3;
+        start(this);
     }
 
     @Override
@@ -138,4 +139,8 @@ public class Bird extends Thread implements Deadable, Part {
         return new Ellipse2D.Double(this.currentLocation.getX(), this.currentLocation.getY(), getSize(), getSize()).getBounds();
     }
 
+    @Override
+    public Stat checkState() {
+        return null;
+    }
 }

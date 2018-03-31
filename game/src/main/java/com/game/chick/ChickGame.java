@@ -2,6 +2,8 @@ package com.game.chick;
 
 import com.game.AbstractGame;
 import com.game.Part;
+import com.game.chick.music.PlayMusic;
+import com.game.config.GameConfigManager;
 import com.game.part.Bird;
 import com.game.part.Flight;
 import com.game.part.Glass;
@@ -12,25 +14,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 万松(Aaron)
  * @since 5.7
  */
 public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, Part {
-    private int number;
+    private String number;
     private int errTimes;
     private JPanel btnPanel;
     private Snake snake;
-    private Random random = new Random();
-    private List<NumberButton> numbers = Lists.newArrayList();
-
+    private List<GamePasswordButton> numbers = Lists.newArrayList();
     {
-        for (int i = 7; i < 20; i++) {
-            numbers.add(new NumberButton(i, getWidth() / 10, 50));
-        }
+        Set<String> passwordChars=GameConfigManager.getRandomStr(20);
+        passwordChars.forEach(item->{
+            numbers.add(new GamePasswordButton(item, getWidth() / passwordChars.size(), 50));
+        });
     }
 
     private boolean start;
@@ -39,19 +40,19 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public ChickGame(int rows, int clos) {
         this.ROWS = rows;
         this.CLOS = clos;
-        this.number = numbers.get(random.nextInt(numbers.size())).number;
+        this.number = numbers.get(random.nextInt(numbers.size())).key;
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lanch();
     }
 
     public void lanch() {
-        this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码数字," + number);
+        this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码, " + number);
         this.setTitle("小鸡下蛋" + number);
         this.setLocation(300, 300);
         this.setBackground(Color.white);
         btnPanel = new JPanel(new GridLayout(2, 5, 5, 4));
         for (int i = 0; i < numbers.size(); i++) {
-            NumberButton btn = numbers.get(i);
+            GamePasswordButton btn = numbers.get(i);
             btnPanel.add(btn);
         }
         this.add(btnPanel);
@@ -64,9 +65,9 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     public void warn(String e) {
         errTimes++;
         if (errTimes < 10) {
-            this.say("万铮，你输入的是," + e + ",请输入 数字 ," + number + ",");
+            this.say("万铮，你输入的是," + e + ",请输入  ," + number + ",");
         } else {
-            this.say("万铮，可以问一下妈妈和爸爸哪个是 数字 " + number);
+            this.say("万铮，可以问一下妈妈和爸爸哪个是  " + number);
         }
     }
 
@@ -128,18 +129,18 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
         this.parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,this.parts));
     }
     void addBirds(){
-        for (int i = 0; i < 1; i++)
-            this.parts.add(new Bird(ROWS * Block_SIZE,CLOS * Block_SIZE));
+//        for (int i = 0; i < 1; i++)
+//            this.parts.add(new Bird(ROWS * Block_SIZE,CLOS * Block_SIZE));
     }
-    class NumberButton extends JButton {
-        private int number;
+    class GamePasswordButton extends JButton {
+        private String key;
 
-        public NumberButton(int number, int width, int height) {
-            super("" + number);
+        public GamePasswordButton(String label, int width, int height) {
+            super("" + label);
             this.setSize(width, height);
             this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
             this.setBackground(getRandomColor());
-            this.number = number;
+            this.key = label;
             this.addLisner();
         }
 
@@ -147,10 +148,10 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
             this.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    if (number == ChickGame.this.number) {
+                    if (key.equals(ChickGame.this.number)) {
                         ChickGame.this.init();
                     } else {
-                        warn(number + "");
+                        warn(key + "");
                     }
                 }
             });

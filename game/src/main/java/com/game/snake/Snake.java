@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHandler {
+public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractGame.KeyHandler {
     private final List<Part> parts;
     Node head;
     Node tail;
@@ -29,6 +29,7 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         this.cols = cols;
         this.parts = parts;
         this.setDaemon(true);
+        start(this);
     }
 
     public void eat() {
@@ -53,6 +54,7 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         }
     }
 
+    @Override
     public Rectangle getRect() {
         return new Rectangle(Yard.Block_SIZE * head.col, Yard.Block_SIZE
                 * head.row, head.w, head.h);
@@ -87,10 +89,12 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         tail = node;
     }
     public void removeTail(){
-        if (this.tail!=this.head)
+        if (this.tail!=this.head){
             this.tail=this.tail.pre;
+        }
     }
 
+    @Override
     public void paint(Graphics g) {
         if (size <= 0) {
             return;
@@ -106,7 +110,7 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
             autoControlHeadDir();
             addToHead();
             delFromTail();
-            checkDead();
+            checkState();
     }
 
     private void autoControlHeadDir() {
@@ -121,15 +125,18 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         }
     }
 
-    private void checkDead() {
+    @Override
+    public Stat checkState() {
         if (head.row < 2 || head.col < 0 || head.row >= rows + 1 || head.col >= 1 + cols) {
 //            isStop = true;
         }
+        return null;
     }
 
     private void delFromTail() {
-        if (tail == null)
+        if (tail == null){
             return;
+        }
         tail = tail.pre;
         tail.next = null;
     }
@@ -174,11 +181,6 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
        return Double.valueOf(200*Math.exp(-size/10)).intValue()+100;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i <100 ; i++) {
-            System.out.println(i+"--"+Double.valueOf(300*Math.exp(-i/10)).intValue());
-        }
-    }
     private static class Node {
 
         int w = Yard.Block_SIZE;
@@ -203,6 +205,7 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         }
     }
 
+    @Override
     public void keyEventProcess(KeyEvent e) {
         int key = e.getKeyCode();
         System.out.println("----------" + e.getKeyCode());
@@ -238,6 +241,7 @@ public class Snake extends Thread implements ScoreAble, Part, AbstractGame.KeyHa
         }
 
     }
+    @Override
     public int getScore(){
         return size*5;
     }

@@ -114,8 +114,7 @@ public abstract class AbstractGame extends JFrame {
 
         g.setColor(c);
         for (int i = 0; i < parts.size(); i++) {
-            Part part=parts.get(i);
-            part.paint(g);
+            parts.get(i).paint(g);
         }
 
     }
@@ -124,15 +123,7 @@ public abstract class AbstractGame extends JFrame {
         this.requestFocusInWindow();
         this.addKeyListener(new KeyMonitor());
         this.addMouseListener(new MouseMonitor());
-
         paintThread.start();
-        for (int i = 0; i < this.parts.size(); i++) {
-            Part part=parts.get(i);
-            if (part instanceof Thread) {
-                ((Thread) part).start();
-            }
-        }
-
     }
 
     public interface KeyHandler {

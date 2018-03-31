@@ -26,8 +26,6 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
     private long createTime = System.currentTimeMillis();
     private Stat stat = Stat.RUN;
     private BufferedImage icon1;
-    private List<BufferedImage> moveIcon = Lists.newArrayList();
-
     private BufferedImage left;
 
     private BufferedImage right;
@@ -61,7 +59,7 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
             }
             grow();
             move();
-            checkStat();
+            checkState();
         }
     }
 
@@ -120,12 +118,13 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
             grow_time += 1;
     }
 
-    private void checkStat() {
+    public Stat checkState() {
         if (getLifeTime() > 10 * 1000 * 60) {
             this.stat = Stat.DEAD;
         } else {
             this.stat = Stat.RUN;
         }
+        return this.stat;
     }
 
     private long getLifeTime() {

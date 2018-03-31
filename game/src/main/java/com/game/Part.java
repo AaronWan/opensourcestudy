@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author 万松(Aaron)
@@ -22,7 +24,6 @@ public interface Part {
 
         }
     }
-
     default BufferedImage getPartIcon(String path){
         try {
             return ImageIO.read(new File(Part.class.getResource(path).getPath()));

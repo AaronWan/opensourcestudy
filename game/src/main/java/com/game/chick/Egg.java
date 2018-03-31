@@ -119,4 +119,9 @@ public class Egg implements Part,Deadable,ScoreAble {
     public int getSize() {
         return width;
     }
+
+    @Override
+    public Stat checkState() {
+        return null;
+    }
 }
