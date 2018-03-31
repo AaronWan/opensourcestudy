@@ -126,7 +126,7 @@ public class GameConfigManager {
             private Set<String> currentPasswordChars;
             private Integer times;
             private transient Integer day = 7;
-            private transient Integer maxTimes = 7;
+            private transient Integer maxTimes = 20;
 
             public CurrentConfig() {
             }
