@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -126,7 +127,15 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     void addFlight(){
-        this.parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,this.parts));
+        new Thread(() -> {
+            parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,parts));
+            try {
+                Thread.sleep(random.nextInt(100000));
+            } catch (InterruptedException e) {
+            }
+            parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,parts));
+        }).start();
+
     }
     void addBirds(){
 //        for (int i = 0; i < 1; i++)
