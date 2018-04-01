@@ -16,4 +16,6 @@ public interface Deadable {
     }
 
     Part.Stat checkState();
+
+    void setStat(Part.Stat stat);
 }

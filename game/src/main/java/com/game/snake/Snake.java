@@ -5,19 +5,21 @@ import com.game.Part;
 import com.game.ScoreAble;
 import com.game.chick.Chick;
 import com.game.part.Deadable;
+import com.game.part.Move;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractGame.KeyHandler {
+public class Snake implements Move, ScoreAble, Part, Deadable, AbstractGame.KeyHandler {
     private final List<Part> parts;
     Node head;
     Node tail;
     Node node = new Node(20, 30, Dir.L);
-    public int score=0;
+    public int score = 0;
     static int size = 0;
+    private Stat stat=Stat.RUN;
     public int rows;
     public int cols;
 
@@ -28,30 +30,36 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
         this.rows = rows;
         this.cols = cols;
         this.parts = parts;
-        this.setDaemon(true);
         start(this);
     }
 
     public void eat() {
         for (int i = 0; i < parts.size(); i++) {
             Part e = parts.get(i);
-            if (e instanceof Egg || e instanceof com.game.chick.Egg || e instanceof Chick)
+            if (e instanceof Egg || e instanceof com.game.chick.Egg || e instanceof Chick) {
                 if (this.getRect().intersects(e.getRect())) {//Intersects相交
                     e.rAppear();
                     if (e instanceof Deadable) {
                         parts.remove(e);
+                        ((Deadable)e).setStat(Stat.DEAD);
                     }
                     this.addTail();
                     size++;
-                    if(e instanceof ScoreAble){
-                        int add=((ScoreAble)e).getScore();
-                        if(add<0){
+                    if (e instanceof ScoreAble) {
+                        int add = ((ScoreAble) e).getScore();
+                        if (add < 0) {
                             this.removeTail();
                         }
-                        this.score+=((ScoreAble)e).getScore();
+                        this.score += ((ScoreAble) e).getScore();
                     }
                 }
+            }
         }
+    }
+
+    @Override
+    public void setStat(Stat stat) {
+        this.stat=stat;
     }
 
     @Override
@@ -88,9 +96,10 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
         node.pre = tail;
         tail = node;
     }
-    public void removeTail(){
-        if (this.tail!=this.head){
-            this.tail=this.tail.pre;
+
+    public void removeTail() {
+        if (this.tail != this.head) {
+            this.tail = this.tail.pre;
         }
     }
 
@@ -106,22 +115,15 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
 
     }
 
-    private void move() {
-            autoControlHeadDir();
-            addToHead();
-            delFromTail();
-            checkState();
-    }
-
     private void autoControlHeadDir() {
-        if(this.head.col>=this.cols&&this.head.dir==Dir.R){
-            this.head.dir=Dir.L;
-        }else if(this.head.row>=this.rows&&this.head.dir==Dir.D){
-            this.head.dir=Dir.U;
-        }else if(this.head.col<=0&&this.head.dir==Dir.L){
-            this.head.dir=Dir.R;
-        }else if(this.head.row<=0&&this.head.dir==Dir.U){
-            this.head.dir=Dir.D;
+        if (this.head.col >= this.cols && this.head.dir == Dir.R) {
+            this.head.dir = Dir.L;
+        } else if (this.head.row >= this.rows && this.head.dir == Dir.D) {
+            this.head.dir = Dir.U;
+        } else if (this.head.col <= 0 && this.head.dir == Dir.L) {
+            this.head.dir = Dir.R;
+        } else if (this.head.row <= 0 && this.head.dir == Dir.U) {
+            this.head.dir = Dir.D;
         }
     }
 
@@ -134,7 +136,7 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
     }
 
     private void delFromTail() {
-        if (tail == null){
+        if (tail == null) {
             return;
         }
         tail = tail.pre;
@@ -166,19 +168,23 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
     }
 
     @Override
-    public void run() {
-        while (true) {
+    public void move() {
+        while (true&&stat.equals(Stat.RUN)) {
             try {
                 Thread.sleep(getSleepTime());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            move();
+            autoControlHeadDir();
+            addToHead();
+            delFromTail();
+            checkState();
             eat();
         }
     }
-    public int getSleepTime(){
-       return Double.valueOf(200*Math.exp(-size/10)).intValue()+100;
+
+    public int getSleepTime() {
+        return Double.valueOf(200 * Math.exp(-size / 10)).intValue() + 100;
     }
 
     private static class Node {
@@ -241,9 +247,10 @@ public class Snake extends Thread implements ScoreAble, Part,Deadable, AbstractG
         }
 
     }
+
     @Override
-    public int getScore(){
-        return size*5;
+    public int getScore() {
+        return size * 5;
     }
 
 }

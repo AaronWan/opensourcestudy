@@ -28,9 +28,10 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     private JPanel btnPanel;
     private Snake snake;
     private List<GamePasswordButton> numbers = Lists.newArrayList();
+
     {
-        Set<String> passwordChars=GameConfigManager.getRandomStr(20);
-        passwordChars.forEach(item->{
+        Set<String> passwordChars = GameConfigManager.getRandomStr(20);
+        passwordChars.forEach(item -> {
             numbers.add(new GamePasswordButton(item, getWidth() / passwordChars.size(), 50));
         });
     }
@@ -47,7 +48,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
     }
 
     public void lanch() {
-        this.say("万铮，小鸡下蛋 的游戏要开始了，先输入密码, " + number);
+        this.say("小鸡下蛋 的游戏要开始了，先输入密码, " + number);
         this.setTitle("小鸡下蛋" + number);
         this.setLocation(300, 300);
         this.setBackground(Color.white);
@@ -65,7 +66,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
 
     public void warn(String e) {
         errTimes++;
-        if (errTimes < 10) {
+        if (errTimes < 4) {
             this.say("万铮，你输入的是," + e + ",请输入  ," + number + ",");
         } else {
             this.say("万铮，可以问一下妈妈和爸爸哪个是  " + number);
@@ -126,21 +127,25 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
             this.parts.add(new Glass(random.nextInt(ROWS * Block_SIZE), random.nextInt(CLOS * Block_SIZE)));
     }
 
-    void addFlight(){
+    void addFlight() {
         new Thread(() -> {
-            parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,parts));
-            try {
-                Thread.sleep(random.nextInt(100000));
-            } catch (InterruptedException e) {
+            while (true) {
+                parts.add(new Flight(ROWS * Block_SIZE, CLOS * Block_SIZE, parts));
+                try {
+                    Thread.sleep(random.nextInt(100000));
+                } catch (InterruptedException e) {
+                }
+                parts.add(new Flight(ROWS * Block_SIZE, CLOS * Block_SIZE, parts));
             }
-            parts.add(new Flight(ROWS*Block_SIZE,CLOS*Block_SIZE,parts));
         }).start();
 
     }
-    void addBirds(){
+
+    void addBirds() {
 //        for (int i = 0; i < 1; i++)
 //            this.parts.add(new Bird(ROWS * Block_SIZE,CLOS * Block_SIZE));
     }
+
     class GamePasswordButton extends JButton {
         private String key;
 
@@ -208,7 +213,7 @@ public class ChickGame extends AbstractGame implements AbstractGame.KeyHandler, 
                 if (part instanceof Egg) {
                     Egg egg = (Egg) part;
                     if (egg.needToBeChilken()) {
-                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY(),ROWS*Block_SIZE,CLOS*Block_SIZE));
+                        parts.add(new Chick(egg.getSize(), egg.getX(), egg.getY(), ROWS * Block_SIZE, CLOS * Block_SIZE));
                         parts.remove(part);
                     }
                 }

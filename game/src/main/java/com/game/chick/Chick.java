@@ -3,6 +3,7 @@ package com.game.chick;
 import com.game.AbstractGame;
 import com.game.Part;
 import com.game.part.Deadable;
+import com.game.part.Move;
 import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHandler {
+public class Chick  implements Move,Deadable, Part, AbstractGame.KeyHandler {
     private final int maxX;
     private final int maxY;
     private Point center;
@@ -47,18 +48,18 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
         this.maxX = maxX;
         this.maxY = maxY;
         this.grow_time = grow_time;
-        this.start();
+        this.start(this);
     }
 
     @Override
-    public void run() {
+    public void move() {
         while (true && stat != Stat.DEAD) {
             try {
                 Thread.sleep(300);
             } catch (InterruptedException e) {
             }
             grow();
-            move();
+            moveOne();
             checkState();
         }
     }
@@ -66,7 +67,7 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
     private int dirX = 1;
     private int dirY = 1;
 
-    private void move() {
+    private void moveOne() {
         if (this.currentLocation.x > maxX) {
             if (this.currentLocation.y < maxY && this.currentLocation.y > 0) {
                 dirY = -1;
@@ -125,6 +126,10 @@ public class Chick extends Thread implements Deadable, Part, AbstractGame.KeyHan
             this.stat = Stat.RUN;
         }
         return this.stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
     }
 
     private long getLifeTime() {

@@ -18,6 +18,7 @@ public class GameConfigManager {
     public static final Gson gson = new GsonBuilder().create();
 
     private static Random random = new Random();
+    public static boolean stop=false;
 
     public static Set<String> getRandomStr(int n) {
         Set<String> currentChars = CurrentConfigs.instance.getCurrentConfigChars();

@@ -4,6 +4,7 @@ import com.game.Part;
 import com.game.ScoreAble;
 import com.game.part.Deadable;
 import com.google.common.collect.Lists;
+import lombok.Data;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -13,6 +14,7 @@ import java.util.List;
  * @author 万松(Aaron)
  * @since 5.7
  */
+@Data
 public class Egg implements Part,Deadable,ScoreAble {
     private volatile static List<Egg> eggs = Lists.newArrayList();
     public static int count;
@@ -21,6 +23,7 @@ public class Egg implements Part,Deadable,ScoreAble {
     private int y;
     private volatile int width;
     private volatile int height;
+    private Stat stat;
     private Color color;
     private long createTime = System.currentTimeMillis();
     boolean isWell = true;

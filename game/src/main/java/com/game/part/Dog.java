@@ -2,27 +2,24 @@ package com.game.part;
 
 import com.game.Part;
 import com.game.config.GameConfigManager;
-import com.game.part.Deadable;
 import com.google.common.collect.Lists;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * @author 万松(Aaron)
  * @since 5.7
  */
-public class Bird implements Move, Deadable, Part {
+public class Dog implements Move, Deadable, Part {
     private final int maxX;
     private final int maxY;
     private Point center;
     private Point currentLocation;
     private volatile int grow_time = 10;
     private long createTime = System.currentTimeMillis();
-    private Stat stat = Part.Stat.RUN;
+    private Stat stat = Stat.RUN;
     private java.util.List<BufferedImage> moveIcon = Lists.newArrayList();
 
     {
@@ -34,7 +31,7 @@ public class Bird implements Move, Deadable, Part {
         }
     }
 
-    public Bird(int maxX, int maxY) {
+    public Dog(int maxX, int maxY) {
         this.center = new Point(random.nextInt(maxX / 3), random.nextInt(maxY / 3));
         this.currentLocation = new Point(this.center.x, this.center.y);
         this.maxX = maxX / 3;
@@ -44,7 +41,7 @@ public class Bird implements Move, Deadable, Part {
 
     @Override
     public void move() {
-        while (true && stat != Part.Stat.DEAD) {
+        while (true && stat != Stat.DEAD) {
             try {
                 Thread.sleep(300);
             } catch (InterruptedException e) {
@@ -120,9 +117,9 @@ public class Bird implements Move, Deadable, Part {
 
     private void checkStat() {
         if (getLifeTime() > 10 * 1000 * 60) {
-            this.stat = Part.Stat.DEAD;
+            this.stat = Stat.DEAD;
         } else {
-            this.stat = Part.Stat.RUN;
+            this.stat = Stat.RUN;
         }
     }
 
@@ -132,7 +129,7 @@ public class Bird implements Move, Deadable, Part {
 
     @Override
     public void paint(Graphics g) {
-        if (stat != Part.Stat.DEAD) {
+        if (stat != Stat.DEAD) {
             g.drawImage(getIcon(), ((Double) this.currentLocation.getX()).intValue(),
                     ((Double) this.currentLocation.getY()).intValue(), getSize(), getSize(), null);
         }

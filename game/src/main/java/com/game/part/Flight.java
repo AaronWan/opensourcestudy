@@ -1,6 +1,7 @@
 package com.game.part;
 
 import com.game.Part;
+import com.game.config.GameConfigManager;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 5.7
  */
 @Slf4j
-public class Flight extends Thread implements Deadable, Part {
+public class Flight implements Move, Deadable, Part {
     private final int maxX;
     private final int maxY;
     private List<Part> parts;
@@ -27,7 +28,7 @@ public class Flight extends Thread implements Deadable, Part {
     {
 
         try {
-            moveIcon=getPartIcon("/icon/flight/flight.png");
+            moveIcon = getPartIcon("/icon/flight/flight.png");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,14 +45,14 @@ public class Flight extends Thread implements Deadable, Part {
     }
 
     @Override
-    public void run() {
-        while (true && stat != Part.Stat.DEAD) {
+    public void move() {
+        while (stat != Part.Stat.DEAD) {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
             }
             throwBomb();
-            move();
+            this.currentLocation.setLocation(this.currentLocation.x + dirX, this.currentLocation.y);
             checkStat();
         }
     }
@@ -60,23 +61,21 @@ public class Flight extends Thread implements Deadable, Part {
     private void throwBomb() {
         if (System.currentTimeMillis() - lastBombTime > 10000) {
             lastBombTime = System.currentTimeMillis();
-            new Bomb(this.currentLocation.x, Double.valueOf(this.currentLocation.y + this.getRect().getHeight()).intValue(), maxX, maxY,parts);
+            new Bomb(this.currentLocation.x, Double.valueOf(this.currentLocation.y + this.getRect().getHeight()).intValue(), maxX, maxY, parts);
         }
     }
 
     private int dirX = 1;
 
-    private void move() {
-        this.currentLocation.setLocation(this.currentLocation.x + dirX, this.currentLocation.y);
+    @Override
+    public void setStat(Stat stat) {
+        this.stat=stat;
     }
 
     private void checkStat() {
         if (this.currentLocation.x > maxX) {
             this.currentLocation.x = 0;
-            try {
-                sleep(10000);
-            } catch (InterruptedException e) {
-            }
+
         } else {
             this.stat = Part.Stat.RUN;
         }
