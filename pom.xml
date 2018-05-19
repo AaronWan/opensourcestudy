@@ -53,6 +53,7 @@
         <module>mongosupport</module>
         <module>fetch</module>
         <module>mqtest</module>
+        <module>conditionEngine</module>
     </modules>
     <packaging>pom</packaging>
 

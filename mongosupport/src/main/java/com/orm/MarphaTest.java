@@ -28,12 +28,12 @@ public class MarphaTest {
         Morphia morphia = new Morphia();
         morphia.map(Dept.class);
         Datastore datastore = morphia.createDatastore(client, "test_student");
-        Dept dept=new Dept();
-
-        List members=new ArrayList();
-        members.add("test");
-        dept.setLeader(members);
-        datastore.save(dept);
+//        Dept dept=new Dept();
+//
+//        List members=new ArrayList();
+//        members.add("test");
+//        dept.setLeader(members);
+//        datastore.save(dept);
 
         Query<Dept> result = datastore.find(Dept.class);
         result.forEach((item)->{
@@ -46,7 +46,7 @@ public class MarphaTest {
         @Id
         private String id;
         @Embedded
-        private Object leader;
+        private Map<String,Object> leader;
     }
     @Data
     static class Member implements Serializable{

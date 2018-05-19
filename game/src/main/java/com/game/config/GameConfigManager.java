@@ -150,8 +150,6 @@ public class GameConfigManager {
 
 
     public static void main(String[] args) {
-        int n = 0;
-        while (n++ < 40)
-            System.out.println(getRandomStr(20));
+        System.out.println(GameConfig.gameConfig.getPasswordChars());
     }
 }
