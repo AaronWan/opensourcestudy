@@ -22,7 +22,7 @@ public enum BaseTypeOperatorImpl{
     }
 
 
-    public BaseTypeOperatorImpl getByName(String name){
+    public static BaseTypeOperatorImpl getByName(String name){
         BaseTypeOperatorImpl[] enums = BaseTypeOperatorImpl.values();
         for (BaseTypeOperatorImpl anEnum : enums) {
             if(anEnum.name().equals(name)){

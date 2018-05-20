@@ -19,7 +19,7 @@ public interface IFieldType {
                 ||
                 operator.equals(BaseTypeOperatorImpl.notNone.name())) {
 
-            return ExpressionEvalResult.ok(BaseTypeOperatorImpl.valueOf(operator)
+            return ExpressionEvalResult.ok(BaseTypeOperatorImpl.getByName(operator)
                     .calculate(
                             left, right
                     ));
