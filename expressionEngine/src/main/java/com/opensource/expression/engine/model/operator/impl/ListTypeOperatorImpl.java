@@ -110,4 +110,14 @@ public enum ListTypeOperatorImpl {
     public boolean calculate(List left, List right) {
         return false;
     }
+
+    public static ListTypeOperatorImpl getByName(String name){
+        ListTypeOperatorImpl[] enums = ListTypeOperatorImpl.values();
+        for (ListTypeOperatorImpl anEnum : enums) {
+            if(anEnum.name().equals(name)){
+                return anEnum;
+            }
+        }
+        throw new RuntimeException("List 类型不支持"+name+"操作符");
+    }
 }

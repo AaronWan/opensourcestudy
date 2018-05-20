@@ -12,7 +12,7 @@ import com.opensource.expression.engine.model.operator.impl.BoolTypeOperatorImpl
 public class BoolTypeImpl implements IFieldType {
     @Override
     public ExpressionEvalResult calculate(Object left,String operator,Object right) {
-        return calculate(() -> BoolTypeOperatorImpl.valueOf(operator).calculate(Boolean.parseBoolean(left+""),Boolean.parseBoolean(right+"")), left,operator,right);
+        return calculate(() -> BoolTypeOperatorImpl.getByName(operator).calculate(Boolean.parseBoolean(left+""),Boolean.parseBoolean(right+"")), left,operator,right);
     }
 
 }

@@ -18,7 +18,7 @@ public class ListTypeImpl implements IFieldType {
 
     @Override
     public ExpressionEvalResult calculate(Object left,String operator,Object right) {
-        return calculate(() -> ListTypeOperatorImpl.valueOf(operator).calculate((List)left,(List)right), left,operator,right);
+        return calculate(() -> ListTypeOperatorImpl.getByName(operator).calculate((List)left,(List)right), left,operator,right);
     }
 
 }

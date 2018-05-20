@@ -1,7 +1,5 @@
 package com.opensource.expression.engine.model.operator.impl;
 
-import com.opensource.expression.engine.model.ExpressionEvalResult;
-
 public enum BoolTypeOperatorImpl {
     isTrue() {
         @Override
@@ -11,7 +9,7 @@ public enum BoolTypeOperatorImpl {
     }, isFalse() {
         @Override
         public boolean calculate(Boolean left, Boolean right) {
-            return left;
+            return !left;
         }
     },eq(){
         @Override
@@ -27,5 +25,13 @@ public enum BoolTypeOperatorImpl {
     public boolean calculate(Boolean left, Boolean right) {
         return false;
     }
-
+    public static BoolTypeOperatorImpl getByName(String name){
+        BoolTypeOperatorImpl[] enums = BoolTypeOperatorImpl.values();
+        for (BoolTypeOperatorImpl anEnum : enums) {
+            if(anEnum.name().equals(name)){
+                return anEnum;
+            }
+        }
+        throw new RuntimeException("Bool类型不支持"+name+"操作符");
+    }
 }

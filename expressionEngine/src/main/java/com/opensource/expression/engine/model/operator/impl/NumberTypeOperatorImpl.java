@@ -61,4 +61,15 @@ public enum NumberTypeOperatorImpl {
     public boolean calculate(BigDecimal left, BigDecimal right) {
         return false;
     }
+
+
+    public static NumberTypeOperatorImpl getByName(String name){
+        NumberTypeOperatorImpl[] enums = NumberTypeOperatorImpl.values();
+        for (NumberTypeOperatorImpl anEnum : enums) {
+            if(anEnum.name().equals(name)){
+                return anEnum;
+            }
+        }
+        throw new RuntimeException("Number类型不支持"+name+"操作符");
+    }
 }

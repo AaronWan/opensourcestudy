@@ -18,9 +18,9 @@ public class NumberTypeImpl implements IFieldType {
 
     @Override
     public ExpressionEvalResult calculate(Object left,String operator,Object right) {
-        return calculate(() -> NumberTypeOperatorImpl.valueOf(operator).calculate(getValue(left),getValue(right)), left,operator,right);
+        return calculate(() -> NumberTypeOperatorImpl.getByName(operator).calculate(getValue(left),getValue(right)), left,operator,right);
     }
     protected BigDecimal getValue(Object value){
-        return value==null?null:new BigDecimal(""+value);
+        return value==null?null:new BigDecimal(String.valueOf(value));
     }
 }

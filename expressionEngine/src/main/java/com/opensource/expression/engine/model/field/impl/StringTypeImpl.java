@@ -18,7 +18,7 @@ public class StringTypeImpl implements IFieldType {
 
     @Override
     public ExpressionEvalResult calculate(Object left, String operator, Object right) {
-        return calculate(() -> StringTypeOperatorImpl.valueOf(operator).calculate(left == null ? null : left.toString(), right == null ? null : right.toString()), left, operator, right);
+        return calculate(() -> StringTypeOperatorImpl.getByName(operator).calculate(left == null ? null : left.toString(), right == null ? null : right.toString()), left, operator, right);
     }
 
 }

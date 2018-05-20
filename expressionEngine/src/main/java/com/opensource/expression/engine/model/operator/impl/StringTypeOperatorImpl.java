@@ -52,5 +52,13 @@ public enum StringTypeOperatorImpl {
         return false;
     }
 
-
+    public static StringTypeOperatorImpl getByName(String name){
+        StringTypeOperatorImpl[] enums = StringTypeOperatorImpl.values();
+        for (StringTypeOperatorImpl anEnum : enums) {
+            if(anEnum.name().equals(name)){
+                return anEnum;
+            }
+        }
+        throw new RuntimeException("string类型不支持"+name+"操作符");
+    }
 }
