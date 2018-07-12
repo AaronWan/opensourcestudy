@@ -40,15 +40,16 @@ public class ExpressionEngineTest {
     public void numberEval(){
 
         Map<String, Object> binds= Maps.newHashMap();
-        binds.put("num1",1);
+        binds.put("${num1}",1);
         binds.put("num2",1);
         binds.put("num3",3);
         binds.put("num4",4);
         RuleBean ruleBean=new RuleBean();
-        ruleBean.setExpression("(0) or (1)");
+        ruleBean.setExpression("(0) or (1) or (2)");
         List<ExpressionUnit> expressions= Lists.newArrayList();
-        expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.number,"num1",null),"lt",new ExpressionField(ExpressionFieldType.number,"num2",null)));
+        expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.number,"${num1}",null),"lt",new ExpressionField(ExpressionFieldType.number,"num2",null)));
         expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.number,"num3",null),"lt",new ExpressionField(ExpressionFieldType.number,"num4",null)));
+        expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.number,null,20),"lt",new ExpressionField(ExpressionFieldType.number,"num4",null)));
         ruleBean.setExpressionUnits(expressions);
         ExpressionEvalResult rst = ExpressionEngine.eval(binds, ruleBean);
         System.out.println(rst);
@@ -63,7 +64,7 @@ public class ExpressionEngineTest {
         RuleBean ruleBean=new RuleBean();
         ruleBean.setExpression("(0)");
         List<ExpressionUnit> expressions= Lists.newArrayList();
-        expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.number,"list1",null), ListTypeOperatorImpl.intersect.name(),new ExpressionField(ExpressionFieldType.list,"list2",null)));
+        expressions.add(new ExpressionUnit(new ExpressionField(ExpressionFieldType.list,"list1",null), ListTypeOperatorImpl.intersect.name(),new ExpressionField(ExpressionFieldType.list,"list2",null)));
         ruleBean.setExpressionUnits(expressions);
         ExpressionEvalResult rst = ExpressionEngine.eval(binds, ruleBean);
         System.out.println(rst);
