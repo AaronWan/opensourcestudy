@@ -20,9 +20,9 @@
     <modules>
         <!--<module>wsexcel</module>-->
         <!--<module>id</module>-->
-        <module>distributionlock</module>
-        <module>commontest</module>
-        <module>thread</module>
+        <!--<module>distributionlock</module>-->
+        <!--<module>commontest</module>-->
+        <!--<module>thread</module>-->
         <!--<module>netty</module>-->
         <!--<module>rest-proxy-client</module>-->
         <!--<module>event</module>-->
@@ -32,28 +32,29 @@
         <!--<module>workflow</module>-->
         <!--<module>regextest</module>-->
         <!--<module>springaop</module>-->
-        <module>jsonutil</module>
+        <!--<module>jsonutil</module>-->
         <!--<module>sparkjavastudy</module>-->
-        <module>akkastudy</module>
+        <!--<module>akkastudy</module>-->
         <!--<module>datetime</module>-->
         <!--<module>instancefromtype</module>-->
-        <module>iotest</module>
+        <!--<module>iotest</module>-->
         <!--<module>hashmaptest</module>-->
         <!--<module>validatestudy</module>-->
         <!--<module>groovyscript</module>-->
         <!--<module>shirotest</module>-->
         <!--<module>scriptengine</module>-->
-        <module>servlettest</module>
+        <!--<module>servlettest</module>-->
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
-        <module>algorithm</module>
-        <module>httpclientstudy</module>
-        <module>game</module>
+        <!--<module>algorithm</module>-->
+        <!--<module>httpclientstudy</module>-->
+        <!--<module>game</module>-->
         <!--<module>dubbostudy</module>-->
-        <module>mongosupport</module>
-        <module>fetch</module>
-        <module>mqtest</module>
-        <module>expressionEngine</module>
+        <!--<module>mongosupport</module>-->
+        <!--<module>fetch</module>-->
+        <!--<module>mqtest</module>-->
+        <!--<module>expressionEngine</module>-->
+        <module>junit-study</module>
     </modules>
     <packaging>pom</packaging>
 
