@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fs-bpmn-common.iml" filepath="$PROJECT_DIR$/fs-bpmn-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fs-bpmn-definition-validate/fs-bpmn-definition-validate.iml" filepath="$PROJECT_DIR$/fs-bpmn-definition-validate/fs-bpmn-definition-validate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fs-bpmn-syn-data-compensate/fs-bpmn-syn-data-compensate.iml" filepath="$PROJECT_DIR$/fs-bpmn-syn-data-compensate/fs-bpmn-syn-data-compensate.iml" />
+    </modules>
+  </component>
+</project>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fs-customer-contract.iml" filepath="$PROJECT_DIR$/.idea/fs-customer-contract.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fs-customer-contract.iml" filepath="$PROJECT_DIR$/fs-customer-contract.iml" />
       <module fileurl="file://$PROJECT_DIR$/fs-customer-contract-cgi/fs-customer-contract-cgi.iml" filepath="$PROJECT_DIR$/fs-customer-contract-cgi/fs-customer-contract-cgi.iml" />
       <module fileurl="file://$PROJECT_DIR$/fs-customer-contract-common/fs-customer-contract-common.iml" filepath="$PROJECT_DIR$/fs-customer-contract-common/fs-customer-contract-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/fs-customer-contract-core/fs-customer-contract-core.iml" filepath="$PROJECT_DIR$/fs-customer-contract-core/fs-customer-contract-core.iml" />
