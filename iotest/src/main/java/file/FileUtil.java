@@ -2,11 +2,9 @@ package file;
 
 import org.junit.Test;
 
-import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
+import java.util.function.Consumer;
 
 /**
  * @author 万松(Aaron)
@@ -44,5 +42,18 @@ public class FileUtil {
         } finally {
         }
 
+    }
+
+
+    public static void readFileByLine(FileInputStream fis, Consumer<String> consumer) {
+        BufferedReader br=new BufferedReader(new InputStreamReader(fis));
+        String line;
+        try {
+            while((line=br.readLine())!=null){
+                consumer.accept(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

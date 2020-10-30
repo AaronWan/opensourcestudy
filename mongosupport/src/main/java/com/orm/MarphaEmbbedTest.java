@@ -26,7 +26,7 @@ public class MarphaEmbbedTest {
     public static void main(String[] args) {
         MongoClient client = new MongoClient();
         Morphia morphia = new Morphia();
-        morphia.map(Dept.class);
+//        morphia.map(Dept.class);
         Datastore datastore = morphia.createDatastore(client, "test_student");
 
         Dept dept=new Dept();
@@ -35,8 +35,9 @@ public class MarphaEmbbedTest {
         members.add("test");
         dept.setLeader(members);
 
-        Map<String, Object> execution= Maps.newHashMap();
+        Map<String, List<TaskPojo>> execution= Maps.newHashMap();
         execution.put("pass", Lists.newArrayList(TaskPojo.getInstance()));
+        execution.put("reject", Lists.newArrayList());
         dept.setExecution(execution);
         datastore.save(dept);
 

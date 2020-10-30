@@ -12,11 +12,11 @@ import java.util.concurrent.TimeUnit;
 public class CaculateTimeTest {
     private static Random random=new Random(1000);
     public static double timeTrial(int n){
-        Stopwatch stopwatch=Stopwatch.createStarted();
+        Stopwatch stopwatch=new Stopwatch();
         for(int i=0;i<n;i++)
         random.nextInt(1000000);
 
-        return stopwatch.elapsed(TimeUnit.MICROSECONDS);
+        return stopwatch.elapsedTime(TimeUnit.MICROSECONDS);
     }
 
     public static void main(String[] args) {

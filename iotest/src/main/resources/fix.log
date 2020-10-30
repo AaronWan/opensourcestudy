@@ -1,0 +1,1 @@
+db.QixinScheduleMessage.find({'tenantId':'489068','remindId':'5bcefc814fa4249c0115e106'},{'delFlag':1});

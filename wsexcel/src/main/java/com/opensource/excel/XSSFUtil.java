@@ -3,18 +3,18 @@ package com.opensource.excel;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import lombok.Data;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
-import org.apache.poi.xssf.usermodel.extensions.XSSFHeaderFooter;
 import org.junit.Test;
 
 import java.awt.Color;
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Aaron on 25/11/2016.
@@ -24,7 +24,7 @@ public class XSSFUtil {
     public void xssfCreate1() throws Exception {
 
         Workbook wb = WorkbookFactory.create(new FileInputStream
-                ("/Users/Aaron/Desktop/异常数据.xlsx"));
+                ("/Users/Aaron/Documents/code/study/opensourcestudy/wsexcel/src/main/resources/异常数据.xlsx"));
 
         Map<Integer, SheetContent> sheetContents = readExcel(wb,false);
 
@@ -33,16 +33,34 @@ public class XSSFUtil {
             XSSFSheet sheet = (XSSFSheet) finalWb.createSheet(content.getSheetName()+"filter");
             writeSheet(sheet,content);
         });
-        FileOutputStream bos=new FileOutputStream("/Users/Aaron/Desktop/异常数据3.xlsx");
+        FileOutputStream bos=new FileOutputStream("/Users/Aaron/Documents/code/study/opensourcestudy/wsexcel/src/main/resources/异常数据.xlsx");
         finalWb.write(bos);
 
 
     }
+    @Test
+    public void xssfWrite() throws Exception {
 
+        Workbook finalWb = new XSSFWorkbook();
+        XSSFSheet sheet = (XSSFSheet) finalWb.createSheet(System.currentTimeMillis()+"");
+        sheet.setDefaultColumnWidth(20);
+        SheetContent content=new SheetContent();
+        content.setHeaders(Lists.newArrayList("title","content"));
+        Map<String, Object> temp = Maps.newHashMap();
+        temp.put("title","jdk8之前为空判断使业务代码读起来比较费劲,对整体业务逻辑的理解增加困惑;" + "jdk8支持了 Optional 之后 ,使用我们可以非常轻松的将原本一大块的判断代码块变成一句话;");
+        temp.put("content","左侧是自动换行");
+        Map<String, Object> temp2 = Maps.newHashMap();
+        temp2.put("title","POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(filePath));");
+        temp2.put("content","左侧是自动换行");
+        content.setValues(Lists.newArrayList(temp,temp2));
+        writeSheet(sheet,content);
+        FileOutputStream bos=new FileOutputStream("/Users/Aaron/Documents/code/study/opensourcestudy/wsexcel/src/main/resources/异常数据.xlsx");
+        finalWb.write(bos);
+
+
+    }
     private void writeSheet(XSSFSheet sheet, SheetContent content) {
-        ArrayList<Object> notblack = Lists.newArrayList(379662,465454,484358,494830,525958,536526,407023,424637,424737,537645,43497,409572,434686,30655,278354,439861,218026,549073,547103,549432,105273,491151,452990);
         Set<Object> last= Sets.newHashSet();
-        Set<Object> files=Sets.newHashSet();
         for (int i = 0; i < content.getHeaders().size(); i++) {
             writeCell(sheet,0,i,null,content.getHeaders().get(i));
         }
@@ -51,11 +69,7 @@ public class XSSFUtil {
         for (int i = 0; i < content.getValues().size(); i++) {
             Map<String, Object> contents=content.getValues().get(i);
             ArrayList<Object> temp = new ArrayList<>(contents.values());
-            if(!notblack.contains(Double.valueOf(temp.get(0)+"").intValue())){
-                continue;
-            }
-            last.add(((Double)temp.get(0)).intValue());
-            files.add(temp.get(4));
+            last.add((temp.get(0)));
             row++;
             for (int i1 = 0; i1 < temp.size(); i1++) {
                 Object item=temp.get(i1);
@@ -68,7 +82,6 @@ public class XSSFUtil {
             }
         }
         System.out.println(last.size()+","+last);
-        System.out.println(files.size()+","+files);
 
     }
 
@@ -84,12 +97,29 @@ public class XSSFUtil {
         cell.setCellValue(value.toString());
         XSSFCellStyle style = sheet.getWorkbook().createCellStyle();
         if (color == null) {
-            color = new java.awt.Color(255, 255, 255);
+            color = new java.awt.Color(162, 187, 185);
         }
         style.setFillForegroundColor(new XSSFColor(color));
+        style.setVerticalAlignment(VerticalAlignment.TOP);
         style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+        style.setWrapText(true);
         cell.setCellStyle(style);
     }
+
+    @Data
+    public static class SheetContent {
+        private String sheetName;
+        private List<Object> headers= Lists.newArrayList();
+        private List<Map<String,Object>> values=Lists.newArrayList();
+        public void addValue(List<Object> cells){
+            Map<String,Object> value=Maps.newLinkedHashMap();
+            for (int i = 0; i < headers.size(); i++) {
+                value.put(headers.get(i)+"",cells.get(i));
+            }
+            values.add(value);
+        }
+    }
+
 
     private Map<Integer, SheetContent> readExcel(Workbook wb,boolean onlyHeader) throws Exception {
 
@@ -148,17 +178,5 @@ public class XSSFUtil {
         }
         return sheetContent;
     }
-    @Data
-    public static class SheetContent {
-        private String sheetName;
-        private List<Object> headers= Lists.newArrayList();
-        private List<Map<String,Object>> values=Lists.newArrayList();
-        public void addValue(List<Object> cells){
-            Map<String,Object> value=Maps.newLinkedHashMap();
-            for (int i = 0; i < headers.size(); i++) {
-                value.put(headers.get(i)+"",cells.get(i));
-            }
-            values.add(value);
-        }
-    }
+
 }

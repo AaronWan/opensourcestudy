@@ -29,7 +29,7 @@ public class Server {
                     }
                 });
 
-        ChannelFuture f = null;
+        ChannelFuture f;
         try {
             f = serverBootstrap.bind().sync();
             f.channel().closeFuture().sync();

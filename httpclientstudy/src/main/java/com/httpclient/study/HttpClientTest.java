@@ -83,9 +83,9 @@ public class HttpClientTest {
         request.setConfig(RequestConfig.copy(rc).setSocketTimeout(2000).setConnectTimeout(1000).build());
         System.out.println(request.getConfig().toString());
 
-        try(CloseableHttpResponse response = httpclient.execute(request)){
-            System.out.println(new String(EntityUtils.toByteArray(response.getEntity())));
-        }
+//        try(CloseableHttpResponse response = httpclient.execute(request)){
+//            System.out.println(new String(EntityUtils.toByteArray(response.getEntity())));
+//        }
          request= new HttpGet("http://www.baidu.com");
         request.setConfig(RequestConfig.copy(rc).setSocketTimeout(2000).setConnectTimeout(1000).build());
         System.out.println(request.getConfig().toString());

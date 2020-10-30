@@ -28,17 +28,8 @@ public class MarphaTest {
         Morphia morphia = new Morphia();
         morphia.map(Dept.class);
         Datastore datastore = morphia.createDatastore(client, "test_student");
-//        Dept dept=new Dept();
-//
-//        List members=new ArrayList();
-//        members.add("test");
-//        dept.setLeader(members);
-//        datastore.save(dept);
-
         Query<Dept> result = datastore.find(Dept.class);
-        result.forEach((item)->{
-            System.out.println(item);
-        });
+        System.out.println(result.get());
     }
     @Data
     @Entity(value = "Dept",noClassnameStored = true)

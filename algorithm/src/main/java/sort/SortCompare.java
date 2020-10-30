@@ -20,10 +20,10 @@ public class SortCompare {
         for (int i = 0; i < sorts.size(); i++) {
             ISort sort = sorts.get(i);
             Integer[] data = RandomDataUtil.createIntArrays(n);
-            Stopwatch stopwatch = Stopwatch.createStarted();
+            Stopwatch stopwatch = new Stopwatch();
             System.out.println("-----------"+sort.getClass().getSimpleName()+"------------");
             sort.sort(data);
-            sortBeans[i] = new SortBean(sort.getClass().getSimpleName(), stopwatch.elapsed(unit));
+            sortBeans[i] = new SortBean(sort.getClass().getSimpleName(), stopwatch.elapsedTime(unit));
         }
 
 
