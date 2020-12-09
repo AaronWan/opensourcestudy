@@ -51,6 +51,5 @@ public class RedisTest {
         dao.saveArticle(article);
         article=dao.getArticle(article.getId());
         System.out.printf(article.getContent());
-        List<ArticleEntity> articles=dao.getArticlesByPage(1,10);
     }
 }
