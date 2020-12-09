@@ -1,11 +1,12 @@
 package com.opensource;
 
-import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
+
+import java.util.UUID;
 
 /**
  * @author 万松(Aaron)
@@ -15,21 +16,30 @@ import redis.clients.jedis.JedisSentinelPool;
 public class RedisTest {
 
     public static void main(String[] args) {
-/*        redis.servers=10.112.7.1:30001;10.112.7.2:30001;10.112.7.3:30001
-        redis.password=
-                redis.dbIndex=0
-        redis.sentinel=true
-        redis.masterName=test
-        startup=true*/
-        Jedis jedisResource = getJedis();
-        jedisResource.set("ab","aa","nx","ex",10);
-        System.out.println(jedisResource.get("ab"));
+/*        new Thread(() -> {
+            for (int i = 0; i < 10000000; i++) {
+                getJedis().set(i+ UUID.randomUUID().toString(),UUID.randomUUID().toString()+"_"+UUID.randomUUID().toString());
+            }
+        }).start();*/
+        getAndSet();
     }
 
+    public static void getAndSet(){
+        while (true) {
+            try {
+                Thread.sleep(2000);
+                Jedis jedisResource = getJedis();
+                jedisResource.set("ab"+System.currentTimeMillis(), "aa");
+                System.out.println(jedisResource.get("ab")+"--------->"+jedisResource.getClient().getPort());
+            } catch (Exception e) {
+                System.out.println("ERROR"+e.getMessage());
+            }
+        }
+    }
 
     public static Jedis getJedis() {
         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
-        JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("test", Sets.newHashSet(Splitter.on(";").split("10.112.7.1:30001;10.112.7.2:30001;10.112.7.3:30001").iterator()), config);
+        JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("mymaster", Sets.newHashSet(Splitter.on(";").split("127.0.0.1:26379;127.0.0.1:26380").iterator()), config);
         Jedis jedisResource = jedisSentinelPool.getResource();
         return jedisResource;
     }
