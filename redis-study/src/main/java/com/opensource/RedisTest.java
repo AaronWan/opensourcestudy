@@ -9,9 +9,7 @@ import study.redis.vote.VoteDao;
 import study.redis.vote.model.ArticleEntity;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author 万松(Aaron)
@@ -32,10 +30,22 @@ public class RedisTest {
         System.out.println(response.get());
     }
 
+    public static void getAndSet(){
+        while (true) {
+            try {
+                Thread.sleep(2000);
+                Jedis jedisResource = getJedis();
+                jedisResource.set("ab"+System.currentTimeMillis(), "aa");
+                System.out.println(jedisResource.get("ab")+"--------->"+jedisResource.getClient().getPort());
+            } catch (Exception e) {
+                System.out.println("ERROR"+e.getMessage());
+            }
+        }
+    }
 
     public static Jedis getSentinelJedis() {
         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
-        JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("test", Sets.newHashSet(Splitter.on(";").split("10.112.7.1:30001;10.112.7.2:30001;10.112.7.3:30001").iterator()), config);
+        JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("mymaster", Sets.newHashSet(Splitter.on(";").split("127.0.0.1:26379;127.0.0.1:26380").iterator()), config);
         Jedis jedisResource = jedisSentinelPool.getResource();
         return jedisResource;
     }

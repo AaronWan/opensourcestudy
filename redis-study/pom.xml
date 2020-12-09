@@ -20,19 +20,6 @@
         <log4j2-version>2.13.3</log4j2-version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Camel BOM -->
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-bom</artifactId>
-                <version>3.6.0</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>redis.clients</groupId>
