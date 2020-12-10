@@ -5,11 +5,12 @@ import com.google.common.collect.Sets;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Test;
 import redis.clients.jedis.*;
-import study.redis.vote.VoteDao;
+import study.redis.vote.dao.VoteDao;
 import study.redis.vote.model.ArticleEntity;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author 万松(Aaron)
@@ -57,9 +58,8 @@ public class RedisTest {
     @Test
     public void testArticle(){
         VoteDao dao = new VoteDao();
-        ArticleEntity article = new ArticleEntity(UUID.randomUUID().toString(), "平凡的世界", "一个朴素的故事");
-        dao.saveArticle(article);
-        article=dao.getArticle(article.getId());
-        System.out.printf(article.getContent());
+        for (int i = 0; i < 5; i++) {
+            System.out.println(dao.query(i+1,2).stream().map(item->item.getTitle()).collect(Collectors.joining(",")));
+        }
     }
 }
