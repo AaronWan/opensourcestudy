@@ -7,6 +7,7 @@ import org.junit.Test;
 import redis.clients.jedis.*;
 import study.redis.vote.dao.VoteDao;
 import study.redis.vote.model.ArticleEntity;
+import study.redis.vote.model.PageResult;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -58,8 +59,14 @@ public class RedisTest {
     @Test
     public void testArticle(){
         VoteDao dao = new VoteDao();
-        for (int i = 0; i < 5; i++) {
-            System.out.println(dao.query(i+1,2).stream().map(item->item.getTitle()).collect(Collectors.joining(",")));
+//        for (int i = 0; i <1000 ; i++) {
+//            ArticleEntity article=new ArticleEntity(UUID.randomUUID().toString(),"神雕侠侣"+i,"神雕侠侣"+i,System.currentTimeMillis());
+//            dao.saveArticle(article);
+//        }
+        PageResult<ArticleEntity> pageData = dao.query(1, 2);
+        for (int i = 1; i <= pageData.getTotalPage(); i++) {
+            System.out.println("第"+(i+1)+"页:\t"+dao.query(i,2).getData().stream().map(item->item.getTitle()).collect(Collectors.joining(",")));
         }
+        System.out.println("....");
     }
 }
