@@ -14,12 +14,11 @@ public class BaseDao {
         Set<String> sentinels = new HashSet<>();
         sentinels.add("localhost:26380");
         JedisPoolConfig config = new JedisPoolConfig();
-        pool = new JedisSentinelPool("mymaster",sentinels,config);
+        pool = new JedisSentinelPool("mymaster", sentinels, config);
     }
 
 
     protected Jedis getJedis() {
         return pool.getResource();
     }
-
 }

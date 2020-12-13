@@ -5,11 +5,13 @@ import com.google.common.collect.Sets;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Test;
 import redis.clients.jedis.*;
-import study.redis.vote.dao.VoteDao;
+import study.redis.vote.dao.ArticleDao;
 import study.redis.vote.model.ArticleEntity;
 import study.redis.vote.model.PageResult;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -58,14 +60,14 @@ public class RedisTest {
 
     @Test
     public void testArticle(){
-        VoteDao dao = new VoteDao();
-//        for (int i = 0; i <1000 ; i++) {
+        ArticleDao dao = new ArticleDao();
+//        for (int i = 0; i <100000 ; i++) {
 //            ArticleEntity article=new ArticleEntity(UUID.randomUUID().toString(),"神雕侠侣"+i,"神雕侠侣"+i,System.currentTimeMillis());
 //            dao.saveArticle(article);
 //        }
         PageResult<ArticleEntity> pageData = dao.query(1, 2);
         for (int i = 1; i <= pageData.getTotalPage(); i++) {
-            System.out.println("第"+(i+1)+"页:\t"+dao.query(i,2).getData().stream().map(item->item.getTitle()).collect(Collectors.joining(",")));
+            System.out.println("第"+(i)+"页:\t"+dao.query(i,2).getData().stream().map(item->item.getTitle()+"["+(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date(item.getCreateTime())))).collect(Collectors.joining("],")));
         }
         System.out.println("....");
     }

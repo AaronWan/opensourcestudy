@@ -12,14 +12,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VoteDao extends BaseDao {
-    Gson gson = new GsonBuilder().create();
+public class ArticleDao extends BaseDao {
+
+    public static final Gson gson = new GsonBuilder().create();
 
     public void saveArticle(ArticleEntity article) {
-        Jedis connection=getJedis();
+        Jedis connection = getJedis();
         Pipeline pipe = connection.pipelined();
         connection.hmset(article.getId(), gson.fromJson(gson.toJson(article), Map.class));
-        connection.zadd("article_post",article.getCreateTime(),article.getId());
+        connection.zadd("article_post", article.getCreateTime(), article.getId());
         pipe.multi();
         try {
             pipe.close();
@@ -34,23 +35,23 @@ public class VoteDao extends BaseDao {
         return gson.fromJson(gson.toJson(rst), ArticleEntity.class);
     }
 
-    public PageResult<ArticleEntity> query(int pageNumber, int pageSize){
+    public PageResult<ArticleEntity> query(int pageNumber, int pageSize) {
         PageResult<ArticleEntity> result = new PageResult<>();
-        Jedis connection=getJedis();
-        long start=(pageNumber-1)*pageSize;
-        long max = connection.zcount("article_post",0,Long.MAX_VALUE);
+        Jedis connection = getJedis();
+        long start = (pageNumber - 1) * pageSize;
+        long max = connection.zcount("article_post", 0, Long.MAX_VALUE);
         result.setTotalCount(max);
         result.setPage(pageNumber);
-        result.setTotalPage(max%pageSize>0?max/pageSize+1:max/pageSize);
-        long stop=pageNumber*pageSize-1;
-        if(start>max){
+        result.setTotalPage(max % pageSize > 0 ? max / pageSize + 1 : max / pageSize);
+        long stop = pageNumber * pageSize - 1;
+        if (start > max) {
             return new PageResult<>();
         }
-        if(stop>max){
-            stop=max;
+        if (stop > max) {
+            stop = max;
         }
-        Set<String> articleIds=connection.zrange("article_post",start,stop);
-        result.setData(articleIds.stream().map(articleId-> gson.fromJson(gson.toJson(connection.hgetAll(articleId)), ArticleEntity.class)).collect(Collectors.toList()));
+        Set<String> articleIds = connection.zrange("article_post", start, stop);
+        result.setData(articleIds.stream().map(articleId -> gson.fromJson(gson.toJson(connection.hgetAll(articleId)), ArticleEntity.class)).collect(Collectors.toList()));
         connection.close();
         return result;
     }
