@@ -67,7 +67,9 @@ public class RedisTest {
 //        }
         PageResult<ArticleEntity> pageData = dao.query(1, 2);
         for (int i = 1; i <= pageData.getTotalPage(); i++) {
-            System.out.println("第"+(i)+"页:\t"+dao.query(i,2).getData().stream().map(item->item.getTitle()+"["+(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date(item.getCreateTime())))).collect(Collectors.joining("],")));
+            System.out.println("第"+(i)+"页:\n"+dao.query(i,2).getData().stream().map(item-> {
+                return item.getTitle() + "[" + (new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date(item.getCreateTime())))+"\n"+item.getContent();
+            }).collect(Collectors.joining("\n")));
         }
         System.out.println("....");
     }
