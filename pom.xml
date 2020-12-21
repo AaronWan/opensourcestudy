@@ -48,7 +48,8 @@
     <!--<module>lambdasudy</module>-->
     <module>algorithm</module>
     <module>redis-study</module>
-    <!--    <module>httpclientstudy</module>-->
+      <module>websocket</module>
+      <!--    <module>httpclientstudy</module>-->
     <!--<module>game</module>-->
     <!--<module>dubbostudy</module>-->
 <!--    <module>mongosupport</module>-->
