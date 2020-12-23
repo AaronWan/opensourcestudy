@@ -8,31 +8,35 @@
 <script type="text/javascript">
     var socket;
 
-    //如果浏览器支持WebSocket
-    if(window.WebSocket){
-        //参数就是与服务器连接的地址
-        socket = new WebSocket("ws://localhost:8899/ws");
+    function connect(){
+        //如果浏览器支持WebSocket
+        if(window.WebSocket){
+            //参数就是与服务器连接的地址
+            socket = new WebSocket("ws://localhost:8899/ws");
 
-        //客户端收到服务器消息的时候就会执行这个回调方法
-        socket.onmessage = function (event) {
-            var ta = document.getElementById("responseText");
-            ta.value = ta.value + "\n"+event.data;
-        }
+            //客户端收到服务器消息的时候就会执行这个回调方法
+            socket.onmessage = function (event) {
+                var ta = document.getElementById("responseText");
+                ta.value = ta.value + "\n"+event.data;
+            }
 
-        //连接建立的回调函数
-        socket.onopen = function(event){
-            var ta = document.getElementById("responseText");
-            ta.value = "连接开启";
-        }
+            //连接建立的回调函数
+            socket.onopen = function(event){
+                var ta = document.getElementById("responseText");
+                ta.value = "连接开启";
+            }
 
-        //连接断掉的回调函数
-        socket.onclose = function (event) {
-            var ta = document.getElementById("responseText");
-            ta.value = ta.value +"\n"+"连接关闭";
+            //连接断掉的回调函数
+            socket.onclose = function (event) {
+                var ta = document.getElementById("responseText");
+                ta.value = ta.value +"\n"+"连接关闭";
+                socket=null;
+            }
+        }else{
+            alert("浏览器不支持WebSocket！");
         }
-    }else{
-        alert("浏览器不支持WebSocket！");
     }
+
 
     //发送数据
     function send(message){
@@ -47,11 +51,19 @@
             alert("连接没有开启");
         }
     }
+
+    function open_connect(){
+        if(socket==null){
+            connect();
+        }
+    }
+    connect()
 </script>
 <form onsubmit="return false">
     <textarea name = "message" style="width: 400px;height: 200px"></textarea>
 
     <input type ="button" value="发送数据" onclick="send(this.form.message.value);">
+    <input type ="button" value="open" onclick="open_connect();">
 
     <h3>服务器输出：</h3>
 
