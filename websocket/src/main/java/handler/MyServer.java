@@ -14,11 +14,11 @@ import java.net.InetSocketAddress;
 public class MyServer {
     public static void main(String[] args) throws Exception{
         EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup wokerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try{
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup,wokerGroup).channel(NioServerSocketChannel.class)
+            serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new WebSocketChannelInitializer());
 
@@ -26,7 +26,7 @@ public class MyServer {
             channelFuture.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
-            wokerGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
 
     }

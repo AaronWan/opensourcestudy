@@ -5,12 +5,12 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
-import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.UUID;
 
 //处理文本协议数据，处理TextWebSocketFrame类型的数据，websocket专门处理文本的frame就是TextWebSocketFrame
 public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
-    Map<String,ChannelHandlerContext> handlerContextMap= Maps.newConcurrentMap();
+    public static final Map<String,ChannelHandlerContext> handlerContextMap= Maps.newConcurrentMap();
 
     //每个channel都有一个唯一的id值
     @Override
@@ -40,10 +40,10 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
          * writeAndFlush接收的参数类型是Object类型，但是一般我们都是要传入管道中传输数据的类型，比如我们当前的demo
          * 传输的就是TextWebSocketFrame类型的数据
          */
-        int i=0;
-        while (true){
-            Thread.sleep(1000);
-            ctx.channel().writeAndFlush(new TextWebSocketFrame("服务："+ ++i));
+        if(msg.text().equals("dis")){
+            handlerContextMap.values().forEach(item-> {
+                item.writeAndFlush(new TextWebSocketFrame("test" + UUID.randomUUID().toString()));
+            });
         }
     }
 }
