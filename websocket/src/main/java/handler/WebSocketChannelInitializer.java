@@ -1,12 +1,20 @@
 package handler;
 
+import handler.model.RequestModel;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.ByteToMessageCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+
+import java.util.List;
 
 public class WebSocketChannelInitializer extends ChannelInitializer<SocketChannel>{
 
@@ -26,7 +34,17 @@ public class WebSocketChannelInitializer extends ChannelInitializer<SocketChanne
         //参数指的是contex_path
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
         //websocket定义了传递数据的6中frame类型
-        pipeline.addLast(new TextWebSocketFrameHandler());
+        pipeline.addLast(new ChannelHandler[]{new TextWebSocketFrameHandler(),new ByteToMessageCodec<RequestModel>(){
+            @Override
+            protected void encode(ChannelHandlerContext ctx, RequestModel msg, ByteBuf out) throws Exception {
+                System.out.println("1");
+            }
+
+            @Override
+            protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+                System.out.println("2");
+            }
+        }});
 
     }
 }

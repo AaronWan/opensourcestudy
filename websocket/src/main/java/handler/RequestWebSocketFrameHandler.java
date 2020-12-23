@@ -1,16 +1,16 @@
 package handler;
 
 import com.google.common.collect.Maps;
+import handler.model.RequestModel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 //处理文本协议数据，处理TextWebSocketFrame类型的数据，websocket专门处理文本的frame就是TextWebSocketFrame
-public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+public class RequestWebSocketFrameHandler extends SimpleChannelInboundHandler<RequestModel> {
     public static final Map<String, ChannelHandlerContext> handlerContextMap = Maps.newConcurrentMap();
 
     //每个channel都有一个唯一的id值
@@ -35,14 +35,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     //读到客户端的内容并且向客户端去写内容
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
-        String content= msg.text();
-
-        /**
-         * writeAndFlush接收的参数类型是Object类型，但是一般我们都是要传入管道中传输数据的类型，比如我们当前的demo
-         * 传输的就是TextWebSocketFrame类型的数据
-         */
-        handlerContextMap.values().stream().filter(item -> !Objects.equals(ctx, item)).forEach(item -> item.writeAndFlush(new TextWebSocketFrame(ctx.channel().id().asLongText() + ":" + content)));
-        ctx.writeAndFlush(new TextWebSocketFrame("我:"+content));
+    protected void messageReceived(ChannelHandlerContext ctx, RequestModel msg) throws Exception {
+        ctx.writeAndFlush(new RequestModel());
     }
 }
