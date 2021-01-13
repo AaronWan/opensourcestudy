@@ -12,22 +12,26 @@ import java.net.InetSocketAddress;
 
 //websocket长连接示例
 public class MyServer {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
-        try{
-            ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new WebSocketChannelInitializer());
+        serverBootstrap.group(bossGroup, workerGroup)
 
-            ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8899)).sync();
-            channelFuture.channel().closeFuture().sync();
-        }finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
+                .channel(NioServerSocketChannel.class)
 
+                .handler(new LoggingHandler(LogLevel.INFO))
+
+                .childHandler(new WebSocketChannelInitializer());
+
+        ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8899)).sync();
+
+        channelFuture.channel().closeFuture().sync();
+
+        bossGroup.shutdownGracefully();
+
+        workerGroup.shutdownGracefully();
     }
 }

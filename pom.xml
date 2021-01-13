@@ -23,7 +23,7 @@
     <!--<module>distributionlock</module>-->
     <!--<module>commontest</module>-->
     <!--<module>thread</module>-->
-   <!--<module>netty</module>-->
+   <module>netty</module>
     <!--<module>rest-proxy-client</module>-->
     <!--<module>event</module>-->
     <!--<module>weakreference</module>-->

@@ -12,7 +12,6 @@ import study.redis.vote.model.PageResult;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**

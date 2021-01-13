@@ -20,8 +20,6 @@ public class ClientTest {
         String readline;
         readline = sin.readLine(); //从系统标准输入读入一字符串
         while (!readline.equals("bye")) {
-//若从标准输入读入的字符串为 "bye"则停止循环
-            TimeUnit.SECONDS.sleep(5);
             os.println(readline);
 //将从系统标准输入读入的字符串输出到Server
             os.flush();

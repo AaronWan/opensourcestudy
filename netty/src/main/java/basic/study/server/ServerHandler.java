@@ -21,6 +21,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf in = (ByteBuf) msg;
         ctx.write(in);
         ctx.flush();
+        System.out.printf(in.toString());
     }
 
     @Override
