@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -22,6 +23,16 @@ public class ByteToMessageHandler extends ByteToMessageCodec<ServiceRequest> {
 
   @Override
   protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
-    System.out.println(byteBuf.getInt(1));
+    ServiceRequest serviceRequest = new ServiceRequest();
+    ByteBuf buf = byteBuf;
+    int methodNameLength=buf.readInt();
+    ByteBuf bytes = buf.readBytes(methodNameLength);
+    String methodName = new String(bytes.array(), StandardCharsets.UTF_8);
+
+    byte[] req = new byte[buf.readableBytes()];
+    buf.readBytes(req);
+    serviceRequest.setServiceMethod(methodName);
+    serviceRequest.setBody(req);
+    list.add(serviceRequest);
   }
 }

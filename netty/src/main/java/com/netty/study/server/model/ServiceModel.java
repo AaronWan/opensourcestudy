@@ -1,7 +1,6 @@
 package com.netty.study.server.model;
 
 import lombok.Data;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -12,10 +11,11 @@ import java.lang.reflect.Method;
  * @since 7.3.5
  */
 @Data
-public class ServiceModel {
+public class ServiceModel<T> {
   Object instance;
   Method method;
-  public Object invoke(Object arg) throws InvocationTargetException, IllegalAccessException {
+  Class<T> argClazz;
+  public Object invoke(T arg) throws InvocationTargetException, IllegalAccessException {
     return method.invoke(instance,arg);
   }
 }

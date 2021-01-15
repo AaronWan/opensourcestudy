@@ -1,9 +1,15 @@
 package com.netty.study.server.handler;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.netty.study.server.model.ServiceModel;
 import com.netty.study.server.model.ServiceRequest;
+import com.netty.study.server.register.ServerServiceRegister;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.SimpleChannelInboundHandler;
+
+import java.nio.charset.StandardCharsets;
+
 
 /**
  * @author 万松(Aaron)
@@ -12,31 +18,18 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @since 7.3.5
  */
 public class ServerServiceHandler extends ChannelInboundHandlerAdapter {
-  /**
-   * Calls {@link ChannelHandlerContext#fireChannelRegistered()} to forward
-   * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-   * <p>
-   * Sub-classes may override this method to change behavior.
-   *
-   * @param ctx
-   */
+  public static final Gson gson=new GsonBuilder().create();
   @Override
   public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
     System.out.println("service  register ......");
   }
 
-  /**
-   * Calls {@link ChannelHandlerContext#fireChannelRead(Object)} to forward
-   * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-   * <p>
-   * Sub-classes may override this method to change behavior.
-   *
-   * @param ctx
-   * @param msg
-   */
   @Override
   public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-    super.channelRead(ctx, msg);
-
+    System.out.println("server channelRead..");
+    ServiceRequest request= (ServiceRequest) msg;
+    ServiceModel serviceModel=ServerServiceRegister.getServiceModel(request.getServiceMethod());
+    Object arg=gson.fromJson(new String(request.getBody(), StandardCharsets.UTF_8),serviceModel.getArgClazz());
+    ctx.write(serviceModel.invoke(arg));
   }
 }

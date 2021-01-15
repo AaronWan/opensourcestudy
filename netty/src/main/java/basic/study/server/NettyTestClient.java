@@ -1,5 +1,7 @@
 package basic.study.server;
 
+import com.netty.study.server.Server;
+
 /**
  * @author 万松(Aaron)
  * @creat_date: 2021/1/9
@@ -8,11 +10,19 @@ package basic.study.server;
  */
 public class NettyTestClient {
   public static void main(String[] args) throws Exception {
-      NettyClient client=new NettyClient("localhost",8080);
-      client.start();
-      while (true){
-        client.getChannel().writeAndFlush("abc");
+    new Thread(() -> {
+      try {
+        Server.start();
+      } catch (InterruptedException e) {
       }
+    }).start();
+
+    NettyClient client = new NettyClient("localhost", 8080);
+    client.start();
+    while (true) {
+      Thread.sleep(1000);
+      client.getChannel().sendMessage("abc");
+    }
 
   }
 }

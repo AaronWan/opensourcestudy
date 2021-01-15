@@ -1,7 +1,12 @@
 package com.netty.study.server.register;
 
+import com.google.common.collect.Maps;
+import com.netty.study.server.annotation.ServerService;
+import com.netty.study.server.annotation.ServerServiceMethod;
 import com.netty.study.server.model.ServiceModel;
+import com.netty.study.server.service.FirstRpcService;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -11,16 +16,35 @@ import java.util.Map;
  * @since 7.3.5
  */
 public class ServerServiceRegister {
-  Map<String, ServiceModel> serviceModelMap;
+  static Map<String, ServiceModel> serviceModelMap = Maps.newConcurrentMap();
 
   /**
    * service register
-   */
-  public void init(String servicePackage) {
-
+   */static {
+    try {
+      Class<FirstRpcService> serviceClazz = FirstRpcService.class;
+      ServerService serverService = serviceClazz.getAnnotation(ServerService.class);
+      if (serverService != null) {
+        FirstRpcService instance = serviceClazz.newInstance();
+        for (Method method : serviceClazz.getMethods()) {
+          ServiceModel a = new ServiceModel();
+          ServerServiceMethod methodDesc = method.getAnnotation(ServerServiceMethod.class);
+          if (methodDesc != null) {
+            a.setMethod(method);
+            a.setInstance(instance);
+            a.setArgClazz(method.getParameterTypes()[0]);
+            serviceModelMap.put(serverService.value() + "." + methodDesc.value(), a);
+          }
+        }
+      }
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    }
   }
 
-  public ServiceModel getServiceModel(String request) {
+  public static ServiceModel getServiceModel(String request) {
     return serviceModelMap.get(request);
   }
 }

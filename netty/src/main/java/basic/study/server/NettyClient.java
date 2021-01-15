@@ -15,7 +15,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class NettyClient {
   private final String host;
   private final int port;
-  private Channel channel;
+  private MyClientHandler client;
 
   //连接服务端的端口号地址和端口号
   public NettyClient(String host, int port) {
@@ -25,7 +25,7 @@ public class NettyClient {
 
   public void start() throws Exception {
     final EventLoopGroup group = new NioEventLoopGroup();
-
+    client=new MyClientHandler();
     Bootstrap b = new Bootstrap();
     b.group(group).channel(NioSocketChannel.class)  // 使用NioSocketChannel来作为连接用的channel类
       .handler(new ChannelInitializer<SocketChannel>() { // 绑定连接初始化器
@@ -33,32 +33,26 @@ public class NettyClient {
         public void initChannel(SocketChannel ch) throws Exception {
           System.out.println("正在连接中...");
           ChannelPipeline pipeline = ch.pipeline();
-          pipeline.addLast(new ClientHandler()); //客户端处理类
+          pipeline.addLast(client); //客户端处理类
 
         }
       });
     //发起异步连接请求，绑定连接端口和host信息
     final ChannelFuture future = b.connect(host, port).sync();
 
-    future.addListener(new ChannelFutureListener() {
+    future.addListener((ChannelFutureListener) arg0 -> {
+      if (future.isSuccess()) {
+        System.out.println("连接服务器成功");
 
-      @Override
-      public void operationComplete(ChannelFuture arg0) throws Exception {
-        if (future.isSuccess()) {
-          System.out.println("连接服务器成功");
-
-        } else {
-          System.out.println("连接服务器失败");
-          future.cause().printStackTrace();
-          group.shutdownGracefully(); //关闭线程组
-        }
+      } else {
+        System.out.println("连接服务器失败");
+        future.cause().printStackTrace();
+        group.shutdownGracefully(); //关闭线程组
       }
     });
-
-    this.channel = future.channel();
   }
 
-  public Channel getChannel() {
-    return channel;
+  public MyClientHandler getChannel() {
+    return client;
   }
 }

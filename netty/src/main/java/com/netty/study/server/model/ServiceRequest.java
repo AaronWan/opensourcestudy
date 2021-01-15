@@ -10,6 +10,6 @@ import lombok.Data;
  */
 @Data
 public class ServiceRequest {
-  private RequestHeader requestHeader;
+  private String serviceMethod;
   private byte[] body;
 }
