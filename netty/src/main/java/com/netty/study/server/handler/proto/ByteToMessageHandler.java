@@ -1,7 +1,10 @@
 package com.netty.study.server.handler.proto;
 
+import com.netty.study.server.codec.CodecFactory;
 import com.netty.study.server.model.ServiceRequest;
+import com.netty.study.server.model.ServiceResponse;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
 
@@ -14,11 +17,13 @@ import java.util.List;
  * @creat_time: 23:29
  * @since 7.3.5
  */
-public class ByteToMessageHandler extends ByteToMessageCodec<ServiceRequest> {
+public class ByteToMessageHandler extends ByteToMessageCodec<ServiceResponse> {
 
   @Override
-  protected void encode(ChannelHandlerContext channelHandlerContext, ServiceRequest serviceRequest, ByteBuf byteBuf) throws Exception {
+  protected void encode(ChannelHandlerContext channelHandlerContext, ServiceResponse serviceResponse, ByteBuf byteBuf) throws Exception {
     System.out.println("....");
+    ByteBuf resp = Unpooled.copiedBuffer(CodecFactory.getInstance(CodecFactory.CodeCType.JSON).encode(serviceResponse));
+    channelHandlerContext.writeAndFlush(resp);
   }
 
   @Override

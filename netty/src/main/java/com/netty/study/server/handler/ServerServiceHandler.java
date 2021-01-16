@@ -2,14 +2,12 @@ package com.netty.study.server.handler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.netty.study.server.codec.CodecFactory;
 import com.netty.study.server.model.ServiceModel;
 import com.netty.study.server.model.ServiceRequest;
 import com.netty.study.server.register.ServerServiceRegister;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
-import java.nio.charset.StandardCharsets;
-
 
 /**
  * @author 万松(Aaron)
@@ -18,7 +16,6 @@ import java.nio.charset.StandardCharsets;
  * @since 7.3.5
  */
 public class ServerServiceHandler extends ChannelInboundHandlerAdapter {
-  public static final Gson gson=new GsonBuilder().create();
   @Override
   public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
     System.out.println("service  register ......");
@@ -29,7 +26,7 @@ public class ServerServiceHandler extends ChannelInboundHandlerAdapter {
     System.out.println("server channelRead..");
     ServiceRequest request= (ServiceRequest) msg;
     ServiceModel serviceModel=ServerServiceRegister.getServiceModel(request.getServiceMethod());
-    Object arg=gson.fromJson(new String(request.getBody(), StandardCharsets.UTF_8),serviceModel.getArgClazz());
+    Object arg= CodecFactory.getInstance(CodecFactory.CodeCType.JSON).decode(request.getBody(),serviceModel.getArgClazz());
     ctx.write(serviceModel.invoke(arg));
   }
 }

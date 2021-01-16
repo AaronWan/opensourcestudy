@@ -2,7 +2,6 @@ package com.netty.study.server;
 
 import com.netty.study.server.handler.ServerServiceHandler;
 import com.netty.study.server.handler.proto.ByteToMessageHandler;
-import com.netty.study.server.handler.proto.MessageToByteHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -28,7 +27,7 @@ public class Server {
       .childHandler(new ChannelInitializer<SocketChannel>() {  // 绑定客户端连接时候触发操作
         @Override
         protected void initChannel(SocketChannel sh) throws Exception {
-          sh.pipeline().addLast(new ByteToMessageHandler()).addLast(new MessageToByteHandler()).addLast(new ServerServiceHandler()); //使用ServerHandler类来处理接收到的消息
+          sh.pipeline().addLast(new ByteToMessageHandler()).addLast(new ServerServiceHandler()); //使用ServerHandler类来处理接收到的消息
         }
       });
     //绑定监听端口，调用sync同步阻塞方法等待绑定操作完
