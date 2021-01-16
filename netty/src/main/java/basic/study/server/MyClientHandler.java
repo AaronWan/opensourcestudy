@@ -2,14 +2,12 @@ package basic.study.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.netty.study.server.model.ServiceRequest;
 import com.netty.study.server.service.model.TestMethodBean;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class MyClientHandler extends ChannelInboundHandlerAdapter {
