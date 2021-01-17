@@ -1,7 +1,6 @@
 package com.netty.study.server.annotation;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.*;
 
 /**
  * @author 万松(Aaron)
@@ -9,7 +8,9 @@ import java.lang.annotation.RetentionPolicy;
  * @creat_time: 23:22
  * @since 7.3.5
  */
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface ServerServiceMethod {
   /**
    * service name

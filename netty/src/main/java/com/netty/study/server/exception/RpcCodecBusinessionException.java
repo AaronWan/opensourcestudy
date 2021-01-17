@@ -7,20 +7,14 @@ package com.netty.study.server.exception;
  * @since 7.3.5
  */
 public class RpcCodecBusinessionException extends RpcBusinessException{
+
+  /**
+   * Constructs a new runtime exception with {@code null} as its
+   * detail message.  The cause is not initialized, and may subsequently be
+   * initialized by a call to {@link #initCause}.
+   */
   public RpcCodecBusinessionException() {
+    super("10001");
   }
 
-  public RpcCodecBusinessionException(String message) {
-    super(message);
-  }
-
-  public RpcCodecBusinessionException(String message, Throwable cause) {
-    super(message, cause);
-  }
-  public RpcCodecBusinessionException(Throwable cause) {
-    super(cause);
-  }
-  public RpcCodecBusinessionException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
 }

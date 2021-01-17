@@ -26,7 +26,7 @@ public class Server {
       .childOption(ChannelOption.SO_KEEPALIVE, true) //保持长连接
       .childHandler(new ChannelInitializer<SocketChannel>() {  // 绑定客户端连接时候触发操作
         @Override
-        protected void initChannel(SocketChannel sh) throws Exception {
+        protected void initChannel(SocketChannel sh) {
           sh.pipeline().addLast(new ByteToMessageHandler()).addLast(new ServerServiceHandler()); //使用ServerHandler类来处理接收到的消息
         }
       });

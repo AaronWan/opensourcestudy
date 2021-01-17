@@ -21,7 +21,6 @@ public class ByteToMessageHandler extends ByteToMessageCodec<ServiceResponse> {
 
   @Override
   protected void encode(ChannelHandlerContext channelHandlerContext, ServiceResponse serviceResponse, ByteBuf byteBuf) throws Exception {
-    System.out.println("....");
     ByteBuf resp = Unpooled.copiedBuffer(CodecFactory.getInstance(CodecFactory.CodeCType.JSON).encode(serviceResponse));
     channelHandlerContext.writeAndFlush(resp);
   }
@@ -32,6 +31,7 @@ public class ByteToMessageHandler extends ByteToMessageCodec<ServiceResponse> {
     ByteBuf buf = byteBuf;
     int methodNameLength=buf.readInt();
     ByteBuf bytes = buf.readBytes(methodNameLength);
+
     String methodName = new String(bytes.array(), StandardCharsets.UTF_8);
 
     byte[] req = new byte[buf.readableBytes()];
