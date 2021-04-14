@@ -1,7 +1,6 @@
 package com.expression.survey;
 
 import com.googlecode.aviator.AviatorEvaluator;
-import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 public class ExpressionTest {
