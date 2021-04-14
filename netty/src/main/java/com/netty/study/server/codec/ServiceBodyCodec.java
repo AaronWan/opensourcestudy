@@ -6,8 +6,8 @@ package com.netty.study.server.codec;
  * @creat_time: 23:18
  * @since 7.3.5
  */
-public interface ServiceBodyCodec<T> {
-  byte[] encode(T body);
+public interface ServiceBodyCodec {
+  byte[] encode(Object body);
 
-  T decode(byte[] data);
+  <T> T decode(byte[] data, Class<T> clazz);
 }

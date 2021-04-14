@@ -1,4 +1,4 @@
-package com.netty.study.server.service.model;
+package com.netty.study.service.model;
 
 import lombok.Data;
 

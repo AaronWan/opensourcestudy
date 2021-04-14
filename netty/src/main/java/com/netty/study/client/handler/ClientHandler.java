@@ -1,21 +1,20 @@
-package basic.study.server;
+package com.netty.study.client.handler;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.netty.study.server.model.ServiceRequest;
-import com.netty.study.server.service.model.TestMethodBean;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-import java.nio.charset.StandardCharsets;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-public class MyClientHandler extends ChannelInboundHandlerAdapter {
-  private static final Logger logger = Logger.getLogger(MyClientHandler.class.getName());
+public class ClientHandler extends ChannelInboundHandlerAdapter {
+  private static final Logger logger = Logger.getLogger(ClientHandler.class.getName());
 
   private ChannelHandlerContext ctx;
+  private byte[] result;
 
   @Override
   public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -24,24 +23,15 @@ public class MyClientHandler extends ChannelInboundHandlerAdapter {
     this.ctx = ctx;
   }
 
-  public static final Gson gson = new GsonBuilder().create();
-
-  public boolean sendMessage(String msg) {
-    TestMethodBean.Arg arg = new TestMethodBean.Arg();
-    arg.setData(msg);
-    boolean result;
+  public byte[] sendMessage(String service,byte[] data) {
     try {
       ByteBuf msgByte;
-      byte[] req = gson.toJson(arg).getBytes();
-      msgByte = Unpooled.buffer(req.length+2+"a.b".getBytes().length);
-      msgByte.writeInt("a.b".getBytes().length);
-      msgByte.writeBytes("a.b".getBytes());
-      msgByte.writeBytes(req);
-      ctx.writeAndFlush(msgByte);
-      result = true;
+      msgByte = Unpooled.buffer(data.length+2+service.getBytes().length);
+      msgByte.writeInt(service.getBytes().length);
+      msgByte.writeBytes(service.getBytes());
+      msgByte.writeBytes(data);
+      ctx.writeAndFlush(msgByte).sync();
     } catch (Exception e) {
-      // TODO: handle exception
-      result = false;
       logger.warning(e.getMessage());
     }
     return result;
@@ -54,8 +44,7 @@ public class MyClientHandler extends ChannelInboundHandlerAdapter {
     ByteBuf buf = (ByteBuf) msg;
     byte[] req = new byte[buf.readableBytes()];
     buf.readBytes(req);
-    String body = new String(req, "UTF-8");
-    System.out.println("Now is :" + body);
+    result=req;
   }
 
   @Override

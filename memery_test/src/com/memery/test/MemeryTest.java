@@ -1,9 +1,9 @@
 package com.memery.test;
 
-import sun.misc.Cleaner;
-import sun.nio.ch.DirectBuffer;
 
 import java.nio.ByteBuffer;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author 万松(Aaron)
@@ -13,11 +13,29 @@ import java.nio.ByteBuffer;
  */
 public class MemeryTest {
   public static void main(String[] args) throws InterruptedException {
-    useDirectMemery();
+    new MemeryTest().createObj();
+    Thread.sleep(1000000);
+  }
+  public Map map=new ConcurrentHashMap<>();
+
+  public void createObj() throws InterruptedException {
+    for (int i = 0; i < 20000000; i++) {
+      map.put(i,new TestHeapBean("name"+i,i));
+      useDirectMemery();
+    }
+
+  }
+  class TestHeapBean{
+    private String name;
+    private int age;
+
+    public TestHeapBean(String name, int age) {
+      this.name = name;
+      this.age = age;
+    }
   }
   public static void useDirectMemery() throws InterruptedException {
     ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 10);
-    System.out.printf(buffer.isDirect()+"");
-    Thread.sleep(1000000);
   }
 }
+

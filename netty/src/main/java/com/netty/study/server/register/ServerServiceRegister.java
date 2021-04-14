@@ -4,7 +4,8 @@ import com.google.common.collect.Maps;
 import com.netty.study.server.annotation.ServerService;
 import com.netty.study.server.annotation.ServerServiceMethod;
 import com.netty.study.server.model.ServiceModel;
-import com.netty.study.server.service.FirstRpcService;
+import com.netty.study.service.FirstRpcService;
+import com.netty.study.service.impl.FirstRpcServiceImpl;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -22,13 +23,13 @@ public class ServerServiceRegister {
    * service register
    */static {
     try {
-      Class<FirstRpcService> serviceClazz = FirstRpcService.class;
-      ServerService serverService = serviceClazz.getAnnotation(ServerService.class);
+      Class<FirstRpcServiceImpl> serviceClazz = FirstRpcServiceImpl.class;
+      ServerService serverService = serviceClazz.getDeclaredAnnotation(ServerService.class);
       if (serverService != null) {
         FirstRpcService instance = serviceClazz.newInstance();
         for (Method method : serviceClazz.getMethods()) {
           ServiceModel a = new ServiceModel();
-          ServerServiceMethod methodDesc = method.getAnnotation(ServerServiceMethod.class);
+          ServerServiceMethod methodDesc = method.getDeclaredAnnotation(ServerServiceMethod.class);
           if (methodDesc != null) {
             a.setMethod(method);
             a.setInstance(instance);
