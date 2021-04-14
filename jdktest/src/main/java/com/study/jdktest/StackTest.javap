@@ -1,0 +1,245 @@
+Classfile /Users/fxiaoke/Documents/code/opensource/opensourcestudy/jdktest/src/main/java/com/study/jdktest/StackTest.class
+  Last modified 2021年2月25日; size 2290 bytes
+  SHA-256 checksum e7d143d2a8f554fa6d714dd1549560f62c6e6ce26c8322e76dfd9916ff75a243
+  Compiled from "StackTest.java"
+public class com.study.jdktest.StackTest
+  minor version: 0
+  major version: 59
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #8                          // com/study/jdktest/StackTest
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 7, attributes: 3
+Constant pool:
+    #1 = Methodref          #2.#3         // java/lang/Object."<init>":()V
+    #2 = Class              #4            // java/lang/Object
+    #3 = NameAndType        #5:#6         // "<init>":()V
+    #4 = Utf8               java/lang/Object
+    #5 = Utf8               <init>
+    #6 = Utf8               ()V
+    #7 = Fieldref           #8.#9         // com/study/jdktest/StackTest.count:Ljava/util/concurrent/atomic/AtomicLong;
+    #8 = Class              #10           // com/study/jdktest/StackTest
+    #9 = NameAndType        #11:#12       // count:Ljava/util/concurrent/atomic/AtomicLong;
+   #10 = Utf8               com/study/jdktest/StackTest
+   #11 = Utf8               count
+   #12 = Utf8               Ljava/util/concurrent/atomic/AtomicLong;
+   #13 = Methodref          #14.#15       // java/util/concurrent/atomic/AtomicLong.incrementAndGet:()J
+   #14 = Class              #16           // java/util/concurrent/atomic/AtomicLong
+   #15 = NameAndType        #17:#18       // incrementAndGet:()J
+   #16 = Utf8               java/util/concurrent/atomic/AtomicLong
+   #17 = Utf8               incrementAndGet
+   #18 = Utf8               ()J
+   #19 = Methodref          #8.#20        // com/study/jdktest/StackTest.testStack:()V
+   #20 = NameAndType        #21:#6        // testStack:()V
+   #21 = Utf8               testStack
+   #22 = Methodref          #23.#24       // java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+   #23 = Class              #25           // java/lang/Runtime
+   #24 = NameAndType        #26:#27       // getRuntime:()Ljava/lang/Runtime;
+   #25 = Utf8               java/lang/Runtime
+   #26 = Utf8               getRuntime
+   #27 = Utf8               ()Ljava/lang/Runtime;
+   #28 = Class              #29           // java/lang/Thread
+   #29 = Utf8               java/lang/Thread
+   #30 = InvokeDynamic      #0:#31        // #0:run:()Ljava/lang/Runnable;
+   #31 = NameAndType        #32:#33       // run:()Ljava/lang/Runnable;
+   #32 = Utf8               run
+   #33 = Utf8               ()Ljava/lang/Runnable;
+   #34 = Methodref          #28.#35       // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+   #35 = NameAndType        #5:#36        // "<init>":(Ljava/lang/Runnable;)V
+   #36 = Utf8               (Ljava/lang/Runnable;)V
+   #37 = Methodref          #23.#38       // java/lang/Runtime.addShutdownHook:(Ljava/lang/Thread;)V
+   #38 = NameAndType        #39:#40       // addShutdownHook:(Ljava/lang/Thread;)V
+   #39 = Utf8               addShutdownHook
+   #40 = Utf8               (Ljava/lang/Thread;)V
+   #41 = InvokeDynamic      #1:#31        // #1:run:()Ljava/lang/Runnable;
+   #42 = InvokeDynamic      #2:#43        // #2:uncaughtException:()Ljava/lang/Thread$UncaughtExceptionHandler;
+   #43 = NameAndType        #44:#45       // uncaughtException:()Ljava/lang/Thread$UncaughtExceptionHandler;
+   #44 = Utf8               uncaughtException
+   #45 = Utf8               ()Ljava/lang/Thread$UncaughtExceptionHandler;
+   #46 = Methodref          #28.#47       // java/lang/Thread.setUncaughtExceptionHandler:(Ljava/lang/Thread$UncaughtExceptionHandler;)V
+   #47 = NameAndType        #48:#49       // setUncaughtExceptionHandler:(Ljava/lang/Thread$UncaughtExceptionHandler;)V
+   #48 = Utf8               setUncaughtExceptionHandler
+   #49 = Utf8               (Ljava/lang/Thread$UncaughtExceptionHandler;)V
+   #50 = Methodref          #28.#51       // java/lang/Thread.setDaemon:(Z)V
+   #51 = NameAndType        #52:#53       // setDaemon:(Z)V
+   #52 = Utf8               setDaemon
+   #53 = Utf8               (Z)V
+   #54 = Methodref          #28.#55       // java/lang/Thread.start:()V
+   #55 = NameAndType        #56:#6        // start:()V
+   #56 = Utf8               start
+   #57 = Long               10000l
+   #59 = Methodref          #28.#60       // java/lang/Thread.sleep:(J)V
+   #60 = NameAndType        #61:#62       // sleep:(J)V
+   #61 = Utf8               sleep
+   #62 = Utf8               (J)V
+   #63 = Fieldref           #64.#65       // java/lang/System.out:Ljava/io/PrintStream;
+   #64 = Class              #66           // java/lang/System
+   #65 = NameAndType        #67:#68       // out:Ljava/io/PrintStream;
+   #66 = Utf8               java/lang/System
+   #67 = Utf8               out
+   #68 = Utf8               Ljava/io/PrintStream;
+   #69 = Methodref          #14.#70       // java/util/concurrent/atomic/AtomicLong.get:()J
+   #70 = NameAndType        #71:#18       // get:()J
+   #71 = Utf8               get
+   #72 = Methodref          #73.#74       // java/io/PrintStream.println:(J)V
+   #73 = Class              #75           // java/io/PrintStream
+   #74 = NameAndType        #76:#62       // println:(J)V
+   #75 = Utf8               java/io/PrintStream
+   #76 = Utf8               println
+   #77 = Methodref          #8.#3         // com/study/jdktest/StackTest."<init>":()V
+   #78 = Class              #79           // java/lang/InterruptedException
+   #79 = Utf8               java/lang/InterruptedException
+   #80 = Methodref          #78.#81       // java/lang/InterruptedException.printStackTrace:()V
+   #81 = NameAndType        #82:#6        // printStackTrace:()V
+   #82 = Utf8               printStackTrace
+   #83 = String             #84           // shutdown ....
+   #84 = Utf8               shutdown ....
+   #85 = Methodref          #73.#86       // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #86 = NameAndType        #76:#87       // println:(Ljava/lang/String;)V
+   #87 = Utf8               (Ljava/lang/String;)V
+   #88 = Methodref          #14.#3        // java/util/concurrent/atomic/AtomicLong."<init>":()V
+   #89 = Utf8               Code
+   #90 = Utf8               LineNumberTable
+   #91 = Utf8               Exceptions
+   #92 = Utf8               main
+   #93 = Utf8               ([Ljava/lang/String;)V
+   #94 = Utf8               lambda$main$2
+   #95 = Utf8               (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+   #96 = Utf8               lambda$main$1
+   #97 = Utf8               StackMapTable
+   #98 = Utf8               lambda$main$0
+   #99 = Utf8               <clinit>
+  #100 = Utf8               SourceFile
+  #101 = Utf8               StackTest.java
+  #102 = Utf8               BootstrapMethods
+  #103 = MethodHandle       6:#104        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #104 = Methodref          #105.#106     // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #105 = Class              #107          // java/lang/invoke/LambdaMetafactory
+  #106 = NameAndType        #108:#109     // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #107 = Utf8               java/lang/invoke/LambdaMetafactory
+  #108 = Utf8               metafactory
+  #109 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #110 = MethodType         #6            //  ()V
+  #111 = MethodHandle       6:#112        // REF_invokeStatic com/study/jdktest/StackTest.lambda$main$0:()V
+  #112 = Methodref          #8.#113       // com/study/jdktest/StackTest.lambda$main$0:()V
+  #113 = NameAndType        #98:#6        // lambda$main$0:()V
+  #114 = MethodHandle       6:#115        // REF_invokeStatic com/study/jdktest/StackTest.lambda$main$1:()V
+  #115 = Methodref          #8.#116       // com/study/jdktest/StackTest.lambda$main$1:()V
+  #116 = NameAndType        #96:#6        // lambda$main$1:()V
+  #117 = MethodType         #95           //  (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+  #118 = MethodHandle       6:#119        // REF_invokeStatic com/study/jdktest/StackTest.lambda$main$2:(Ljava/lang/Thread;Ljava/lang/Throwable;)V
+  #119 = Methodref          #8.#120       // com/study/jdktest/StackTest.lambda$main$2:(Ljava/lang/Thread;Ljava/lang/Throwable;)V
+  #120 = NameAndType        #94:#95       // lambda$main$2:(Ljava/lang/Thread;Ljava/lang/Throwable;)V
+  #121 = Utf8               InnerClasses
+  #122 = Class              #123          // java/lang/Thread$UncaughtExceptionHandler
+  #123 = Utf8               java/lang/Thread$UncaughtExceptionHandler
+  #124 = Utf8               UncaughtExceptionHandler
+  #125 = Class              #126          // java/lang/invoke/MethodHandles$Lookup
+  #126 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #127 = Class              #128          // java/lang/invoke/MethodHandles
+  #128 = Utf8               java/lang/invoke/MethodHandles
+  #129 = Utf8               Lookup
+{
+  public static final java.util.concurrent.atomic.AtomicLong count;
+    descriptor: Ljava/util/concurrent/atomic/AtomicLong;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public com.study.jdktest.StackTest();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 13: 0
+
+  public void testStack() throws java.lang.InterruptedException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #7                  // Field count:Ljava/util/concurrent/atomic/AtomicLong;
+         3: invokevirtual #13                 // Method java/util/concurrent/atomic/AtomicLong.incrementAndGet:()J
+         6: pop2
+         7: aload_0
+         8: invokevirtual #19                 // Method testStack:()V
+        11: return
+      LineNumberTable:
+        line 18: 0
+        line 19: 7
+        line 20: 11
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  public static void main(java.lang.String[]) throws java.lang.InterruptedException;
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=2, args_size=1
+         0: invokestatic  #22                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+         3: new           #28                 // class java/lang/Thread
+         6: dup
+         7: invokedynamic #30,  0             // InvokeDynamic #0:run:()Ljava/lang/Runnable;
+        12: invokespecial #34                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        15: invokevirtual #37                 // Method java/lang/Runtime.addShutdownHook:(Ljava/lang/Thread;)V
+        18: new           #28                 // class java/lang/Thread
+        21: dup
+        22: invokedynamic #41,  0             // InvokeDynamic #1:run:()Ljava/lang/Runnable;
+        27: invokespecial #34                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        30: astore_1
+        31: aload_1
+        32: invokedynamic #42,  0             // InvokeDynamic #2:uncaughtException:()Ljava/lang/Thread$UncaughtExceptionHandler;
+        37: invokevirtual #46                 // Method java/lang/Thread.setUncaughtExceptionHandler:(Ljava/lang/Thread$UncaughtExceptionHandler;)V
+        40: aload_1
+        41: iconst_0
+        42: invokevirtual #50                 // Method java/lang/Thread.setDaemon:(Z)V
+        45: aload_1
+        46: invokevirtual #54                 // Method java/lang/Thread.start:()V
+        49: ldc2_w        #57                 // long 10000l
+        52: invokestatic  #59                 // Method java/lang/Thread.sleep:(J)V
+        55: return
+      LineNumberTable:
+        line 23: 0
+        line 24: 18
+        line 31: 31
+        line 34: 40
+        line 35: 45
+        line 37: 49
+        line 40: 55
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: new           #14                 // class java/util/concurrent/atomic/AtomicLong
+         3: dup
+         4: invokespecial #88                 // Method java/util/concurrent/atomic/AtomicLong."<init>":()V
+         7: putstatic     #7                  // Field count:Ljava/util/concurrent/atomic/AtomicLong;
+        10: return
+      LineNumberTable:
+        line 15: 0
+}
+SourceFile: "StackTest.java"
+BootstrapMethods:
+  0: #103 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #110 ()V
+      #111 REF_invokeStatic com/study/jdktest/StackTest.lambda$main$0:()V
+      #110 ()V
+  1: #103 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #110 ()V
+      #114 REF_invokeStatic com/study/jdktest/StackTest.lambda$main$1:()V
+      #110 ()V
+  2: #103 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #117 (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+      #118 REF_invokeStatic com/study/jdktest/StackTest.lambda$main$2:(Ljava/lang/Thread;Ljava/lang/Throwable;)V
+      #117 (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+InnerClasses:
+  public static #124= #122 of #28;        // UncaughtExceptionHandler=class java/lang/Thread$UncaughtExceptionHandler of class java/lang/Thread
+  public static final #129= #125 of #127; // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles

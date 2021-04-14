@@ -1,5 +1,6 @@
 package com.study.jdktest;
 
+
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -11,13 +12,30 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class StackTest {
 
-  public static final AtomicLong count=new AtomicLong();
-  public void testStack(){
-    System.out.println(count.incrementAndGet());
-    testStack();
-  }
+    public static final AtomicLong count = new AtomicLong();
 
-  public static void main(String[] args) {
-    new StackTest().testStack();
-  }
+    public void testStack() throws InterruptedException {
+        count.incrementAndGet();
+        testStack();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> System.out.println("shutdown ....")));
+        Thread t = new Thread(() -> {
+            try {
+                new StackTest().testStack();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        t.setUncaughtExceptionHandler((t1, e) -> {
+            System.out.println(count.get());
+        });
+        t.setDaemon(false);
+        t.start();
+
+      Thread.sleep(10000);
+
+
+    }
 }

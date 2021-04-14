@@ -22,8 +22,8 @@
     <!--<module>id</module>-->
     <!--<module>distributionlock</module>-->
     <!--<module>commontest</module>-->
-    <!--<module>thread</module>-->
-   <module>netty</module>
+<!--    <module>thread</module>-->
+<!--   <module>netty</module>-->
     <!--<module>rest-proxy-client</module>-->
     <!--<module>event</module>-->
     <!--<module>weakreference</module>-->
@@ -42,13 +42,13 @@
     <!--<module>validatestudy</module>-->
     <!--<module>groovyscript</module>-->
     <!--<module>shirotest</module>-->
-    <!--<module>scriptengine</module>-->
+<!--    <module>scriptengine</module>-->
 <!--   <module>servlettest</module>-->
     <!--<module>reflecttest</module>-->
     <!--<module>lambdasudy</module>-->
-    <module>algorithm</module>
-    <module>redis-study</module>
-      <module>websocket</module>
+<!--    <module>algorithm</module>-->
+<!--    <module>redis-study</module>-->
+<!--      <module>websocket</module>-->
       <!--    <module>httpclientstudy</module>-->
     <!--<module>game</module>-->
     <!--<module>dubbostudy</module>-->
@@ -62,6 +62,7 @@
 <!--    <module>cache</module>-->
 <!--    <module>elasticsearch-study</module>-->
 <!--    <module>cglib-study</module>-->
+    <module>fs-expression-eval</module>
   </modules>
   <packaging>pom</packaging>
 
