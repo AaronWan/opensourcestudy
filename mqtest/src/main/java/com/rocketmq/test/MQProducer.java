@@ -7,6 +7,8 @@ import com.alibaba.rocketmq.common.message.Message;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -16,29 +18,27 @@ import java.util.UUID;
  * @since 5.7
  */
 @Slf4j
-public class MQTest {
+public class MQProducer {
   private DefaultMQProducer producer;
 
-  public static void main(String[] args) throws MQClientException, InterruptedException {
-    MQTest mqTest = new MQTest();
+  public static void main(String[] args) {
+    MQProducer mqTest = new MQProducer();
     mqTest.createProducer();
     Scanner scanner = new Scanner(System.in);
     while (scanner.hasNext()) {
       String content = scanner.next();
       String[] temp = content.split(":");
       for (int i = 0; i < 10000; i++) {
-        mqTest.send(temp[1], temp[0]);
+        mqTest.send(temp[0],temp[1]+"-"+new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
       }
     }
 
   }
 
-  private void send(String test, String tags) {
+  private void send(String tags,String test) {
     try {
-      Message msg = new Message("SELF_TEST_TOPIC" + tags, tags, test.getBytes());
-      producer.send(msg, (mqs, message, ss) -> {
-        return mqs.get(ss.hashCode());
-      }, test);
+      Message msg = new Message("SELF_TEST_TOPIC", tags, test.getBytes());
+      producer.send(msg, (mqs, message, ss) -> mqs.get(Math.abs(ss.hashCode())%mqs.size()), test);
     } catch (MQClientException e) {
       e.printStackTrace();
     } catch (RemotingException e) {
@@ -52,7 +52,7 @@ public class MQTest {
 
   public void createProducer() {
     this.producer = new DefaultMQProducer("A");
-    this.producer.setNamesrvAddr("10.112.41.2:9876");
+    this.producer.setNamesrvAddr("localhost:9876");
     this.producer.setInstanceName(UUID.randomUUID().toString());
     this.producer.setRetryTimesWhenSendFailed(3);
     try {

@@ -12,6 +12,7 @@ import com.alibaba.rocketmq.common.message.MessageExt;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -29,8 +30,7 @@ public class MQConsumer {
   public static void main(String[] args) throws MQClientException, InterruptedException {
     Map<String,DefaultMQPushConsumer> consumerMap=Maps.newHashMap();
     MQConsumer mqTest = new MQConsumer();
-//    mqTest.createProducer();
-    consumerMap.put("tag1",mqTest.createConsumer("tag1"));
+    consumerMap.put("tag1",mqTest.createConsumer(null));
   }
 
   public DefaultMQPushConsumer createConsumer(String tag) throws MQClientException {
@@ -39,7 +39,11 @@ public class MQConsumer {
      consumer.setInstanceName("tag1");
      consumer.setConsumeThreadMin(1);
      consumer.setConsumeThreadMax(2);
-     consumer.subscribe("SELF_TEST_TOPIC"+tag, tag);
+     if(StringUtils.isEmpty(tag)){
+         consumer.subscribe("SELF_TEST_TOPIC","*");
+     }else{
+        consumer.subscribe("SELF_TEST_TOPIC"+tag, tag);
+     }
      consumer.setConsumeMessageBatchMaxSize(1);
      consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_TIMESTAMP);
     Map<String, AtomicInteger> count = Maps.newConcurrentMap();
@@ -53,6 +57,12 @@ public class MQConsumer {
       }
       int tempCount = tagCount.incrementAndGet();
       String content = new String(msg.getBody());
+         try {
+             System.out.println(content);
+             Thread.sleep(200);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
       if (tempCount % 1000 == 0) {
         System.out.println("tag:" + msg.getTags() + " consume: " + content + "  resumeTimes: " + msg.getReconsumeTimes() + " count:" + tempCount);
       }

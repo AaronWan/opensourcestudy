@@ -54,7 +54,7 @@
     <!--<module>dubbostudy</module>-->
 <!--    <module>mongosupport</module>-->
 <!--    <module>fetch</module>-->
-<!--    <module>mqtest</module>-->
+    <module>mqtest</module>
 <!--    <module>expressionEngine</module>-->
 <!--    <module>jdktest</module>-->
     <!--<module>junit-study</module>-->
