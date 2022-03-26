@@ -21,7 +21,6 @@ public class ServerServiceHandler extends ChannelInboundHandlerAdapter {
 
   @Override
   public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-    System.out.println("server channelRead..");
     ServiceRequest request = (ServiceRequest) msg;
     ServiceModel serviceModel = ServerServiceRegister.getServiceModel(request.getServiceMethod());
     Object arg = CodecFactory.getInstance(CodecFactory.CodeCType.JSON).decode(request.getBody(), serviceModel.getArgClazz());

@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @creat_time: 23:22
  * @since 7.3.5
  */
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface ServerService {
