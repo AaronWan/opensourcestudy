@@ -6,7 +6,7 @@ import javax.script.*;
 public class ScriptTest {
     public static void main(String[] args) {
         try {
-            ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+            ScriptEngine engine = new ScriptEngineManager().getEngineByName("AppleScriptEngine");
             Compilable compilable = (Compilable) engine;
             Bindings bindings = engine.createBindings(); //Local级别的Binding
             String script = "function add(op1,op2){return op1+op2} add(a$$b, b)"; //定义函数并调用
@@ -20,4 +20,6 @@ public class ScriptTest {
             e.printStackTrace();
         }
     }
+
+
 }
