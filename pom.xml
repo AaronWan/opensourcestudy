@@ -62,7 +62,9 @@
 <!--    <module>cache</module>-->
 <!--    <module>elasticsearch-study</module>-->
 <!--    <module>cglib-study</module>-->
+
     <module>fs-expression-eval</module>
+      <module>log-study</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -156,14 +158,14 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.1.7</version>
+      <version>1.2.11</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.1.7</version>
+      <version>1.2.11</version>
     </dependency>
 
     <dependency>
