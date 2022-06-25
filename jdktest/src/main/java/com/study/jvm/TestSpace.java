@@ -9,6 +9,6 @@ public class TestSpace {
 
 
     static {
-        Runtime.getRuntime().addShutdownHook();
+        Runtime.getRuntime().addShutdownHook(new Thread());
     }
 }

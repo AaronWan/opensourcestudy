@@ -19,6 +19,7 @@
   </build>
   <modules>
     <module>spock-study</module>
+    <module>jdktest</module>
     <module>fs-expression-eval</module>
   </modules>
   <packaging>pom</packaging>
