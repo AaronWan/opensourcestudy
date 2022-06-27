@@ -1,10 +1,14 @@
 package study;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
+import com.google.common.eventbus.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.SneakyThrows;
 import org.junit.Test;
+
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 万松(Aaron)
@@ -14,12 +18,27 @@ import org.junit.Test;
  */
 public class GuauaEventBusTest {
 
-  private EventBus eventBus = new EventBus("TEST");
+  private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(
+    1,
+    1, 0,
+    TimeUnit.SECONDS, new LinkedBlockingDeque<>(),
+    r -> new Thread(r, "EngineEventBus-" + System.currentTimeMillis()));
+
+
+  private EventBus eventBus = new AsyncEventBus(executorService,
+    (throwable, subscriberExceptionContext) -> System.out.println(throwable.getMessage()+","+subscriberExceptionContext.getEvent()));
   @Test
   public void testProducer() {
     eventBus.register(new Event1Listener());
     eventBus.register(new Event2Listener());
-    eventBus.post(new Event1("test1"));
+    for (int i = 0; i <10000 ; i++) {
+      eventBus.post(new Event1("test1"));
+      eventBus.post(new Event2("test2"));
+      System.out.println(executorService.getQueue().size());
+    }
+    while (!executorService.getQueue().isEmpty()){
+
+    }
   }
 
   interface  EventListener{
@@ -31,9 +50,13 @@ public class GuauaEventBusTest {
     public String type() {
       return "event1";
     }
+    @SneakyThrows
     @Subscribe
     public void listener(Event1 event1) {
-      System.out.println(event1.name);
+      System.out.println(Thread.currentThread().getName()+","+event1.name);
+      Thread.sleep(1000);
+      eventBus.post(new Event1("test1"));
+      throw new RuntimeException("First Exception");
     }
   }
 
@@ -43,15 +66,23 @@ public class GuauaEventBusTest {
     public String type() {
       return "event2";
     }
+    @SneakyThrows
     @Subscribe
-    public void listener(Event1 event1) {
-      System.out.println(event1.name);
+    public void listener(Event2 event1) {
+      System.out.println(Thread.currentThread().getName()+","+event1.name);
+      Thread.sleep(1000);
     }
   }
 
   @Data
   @AllArgsConstructor
   public class Event1 {
+    String name;
+  }
+
+  @Data
+  @AllArgsConstructor
+  public class Event2 {
     String name;
   }
 }
