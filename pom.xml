@@ -21,6 +21,7 @@
     <module>spock-study</module>
     <module>jdktest</module>
     <module>fs-expression-eval</module>
+    <module>guaua</module>
   </modules>
   <packaging>pom</packaging>
 
