@@ -62,7 +62,8 @@
 <!--    <module>cache</module>-->
 <!--    <module>elasticsearch-study</module>-->
 <!--    <module>cglib-study</module>-->
-
+    <module>spock-study</module>
+    <module>jdktest</module>
     <module>fs-expression-eval</module>
       <module>log-study</module>
   </modules>

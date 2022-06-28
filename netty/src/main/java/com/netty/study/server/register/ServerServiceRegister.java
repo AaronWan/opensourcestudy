@@ -22,27 +22,27 @@ public class ServerServiceRegister {
   /**
    * service register
    */static {
-    try {
-      Class<FirstRpcServiceImpl> serviceClazz = FirstRpcServiceImpl.class;
-      ServerService serverService = serviceClazz.getDeclaredAnnotation(ServerService.class);
-      if (serverService != null) {
-        FirstRpcService instance = serviceClazz.newInstance();
-        for (Method method : serviceClazz.getMethods()) {
-          ServiceModel a = new ServiceModel();
-          ServerServiceMethod methodDesc = method.getDeclaredAnnotation(ServerServiceMethod.class);
-          if (methodDesc != null) {
-            a.setMethod(method);
-            a.setInstance(instance);
-            a.setArgClazz(method.getParameterTypes()[0]);
-            serviceModelMap.put(serverService.value() + "." + methodDesc.value(), a);
-          }
-        }
-      }
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
-    } catch (InstantiationException e) {
-      e.printStackTrace();
-    }
+//    try {
+//      Class<FirstRpcService> serviceClazz = FirstRpcService.class;
+//      ServerService serverService = serviceClazz.getDeclaredAnnotation(ServerService.class);
+//      if (serverService != null) {
+//        FirstRpcService instance = serviceClazz.getGenericSuperclass().getClass().;
+//        for (Method method : serviceClazz.getMethods()) {
+//          ServiceModel a = new ServiceModel();
+//          ServerServiceMethod methodDesc = method.getDeclaredAnnotation(ServerServiceMethod.class);
+//          if (methodDesc != null) {
+//            a.setMethod(method);
+//            a.setInstance(instance);
+//            a.setArgClazz(method.getParameterTypes()[0]);
+//            serviceModelMap.put(serverService.value() + "." + methodDesc.value(), a);
+//          }
+//        }
+//      }
+//    } catch (IllegalAccessException e) {
+//      e.printStackTrace();
+//    } catch (InstantiationException e) {
+//      e.printStackTrace();
+//    }
   }
 
   public static ServiceModel getServiceModel(String request) {

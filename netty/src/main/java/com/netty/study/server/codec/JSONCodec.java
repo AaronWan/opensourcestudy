@@ -13,8 +13,9 @@ import java.nio.charset.StandardCharsets;
  */
 public class JSONCodec implements ServiceBodyCodec {
 
-  public static final Gson gson = new GsonBuilder().create();
+  public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
   protected static JSONCodec instance=new JSONCodec();
+
   private JSONCodec(){}
 
   @Override
