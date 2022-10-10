@@ -1,7 +1,6 @@
 package com.study.jdktest;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
@@ -29,8 +28,8 @@ public class FullGCTest {
   }
 
   public static void useMetaspace() throws InterruptedException {
-    List<String> kk= Lists.newArrayList();
-    for (int i = 0; i <1000 ; i++) {
+    List<String> kk= new ArrayList();
+    for (int i = 0; i <1 ; i++) {
       kk.add("sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf"+i);
       sleep(5000);
       System.gc();

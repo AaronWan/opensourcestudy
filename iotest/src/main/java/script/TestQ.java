@@ -1,8 +1,6 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package script;
 
 import java.io.*;
-import java.util.Map;
 
 /**
  * @author 万松(Aaron)

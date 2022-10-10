@@ -32,7 +32,7 @@
         <!--<module>workflow</module>-->
         <!--<module>regextest</module>-->
         <!--    <module>springaop</module>-->
-        <!--<module>jsonutil</module>-->
+        <module>jsonutil</module>
         <!--<module>sparkjavastudy</module>-->
         <!--<module>akkastudy</module>-->
         <!--<module>datetime</module>-->
@@ -52,7 +52,7 @@
         <!--    <module>httpclientstudy</module>-->
         <!--<module>game</module>-->
         <!--<module>dubbostudy</module>-->
-        <!--    <module>mongosupport</module>-->
+            <module>mongosupport</module>
         <!--    <module>fetch</module>-->
         <module>mqtest</module>
         <!--    <module>expressionEngine</module>-->

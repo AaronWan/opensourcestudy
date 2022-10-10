@@ -1,3 +1,5 @@
+package script;
+
 import com.google.common.base.Splitter;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -11,12 +13,6 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 

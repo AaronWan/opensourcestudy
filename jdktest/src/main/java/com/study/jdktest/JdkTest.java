@@ -15,12 +15,9 @@ public class JdkTest {
   @Test
   public void testMap() {
     Map<String, String> data = Maps.newHashMap();
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1; i++) {
       data.put(i + "", i + "");
     }
-    data.keySet().removeIf(item -> {
-      return true;
-    });
     System.out.println(data);
   }
 }

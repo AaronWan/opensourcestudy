@@ -1,5 +1,6 @@
 package file;
 
+import lombok.SneakyThrows;
 import org.junit.Test;
 
 import java.io.*;
@@ -55,5 +56,10 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @SneakyThrows
+    public static void readFileByLine(String path, Consumer<String> consumer) {
+        readFileByLine(new FileInputStream(path),consumer);
     }
 }
