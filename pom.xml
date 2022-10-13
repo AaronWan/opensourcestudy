@@ -67,6 +67,7 @@
         <module>fs-expression-eval</module>
         <module>log-study</module>
         <module>guaua</module>
+        <module>orm-mybatis</module>
     </modules>
     <packaging>pom</packaging>
 
