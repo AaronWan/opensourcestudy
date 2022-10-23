@@ -46,7 +46,7 @@
         <!--   <module>servlettest</module>-->
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
-        <!--    <module>algorithm</module>-->
+            <module>algorithm</module>
         <!--    <module>redis-study</module>-->
         <!--      <module>websocket</module>-->
         <!--    <module>httpclientstudy</module>-->
