@@ -46,13 +46,13 @@
         <!--   <module>servlettest</module>-->
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
-            <module>algorithm</module>
+        <module>algorithm</module>
         <!--    <module>redis-study</module>-->
         <!--      <module>websocket</module>-->
         <!--    <module>httpclientstudy</module>-->
         <!--<module>game</module>-->
         <!--<module>dubbostudy</module>-->
-            <module>mongosupport</module>
+        <module>mongosupport</module>
         <!--    <module>fetch</module>-->
         <module>mqtest</module>
         <!--    <module>expressionEngine</module>-->
@@ -70,7 +70,6 @@
         <module>orm-mybatis</module>
     </modules>
     <packaging>pom</packaging>
-
     <name>study</name>
     <url>http://maven.apache.org</url>
 

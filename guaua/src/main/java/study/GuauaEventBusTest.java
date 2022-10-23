@@ -19,8 +19,8 @@ import java.util.concurrent.TimeUnit;
 public class GuauaEventBusTest {
 
   private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-    1,
-    1, 0,
+    2,
+    2, 0,
     TimeUnit.SECONDS, new LinkedBlockingDeque<>(),
     r -> new Thread(r, "EngineEventBus-" + System.currentTimeMillis()));
 
@@ -68,9 +68,9 @@ public class GuauaEventBusTest {
     }
     @SneakyThrows
     @Subscribe
+    @AllowConcurrentEvents
     public void listener(Event2 event1) {
       System.out.println(Thread.currentThread().getName()+","+event1.name);
-      Thread.sleep(1000);
     }
   }
 
