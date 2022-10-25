@@ -68,6 +68,7 @@
         <module>log-study</module>
         <module>guaua</module>
         <module>orm-mybatis</module>
+        <module>MVEL</module>
     </modules>
     <packaging>pom</packaging>
     <name>study</name>
