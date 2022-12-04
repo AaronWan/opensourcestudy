@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Data;
+import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -19,11 +20,14 @@ import java.util.Map;
 import java.util.Set;
 
 public class DownloadServlet extends HttpServlet {
+
+  @SneakyThrows
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     //*告诉客户端这个文件不是解析 而是以附件的形式下载
     response.setHeader("Content-Disposition", "attachment;filename=测试大文件.xls");
+    response.setHeader("Content-Length", "1024000000");
     //3.获得该文件的输入流
     //获得输出流---通过response获得的输出流  用于向客户端写内容
     ServletOutputStream out = response.getOutputStream();
@@ -38,7 +42,6 @@ public class DownloadServlet extends HttpServlet {
     }
 
     out.close();
-
   }
 
   @Override

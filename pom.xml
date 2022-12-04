@@ -43,7 +43,7 @@
         <!--<module>groovyscript</module>-->
         <!--<module>shirotest</module>-->
         <!--    <module>scriptengine</module>-->
-        <!--   <module>servlettest</module>-->
+        <module>servlettest</module>
         <!--<module>reflecttest</module>-->
         <!--<module>lambdasudy</module>-->
         <module>algorithm</module>
@@ -58,7 +58,7 @@
         <!--    <module>expressionEngine</module>-->
         <!--    <module>jdktest</module>-->
         <!--<module>junit-study</module>-->
-        <!--    <module>socket-study</module>-->
+            <module>socket-study</module>
         <!--    <module>cache</module>-->
         <!--    <module>elasticsearch-study</module>-->
         <!--    <module>cglib-study</module>-->
