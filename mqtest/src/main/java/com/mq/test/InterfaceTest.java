@@ -1,4 +1,4 @@
-package com.rocketmq.test;
+package com.mq.test;
 
 public class InterfaceTest {
 

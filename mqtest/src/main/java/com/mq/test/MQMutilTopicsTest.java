@@ -1,4 +1,4 @@
-package com.rocketmq.test;
+package com.mq.test;
 
 import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;

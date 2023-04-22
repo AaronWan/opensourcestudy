@@ -1,4 +1,4 @@
-package com.rocketmq.test;
+package com.mq.test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.rocketmq.test;
+package com.mq.test;
 
 import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -10,7 +10,6 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 

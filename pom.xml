@@ -69,6 +69,7 @@
         <module>guaua</module>
         <module>orm-mybatis</module>
         <module>MVEL</module>
+        <module>exceptionstudy</module>
     </modules>
     <packaging>pom</packaging>
     <name>study</name>
