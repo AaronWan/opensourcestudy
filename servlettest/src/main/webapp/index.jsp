@@ -9,7 +9,7 @@
 <h1>download file</h1>
 <a href="down/big_excel_output_stream.do">a.txt</a>
 <br>
-<form method="post" action="/upload/upload.do" enctype="multipart/form-data">
+<form method="post" action="upload/upload.do" enctype="multipart/form-data">
   选择一个文件:
   <input type="file" name="uploadFile" />
   <br/><br/>
