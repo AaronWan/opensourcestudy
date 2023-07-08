@@ -29,7 +29,7 @@
         <!--<module>weakreference</module>-->
         <!--<module>comettest</module>-->
         <!--<module>functionstudy</module>-->
-        <!--<module>workflow</module>-->
+        <module>workflow</module>
         <!--<module>regextest</module>-->
         <!--    <module>springaop</module>-->
         <module>jsonutil</module>
@@ -70,6 +70,8 @@
         <module>orm-mybatis</module>
         <module>MVEL</module>
         <module>exceptionstudy</module>
+        <module>approval-transition</module>
+        <module>H1H2Summary</module>
     </modules>
     <packaging>pom</packaging>
     <name>study</name>

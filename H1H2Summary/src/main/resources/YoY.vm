@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages': ['corechart', 'table']});
+            #foreach($type in $typeAndOptions.keySet())
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart$type);
+
+            function drawChart$type() {
+                // Create the data table.
+                var oldData = new google.visualization.arrayToDataTable($oldRows);
+                var newData = new google.visualization.arrayToDataTable($newRows);
+
+                var options = $typeAndOptions.get($type).get("options");
+                // Instantiate and draw our chart, passing in some options.
+                new google.visualization.$type(document.getElementById('chart_div_old_$type$id')).draw(oldData, options);
+                new google.visualization.$type(document.getElementById('chart_div_new_$type$id')).draw(newData, options);
+                var charDiff = new google.visualization.$type(document.getElementById('chart_div_diff_$type$id'));
+                charDiff.draw(charDiff.computeDiff(oldData, newData), $typeAndOptions.get($type).get("diffOptions"))
+            }
+            #end
+    </script>
+</head>
+
+<body>
+<h2>$title</h2>
+<!--Div that will hold the pie chart-->
+    #foreach($type in $typeAndOptions.keySet())
+    <table>
+        <tr>
+            <td> <div id="chart_div_diff_$type$id"></div></td>
+            <td>
+                <table>
+                    <tr><div id="chart_div_old_$type$id" style='width: 450px; display: inline-block'></div></tr>
+                    <tr><div id="chart_div_new_$type$id" style='width: 450px; display: inline-block'></div></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    #end
+<hr>
+</table>
+</body>
+</html>

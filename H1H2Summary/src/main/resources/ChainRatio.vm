@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages': ['corechart', 'table']});
+            #foreach($type in $typeAndOptions.keySet())
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart$type);
+
+            function drawChart$type() {
+                // Create the data table.
+                var data = new google.visualization.arrayToDataTable($rows);
+
+                var rows = data.getNumberOfRows();
+                var trendData = new google.visualization.DataTable();
+                trendData.addColumn('string', data.getColumnLabel(0));
+                trendData.addColumn('number', '增长率');
+                for (var i = 1; i < rows; i++) {
+                    var current = data.getValue(i, 1);
+                    var previous = data.getValue(i - 1, 1);
+                    var growthRate = (current - previous) / previous;
+                    trendData.addRow([data.getValue(i, 0), growthRate]);
+                }
+                var options = $typeAndOptions.get($type);
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.$type(document.getElementById('chart_div_$type$id'));
+                chart.draw(trendData, options);
+                var chartOfTable = new google.visualization.Table(document.getElementById('chart_div_table_$type$id'));
+                chartOfTable.draw(trendData, options);
+                var chartOriginalDataOfTable = new google.visualization.Table(document.getElementById('chart_div_table_data_$type$id'));
+                chartOriginalDataOfTable.draw(data, options);
+            }
+            #end
+    </script>
+</head>
+
+<body>
+<h2> $title </h2>
+<table>
+    <tr>
+        <td>
+            <h3>数据源</h3>
+            #foreach($type in $typeAndOptions.keySet())
+            <div id="chart_div_table_data_$type$id"></div>
+            #end
+        </td>
+        <td>
+            <h3>环比数据</h3>
+            #foreach($type in $typeAndOptions.keySet())
+                <div id="chart_div_table_$type$id"></div>
+            #end
+        </td>
+        <td style="min-width: 400px;">
+            #foreach($type in $typeAndOptions.keySet())
+                <div id="chart_div_$type$id" style="height: 400px"></div>
+            #end
+        </td>
+    </tr>
+</table>
+<!--Div that will hold the pie chart-->
+
+
+<hr>
+</body>
+</html>
