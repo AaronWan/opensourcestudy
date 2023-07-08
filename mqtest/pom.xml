@@ -25,7 +25,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.9</version>
         </dependency> <!--实际可以只导入logback-classic包即可--> <!--导入logback-classic依赖,实际上当前依赖已经包含了slf4j-api及logback-core,所以导入此依赖就够了-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
