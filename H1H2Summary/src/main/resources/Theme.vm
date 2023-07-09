@@ -1,0 +1,60 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages': ['corechart', 'table']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+                var data={}
+                function drawChart() {
+                #foreach($chartDataGroup in $data.get("chartConfigGroups"))
+                    #foreach($chartData in $chartDataGroup.get("chartConfigs"))
+                        // Create the data table.
+                        data = new google.visualization.arrayToDataTable($chartData.data);
+                        if ('$chartData.get("type")' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_$chartData.get(
+                                "id")')).draw(trendData, $chartData.get("options"));
+                        } else {
+                            new google.visualization.$chartData.get("type")(document.getElementById(
+                                    'chart_div_$chartData.get("id")')).draw(data, $chartData.get("options"));
+                        }
+                    #end
+                #end
+                }
+
+    </script>
+</head>
+
+<body>
+<h2>$data.get("title")</h2>
+<h3>$data.get("description")</h3>
+<hr/>
+    #foreach($chartDataGroup in $data.get("chartConfigGroups"))
+    <h3>$chartDataGroup.get("title")</h3>
+    <table >
+        <tr>
+            #foreach($chartData in $chartDataGroup.get("chartConfigs"))
+                <td>
+                    <h5> $chartData.title </h5>
+                    <div id="chart_div_$chartData.get("id")"></div>
+                </td>
+            #end
+        </tr>
+    </table>
+    <hr/>
+    #end
+</body>
+</html>

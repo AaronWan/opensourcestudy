@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.summary.deal.util.ChartUtils;
+import com.summary.deal.util.chart.model.*;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -65,9 +66,10 @@ public class BaseSummary {
     /**
      * 当年按模块查看 总体占比情况
      * 饼图
+     * @return
      */
     @SneakyThrows
-    protected void exportByModuleAndTime(boolean onlyCurrentYear, ChartDataSupplier supplier) {
+    protected List<List> exportByModuleAndTime(boolean onlyCurrentYear, ChartDataSupplier supplier) {
         Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
         Set<String> classifyList = Sets.newHashSet();
         Map<String, Map<String, Integer>> moduleAndQAndCount = Maps.newHashMap();
@@ -105,24 +107,11 @@ public class BaseSummary {
             charData.add(row);
         }
 
-        List<ChartUtils.ChartConfig> typeAndOptions = new ArrayList();
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.Table)
-                .put("width", "100%")
-                .put("seriesType", "bars")
-        );
-
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.SteppedAreaChart)
-                .put("title", supplier.getTitle()).put("width", "100%", "height", "200px")
-                .put("vAxis", ImmutableMap.of("title", supplier.getHeaders().get(0)))
-                .put("isStacked", true)
-        );
-
-        charData = useScopeFilter(supplier, charData);
-        ChartUtils.render(supplier.getTitle(), charData, typeAndOptions, StandardOpenOption.APPEND);
+        return useScopeFilter(supplier, charData);
     }
 
     @SneakyThrows
-    protected void exportByClassify(boolean onlyCurrentYear, ChartDataSupplier supplier) {
+    protected List<List> exportByClassify(boolean onlyCurrentYear, ChartDataSupplier supplier) {
         Set<String> classifyList = Sets.newHashSet();
         int currentYear = getCurrentYear();
         Map<String, Integer> timeClassifyAndCount = Maps.newHashMap();
@@ -149,28 +138,16 @@ public class BaseSummary {
             List<String> times = Splitter.on("-").splitToList(q);
             return Lists.newArrayList(supplier.getFirstColumnValue(times.get(0),times.get(1)), timeClassifyAndCount.get(q));
         }).forEach(charData::add);
-        List<ChartUtils.ChartConfig> typeAndOptions = Lists.newArrayList();
 
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.Table)
-                .put("width", "100%")
-                .put("vAxis", ImmutableMap.of("title", headers.size() > 1 ? headers.get(1) : headers.get(0)), "hAxis", ImmutableMap.of("title", "模块"))
-                .put("seriesType", "bars")
-        );
-
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.LineChart)
-                .put("title", supplier.getTitle())
-                .put("legend", "left")
-                .put("curveType", "function")
-        );
-        charData = useScopeFilter(supplier, charData);
-        ChartUtils.render(supplier.getTitle(), charData, typeAndOptions, StandardOpenOption.APPEND);
+        return useScopeFilter(supplier, charData);
     }
 
     /**
      * 按模块展示趋势
+     * @return
      */
     @SneakyThrows
-    protected void exportModuleTrendAndChainRatioByClassify(boolean onlyCurrentYear, ChartDataSupplier supplier) {
+    protected List<ChartDivConfigGroup> exportModuleTrendAndChainRatio(boolean onlyCurrentYear, ChartDataSupplier supplier) {
         Integer currentYear = getCurrentYear();
         Set<String> classifyList = Sets.newHashSet();
         Map<String, Map<String, Integer>> moduleAndTimeClassifyAndCount = Maps.newHashMap();
@@ -193,7 +170,8 @@ public class BaseSummary {
             }
         });
         Set<String> sortedMonth = classifyList.stream().sorted(supplier.getClassifyComparator()).collect(Collectors.toCollection(LinkedHashSet::new));
-        List<List<ChartUtils.ChartDivConfig>> chatConfigs=Lists.newArrayList();
+
+        List<ChartDivConfigGroup> chatConfigs=Lists.newArrayList();
 
         List<String> headers = supplier.getHeaders();
         for (Map.Entry<String, Map<String, Integer>> entry : moduleAndTimeClassifyAndCount.entrySet()) {
@@ -215,80 +193,25 @@ public class BaseSummary {
             }
 
             charData = useScopeFilter(supplier, charData);
-
-            chatConfigs.add(Lists.newArrayList(
-                    new ChartUtils.ChartDivConfig(supplier.getTitle(module) + "数据", new ChartUtils.ChartConfig(ChartUtils.ChartType.Table)
+            chatConfigs.add(new ChartDivConfigGroup(supplier.getTitle(module), Lists.newArrayList(
+                    new ChartDivConfig(supplier.getTitle(module) + "数据", new ChartConfig(ChartType.Table)
                             .put("title", supplier.getTitle(module))
                             .put("legend", "left")
                             .put("curveType", "function"),charData),
-                    new ChartUtils.ChartDivConfig(supplier.getTitle(module) + "趋势图", new ChartUtils.ChartConfig(ChartUtils.ChartType.LineChart)
+                    new ChartDivConfig(supplier.getTitle(module) + "趋势图", new ChartConfig(ChartType.LineChart)
                             .put("title", supplier.getTitle(module))
                             .put("legend", "left")
+                            .put("height", 400,"width",500)
                             .put("curveType", "function"),charData),
-                    new ChartUtils.ChartDivConfig(supplier.getTitle(module) + "环比图",
-                            new ChartUtils.ChartConfig(ChartUtils.ChartType.ChainRatioChart)
+                    new ChartDivConfig(supplier.getTitle(module) + "环比图",
+                            new ChartConfig(ChartType.ChainRatioChart)
                                     .put("title", supplier.getTitle(module))
+                                    .put("height", 400,"width",500)
                                     .put("legend", "left")
                                     .put("curveType", "function"),charData)
-                    ));
+            )));
         }
-        ChartUtils.renderOnlyChainRatio(chatConfigs, StandardOpenOption.APPEND);
-    }
-
-    /**
-     * 环比
-     */
-    @SneakyThrows
-    protected void exportByModuleChainRatio(boolean onlyCurrentYear, ChartDataSupplier supplier) {
-        Integer currentYear = getCurrentYear();
-        Set<String> classifyList = Sets.newHashSet();
-        Map<String, Map<String, Integer>> moduleAndTimeClassifyAndCount = Maps.newHashMap();
-        scanData(data -> {
-            Map<String, Integer> moduleData = moduleAndTimeClassifyAndCount.get(data.getModule());
-            String classify = supplier.getClassify(data);
-            if (Objects.nonNull(moduleData)) {
-                Integer count = moduleData.get(classify);
-                if (Objects.nonNull(count)) {
-                    moduleData.put(classify, count + data.getCount());
-                } else {
-                    classifyList.add(classify);
-                    moduleData.put(classify, data.getCount());
-                }
-            } else {
-                moduleData = Maps.newLinkedHashMap();
-                classifyList.add(classify);
-                moduleData.put(classify, data.getCount());
-                moduleAndTimeClassifyAndCount.put(data.getModule(), moduleData);
-            }
-        });
-        Set<String> sortedMonth = classifyList.stream().sorted(supplier.getClassifyComparator()).collect(Collectors.toCollection(LinkedHashSet::new));
-        List<String> headers = supplier.getHeaders();
-        for (Map.Entry<String, Map<String, Integer>> entry : moduleAndTimeClassifyAndCount.entrySet()) {
-            String module = entry.getKey();
-            Map<String, Integer> qAndCount = entry.getValue();
-            List<String> moduleHeaders = Lists.newArrayList(headers);
-            moduleHeaders.add(module);
-            List<List> charData = Lists.newArrayList();
-            charData.add(headers);
-
-            for (String q : sortedMonth) {
-                String year = Splitter.on("-").splitToList(q).get(0);
-                if (onlyCurrentYear && !year.equals(currentYear + "")) {
-                    continue;
-                }
-                List row = Lists.newArrayList(supplier.getFirstColumnValue(year, Splitter.on("-").splitToList(q).get(1)));
-                row.add(qAndCount.get(q));
-                charData.add(row);
-            }
-
-            charData = useScopeFilter(supplier, charData);
-            List<ChartUtils.ChartConfig> typeAndOptions = Lists.newArrayList(new ChartUtils.ChartConfig(ChartUtils.ChartType.ColumnChart)
-                    .put("title", supplier.getTitle(module))
-                    .put("legend", "left")
-                    .put("curveType", "function"));
-
-            ChartUtils.renderChainRatio(supplier.getTitle(module), charData, typeAndOptions, StandardOpenOption.APPEND);
-        }
+        return chatConfigs;
     }
 
     /**
@@ -313,8 +236,8 @@ public class BaseSummary {
         });
         Set<String> sortTime = timeClassifyList.stream().sorted(supplier.getClassifyComparator()).collect(Collectors.toCollection(LinkedHashSet::new));
         sortTime.stream().map(q -> Lists.newArrayList(q, classifyAndCount.get(q))).forEach(charData::add);
-        List<ChartUtils.ChartConfig> typeAndOptions = Lists.newArrayList();
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.ColumnChart)
+        List<ChartConfig> typeAndOptions = Lists.newArrayList();
+        typeAndOptions.add(new ChartConfig(ChartType.ColumnChart)
                 .put("title", supplier.getTitle())
                 .put("legend", "left")
                 .put("curveType", "function")
@@ -372,8 +295,8 @@ public class BaseSummary {
                     oldCharData.add(row);
                 }
             }
-            List<ChartUtils.ChartConfig> typeAndOptions = new ArrayList();
-            typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.BarChart)
+            List<ChartConfig> typeAndOptions = new ArrayList();
+            typeAndOptions.add(new ChartConfig(ChartType.BarChart)
                     .put("title", supplier.getTitle(module)).put("width", "100%", "height", "200px")
                     .put("vAxis", ImmutableMap.of("title", "季度")).put("legend", "top")
                     .put("isStacked", true).diffOption("diff", ImmutableMap.of("oldData", ImmutableMap.of("opacity", 1.0)))
@@ -426,8 +349,8 @@ public class BaseSummary {
             }
         }
 
-        List<ChartUtils.ChartConfig> typeAndOptions = Lists.newArrayList();
-        typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.BarChart)
+        List<ChartConfig> typeAndOptions = Lists.newArrayList();
+        typeAndOptions.add(new ChartConfig(ChartType.BarChart)
                 .put("title", supplier.getTitle())
                 .put("legend", "left")
                 .put("curveType", "function").diffOption("diff", ImmutableMap.of("oldData", ImmutableMap.of("opacity", 1.0)))

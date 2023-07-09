@@ -51,8 +51,8 @@ public class TotalSummary extends BaseSummary {
         });
     }
 
-    public void exportByWeek(int lastWeekCount) {
-        exportByClassify(false, new ChartDataSupplier() {
+    public List<List> exportByWeek(int lastWeekCount) {
+        return exportByClassify(false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndWeek();

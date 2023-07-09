@@ -2,9 +2,8 @@ package com.summary.deal.util;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import lombok.Data;
+import com.summary.deal.util.chart.model.ChartConfig;
+import com.summary.deal.util.chart.model.ChartDivConfigTheme;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
@@ -22,17 +21,8 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class ChartUtils {
     /**
-     * ChainRatioChart 是环比的一个自定义类型图表， 会特殊处理数据成 同比
-     * 只有 TrendChainRatio.vm 支持
-     */
-    public enum ChartType {
-        ScatterChart, LineChart, Table, PieChart, ComboChart, AreaChart, Bar, SteppedAreaChart,ColumnChart,BarChart,ChainRatioChart
-    }
-
-    static Gson gson = new GsonBuilder().create();
-    /**
      *
-     * typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.ComboChart)
+     * typeAndOptions.add(new ChartConfig(ChartType.ComboChart)
               .put("title", "按季度/模块异常日志情况")
               .put("vAxis", ImmutableMap.of("title", "模块"), "hAxis", ImmutableMap.of("title", "季度"))
               .put("seriesType", "bars")
@@ -52,8 +42,8 @@ public class ChartUtils {
         }
         Map bindings = Maps.newHashMap();
         bindings.put("id", System.currentTimeMillis());
-        bindings.put("typeAndOptions", chartTypeAndOptions.stream().collect(Collectors.toMap(typeAndOption -> typeAndOption.getType(), typeAndOption -> gson.toJson(typeAndOption.options),(a,b)->b, LinkedHashMap::new)));
-        bindings.put("rows", gson.toJson(datas));
+        bindings.put("typeAndOptions", chartTypeAndOptions.stream().collect(Collectors.toMap(typeAndOption -> typeAndOption.getType(), typeAndOption -> GsonUtil.toJson(typeAndOption.getOptions()),(a,b)->b, LinkedHashMap::new)));
+        bindings.put("rows", GsonUtil.toJson(datas));
         bindings.put("title", title);
         if(Objects.nonNull(writeOption)){
             Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("Template.vm", bindings).getBytes(),writeOption);
@@ -68,20 +58,20 @@ public class ChartUtils {
     }
 
     @SneakyThrows
-    public void renderOnlyChainRatio(List<List<ChartUtils.ChartDivConfig>> chartDivConfigs) {
-        renderOnlyChainRatio(chartDivConfigs,null);
+    public void renderTheme(ChartDivConfigTheme theme) {
+        renderTheme(theme,null);
     }
 
     @SneakyThrows
-    public void renderOnlyChainRatio(List<List<ChartUtils.ChartDivConfig>> chartDivConfigs, OpenOption writeOption) {
+    public void renderTheme(ChartDivConfigTheme chartDivConfigTheme, OpenOption writeOption) {
         if(!Paths.get("chart.html").toFile().exists()){
             Paths.get("chart.html").toFile().createNewFile();
         }
-        Map<String,Object> binds= gson.fromJson(gson.toJson(ImmutableMap.of("data",chartDivConfigs)),LinkedHashMap.class);
+        Map<String,Object> binds= GsonUtil.fromJson(GsonUtil.toJson(ImmutableMap.of("data",chartDivConfigTheme)),LinkedHashMap.class);
         if(Objects.nonNull(writeOption)){
-            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("TrendChainRatio.vm", binds).getBytes(),writeOption);
+            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("Theme.vm", binds).getBytes(),writeOption);
         }else{
-            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("TrendChainRatio.vm", binds).getBytes());
+            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("Theme.vm", binds).getBytes());
         }
     }
 
@@ -92,8 +82,8 @@ public class ChartUtils {
         }
         Map bindings = Maps.newHashMap();
         bindings.put("id", System.currentTimeMillis());
-        bindings.put("typeAndOptions", chartTypeAndOptions.stream().collect(Collectors.toMap(typeAndOption -> typeAndOption.getType(), typeAndOption -> gson.toJson(typeAndOption.options),(a,b)->b, LinkedHashMap::new)));
-        bindings.put("rows", gson.toJson(datas));
+        bindings.put("typeAndOptions", chartTypeAndOptions.stream().collect(Collectors.toMap(typeAndOption -> typeAndOption.getType(), typeAndOption -> GsonUtil.toJson(typeAndOption.getOptions()),(a,b)->b, LinkedHashMap::new)));
+        bindings.put("rows", GsonUtil.toJson(datas));
         bindings.put("title", title);
         if(Objects.nonNull(writeOption)){
             Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("ChainRatio.vm", bindings).getBytes(),writeOption);
@@ -112,12 +102,12 @@ public class ChartUtils {
         bindings.put("title", title);
         bindings.put("typeAndOptions", chartTypeAndOptions.stream().collect(Collectors.toMap(typeAndOption -> typeAndOption.getType(), typeAndOption -> {
             Map<String,String> options=Maps.newHashMap();
-            options.put("options", gson.toJson(typeAndOption.options));
-            options.put("diffOptions", gson.toJson(typeAndOption.diffOptions));
+            options.put("options", GsonUtil.toJson(typeAndOption.getOptions()));
+            options.put("diffOptions", GsonUtil.toJson(typeAndOption.getDiffOptions()));
             return options;
         },(a, b)->b, LinkedHashMap::new)));
-        bindings.put("oldRows", gson.toJson(oldData));
-        bindings.put("newRows", gson.toJson(newData));
+        bindings.put("oldRows", GsonUtil.toJson(oldData));
+        bindings.put("newRows", GsonUtil.toJson(newData));
         if(Objects.nonNull(writeOption)){
             Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("YoY.vm", bindings).getBytes(),writeOption);
         }else{
@@ -128,63 +118,5 @@ public class ChartUtils {
     public void renderDiff(String title,List<List> oldData , List<List> newData, List<ChartConfig> chartTypeAndOptions) {
         renderDiff(title,oldData,newData,chartTypeAndOptions,null);
     }
-    @Data
-    public static class ChartDivConfig{
-        String id= UUID.randomUUID().toString().replaceAll("-", "");
-        String title;
-        String data;
-        ChartType type;
-        String options;
-        String diffOptions;
 
-        public ChartDivConfig(String title, ChartConfig config,List<List> data) {
-            this.title = title;
-            this.type = config.getType();
-            this.options=gson.toJson(config.getOptions());
-            this.diffOptions=gson.toJson(config.getDiffOptions());
-            this.data=gson.toJson(data);
-        }
-    }
-    @Data
-    public static class ChartConfig {
-        ChartType type;
-        Map<Object, Object> options;
-        Map<Object, Object> diffOptions;
-
-        public ChartConfig(ChartType type) {
-            this.type = type;
-        }
-
-        public ChartConfig put(String key, Object value) {
-            getOptions().put(key, value);
-            return this;
-        }
-        public ChartConfig put(String key, Object value, String key2, Object value2) {
-            getOptions().put(key, value);
-            getOptions().put(key2, value2);
-            return this;
-        }
-
-        public ChartConfig diffOption(String key, Object value) {
-            getDiffOptions().put(key, value);
-            return this;
-        }
-        public ChartConfig diffOption(String key, Object value, String key2, Object value2) {
-            getDiffOptions().put(key, value);
-            getDiffOptions().put(key2, value2);
-            return this;
-        }
-        public Map<Object, Object> getDiffOptions() {
-            if (Objects.isNull(diffOptions)) {
-                diffOptions = Maps.newHashMap();
-            }
-            return diffOptions;
-        }
-        public Map<Object, Object> getOptions() {
-            if (Objects.isNull(options)) {
-                options = Maps.newHashMap();
-            }
-            return options;
-        }
-    }
 }

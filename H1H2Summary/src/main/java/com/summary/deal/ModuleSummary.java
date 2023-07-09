@@ -1,10 +1,14 @@
 package com.summary.deal;
 
 import com.google.common.collect.Lists;
+import com.summary.deal.util.ChartUtils;
+import com.summary.deal.util.chart.model.ChartDivConfigGroup;
+import com.summary.deal.util.chart.model.ChartDivConfigTheme;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -23,15 +27,25 @@ public class ModuleSummary extends BaseSummary {
 //        exportByModuleAndMonthCurrentYear();
 //        exportByModuleAndMonthTongDiff();
 //        exportByModuleAndMonthChainRatio(true);
-        exportModuleTrendAndChainRatioByClassify(10);
+        exportModuleTrendAndChainRatioByClassify();
     }
 
     /**
-     *
-     * @param lastWeekCount
+     * 模块的统计：
+     * 数据，趋势，环比
      */
-    public void exportModuleTrendAndChainRatioByClassify(int lastWeekCount) {
-        exportModuleTrendAndChainRatioByClassify(true, new ChartDataSupplier() {
+    public void exportModuleTrendAndChainRatioByClassify(){
+        List<ChartDivConfigGroup> data = exportModuleTrendAndChainRatioByClassify(10);
+        ChartUtils.renderTheme(new ChartDivConfigTheme("按模块展示趋势和环比情况","趋势正常情况下是持续下降趋于平稳；环比是<0是代表降低的，最终趋于平稳",data), StandardOpenOption.APPEND);
+    }
+
+    /**
+     * 获取环比 图表数据
+     * @param lastWeekCount
+     * @return
+     */
+    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassify(int lastWeekCount) {
+        return exportModuleTrendAndChainRatio(true, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndWeek();
@@ -49,7 +63,7 @@ public class ModuleSummary extends BaseSummary {
 
             @Override
             public List getHeaders() {
-                return Lists.newArrayList("周","异常数");
+                return Lists.newArrayList("周","值");
             }
 
             @Override
@@ -64,8 +78,8 @@ public class ModuleSummary extends BaseSummary {
         });
     }
 
-    public void exportByModuleAndWeek(int lastWeekCount) {
-        exportByModuleAndTime(false, new ChartDataSupplier() {
+    public List<List> exportByModuleAndWeek(int lastWeekCount) {
+        return exportByModuleAndTime(false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndWeek();
@@ -121,102 +135,6 @@ public class ModuleSummary extends BaseSummary {
         exportByModuleAndMonth(true);
     }
 
-    @Test
-    @SneakyThrows
-    public void exportByModuleAndSeasonChainRatioCurrentYear() {
-        exportByModuleAndSeasonChainRatio(true);
-    }
-
-    @Test
-    @SneakyThrows
-    public void exportByModuleAndSeasonChainRatio() {
-        exportByModuleAndSeasonChainRatio(false);
-    }
-
-
-    public void exportByModuleAndSeasonChainRatio(boolean onlyCurrentYear) {
-        exportByModuleChainRatio(onlyCurrentYear,new ChartDataSupplier() {
-            @Override
-            public String getClassify(DataModule data) {
-                return data.getYearAndQ();
-            }
-
-            @Override
-            public Comparator<? super String> getClassifyComparator() {
-                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
-            }
-
-            @Override
-            public String getTitle(String param) {
-                return param+"-统计环比图(季度)";
-            }
-
-            @Override
-            public List getHeaders() {
-                return Lists.newArrayList("季度", "环比");
-            }
-        });
-    }
-
-    @Test
-    @SneakyThrows
-    public void exportByModuleAndMonthChainRatio() {
-        exportByModuleAndMonthChainRatio(false);
-    }
-
-
-    public void exportByModuleAndMonthChainRatio(boolean onlyCurrentYear) {
-        exportByModuleChainRatio(onlyCurrentYear,new ChartDataSupplier() {
-            @Override
-            public String getClassify(DataModule data) {
-                return data.getYearAndMonth();
-            }
-
-            @Override
-            public Comparator<? super String> getClassifyComparator() {
-                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
-            }
-
-            @Override
-            public String getTitle(String param) {
-                return param+"-统计环比图(月)";
-            }
-
-            @Override
-            public List getHeaders() {
-                return Lists.newArrayList("月", "环比");
-            }
-        });
-    }
-
-    public void exportByModuleAndWeekChainRatio(int lastWeekCount) {
-        exportByModuleChainRatio(true,new ChartDataSupplier() {
-            @Override
-            public String getClassify(DataModule data) {
-                return data.getYearAndWeek();
-            }
-
-            @Override
-            public Comparator<? super String> getClassifyComparator() {
-                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
-            }
-
-            @Override
-            public String getTitle(String param) {
-                return param+"-统计环比图(周)";
-            }
-
-            @Override
-            public List getHeaders() {
-                return Lists.newArrayList("周", "环比");
-            }
-
-            @Override
-            public Integer getRecordCount() {
-                return lastWeekCount;
-            }
-        });
-    }
     /**
      * 当年按模块查看 总体占比情况
      * 饼图
