@@ -17,13 +17,13 @@ import java.util.List;
 public class TotalSummary extends BaseSummary {
     @Test
     public void exportTotalSummary() {
-//        exportBySeason();
-//        exportBySeasonDiff();
-//        exportBySeasonChainRatio();
-//        exportByMonth();
-//        exportByMonthDiff();
-//        exportByMonthOfChainRatio();
-//        exportByWeekOfChainRatio();
+        exportBySeason();
+        exportBySeasonDiff();
+        exportBySeasonChainRatio();
+        exportByMonth();
+        exportByMonthDiff();
+        exportByMonthOfChainRatio();
+        exportByWeekOfChainRatio();
     }
 
     @SneakyThrows
@@ -76,6 +76,11 @@ public class TotalSummary extends BaseSummary {
             @Override
             public Integer getRecordCount() {
                 return lastWeekCount;
+            }
+
+            @Override
+            public String getFirstColumnValue(String year, String classifyTime) {
+                return year+"第"+classifyTime+"周";
             }
         });
     }

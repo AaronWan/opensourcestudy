@@ -49,4 +49,17 @@ public class SummaryView{
         moduleSummary.exportByModuleAndWeekChainRatio(lastWeekCount);
 
     }
+
+    /**
+     * 日常生成
+     */
+    @Test
+    public void summaryModuleAndTrendWeek(){
+        int lastWeekCount=10;
+        totalSummary.exportByWeek(lastWeekCount);
+        moduleSummary.exportByModuleAndWeek(lastWeekCount);
+        //按模块环比
+        moduleSummary.exportModuleTrendAndChainRatioByClassify(lastWeekCount);
+
+    }
 }

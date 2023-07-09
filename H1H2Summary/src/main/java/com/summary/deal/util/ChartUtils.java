@@ -1,5 +1,6 @@
 package com.summary.deal.util;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,10 +11,7 @@ import lombok.experimental.UtilityClass;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Paths;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -23,15 +21,18 @@ import java.util.stream.Collectors;
  **/
 @UtilityClass
 public class ChartUtils {
-
+    /**
+     * ChainRatioChart 是环比的一个自定义类型图表， 会特殊处理数据成 同比
+     * 只有 TrendChainRatio.vm 支持
+     */
     public enum ChartType {
-        ScatterChart, LineChart, Table, PieChart, ComboChart, AreaChart, Bar, SteppedAreaChart,ColumnChart,BarChart
+        ScatterChart, LineChart, Table, PieChart, ComboChart, AreaChart, Bar, SteppedAreaChart,ColumnChart,BarChart,ChainRatioChart
     }
 
-    Gson gson = new GsonBuilder().create();
+    static Gson gson = new GsonBuilder().create();
     /**
      *
-     * typeAndOptions.add(new ChartUtils.TypeAndOption(ChartUtils.ChartType.ComboChart)
+     * typeAndOptions.add(new ChartUtils.ChartConfig(ChartUtils.ChartType.ComboChart)
               .put("title", "按季度/模块异常日志情况")
               .put("vAxis", ImmutableMap.of("title", "模块"), "hAxis", ImmutableMap.of("title", "季度"))
               .put("seriesType", "bars")
@@ -40,12 +41,12 @@ public class ChartUtils {
       );
      **/
     @SneakyThrows
-    public void render(String title,List<List> datas, List<TypeAndOption> chartTypeAndOptions) {
+    public void render(String title,List<List> datas, List<ChartConfig> chartTypeAndOptions) {
         render(title,datas,chartTypeAndOptions,null);
     }
 
     @SneakyThrows
-    public void render(String title,List<List> datas, List<TypeAndOption> chartTypeAndOptions,OpenOption writeOption) {
+    public void render(String title, List<List> datas, List<ChartConfig> chartTypeAndOptions, OpenOption writeOption) {
         if(!Paths.get("chart.html").toFile().exists()){
             Paths.get("chart.html").toFile().createNewFile();
         }
@@ -62,12 +63,30 @@ public class ChartUtils {
     }
 
     @SneakyThrows
-    public void renderChainRatio(String title,List<List> datas, List<TypeAndOption> chartTypeAndOptions) {
+    public void renderChainRatio(String title,List<List> datas, List<ChartConfig> chartTypeAndOptions) {
         render(title,datas,chartTypeAndOptions,null);
     }
 
     @SneakyThrows
-    public void renderChainRatio(String title,List<List> datas, List<TypeAndOption> chartTypeAndOptions,OpenOption writeOption) {
+    public void renderOnlyChainRatio(List<List<ChartUtils.ChartDivConfig>> chartDivConfigs) {
+        renderOnlyChainRatio(chartDivConfigs,null);
+    }
+
+    @SneakyThrows
+    public void renderOnlyChainRatio(List<List<ChartUtils.ChartDivConfig>> chartDivConfigs, OpenOption writeOption) {
+        if(!Paths.get("chart.html").toFile().exists()){
+            Paths.get("chart.html").toFile().createNewFile();
+        }
+        Map<String,Object> binds= gson.fromJson(gson.toJson(ImmutableMap.of("data",chartDivConfigs)),LinkedHashMap.class);
+        if(Objects.nonNull(writeOption)){
+            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("TrendChainRatio.vm", binds).getBytes(),writeOption);
+        }else{
+            Files.write(Paths.get("chart.html"), TemplateViewUtil.renderHtml("TrendChainRatio.vm", binds).getBytes());
+        }
+    }
+
+    @SneakyThrows
+    public void renderChainRatio(String title, List<List> datas, List<ChartConfig> chartTypeAndOptions, OpenOption writeOption) {
         if(!Paths.get("chart.html").toFile().exists()){
             Paths.get("chart.html").toFile().createNewFile();
         }
@@ -84,7 +103,7 @@ public class ChartUtils {
     }
 
     @SneakyThrows
-    public void renderDiff(String title,List<List> oldData ,List<List> newData, List<TypeAndOption> chartTypeAndOptions, OpenOption writeOption) {
+    public void renderDiff(String title, List<List> oldData , List<List> newData, List<ChartConfig> chartTypeAndOptions, OpenOption writeOption) {
         if(!Paths.get("chart.html").toFile().exists()){
             Paths.get("chart.html").toFile().createNewFile();
         }
@@ -106,34 +125,51 @@ public class ChartUtils {
         }
     }
     @SneakyThrows
-    public void renderDiff(String title,List<List> oldData , List<List> newData, List<TypeAndOption> chartTypeAndOptions) {
+    public void renderDiff(String title,List<List> oldData , List<List> newData, List<ChartConfig> chartTypeAndOptions) {
         renderDiff(title,oldData,newData,chartTypeAndOptions,null);
     }
     @Data
-    public static class TypeAndOption {
+    public static class ChartDivConfig{
+        String id= UUID.randomUUID().toString().replaceAll("-", "");
+        String title;
+        String data;
+        ChartType type;
+        String options;
+        String diffOptions;
+
+        public ChartDivConfig(String title, ChartConfig config,List<List> data) {
+            this.title = title;
+            this.type = config.getType();
+            this.options=gson.toJson(config.getOptions());
+            this.diffOptions=gson.toJson(config.getDiffOptions());
+            this.data=gson.toJson(data);
+        }
+    }
+    @Data
+    public static class ChartConfig {
         ChartType type;
         Map<Object, Object> options;
         Map<Object, Object> diffOptions;
 
-        public TypeAndOption(ChartType type) {
+        public ChartConfig(ChartType type) {
             this.type = type;
         }
 
-        public TypeAndOption put(String key, Object value) {
+        public ChartConfig put(String key, Object value) {
             getOptions().put(key, value);
             return this;
         }
-        public TypeAndOption put(String key, Object value,String key2, Object value2) {
+        public ChartConfig put(String key, Object value, String key2, Object value2) {
             getOptions().put(key, value);
             getOptions().put(key2, value2);
             return this;
         }
 
-        public TypeAndOption diffOption(String key, Object value) {
+        public ChartConfig diffOption(String key, Object value) {
             getDiffOptions().put(key, value);
             return this;
         }
-        public TypeAndOption diffOption(String key, Object value,String key2, Object value2) {
+        public ChartConfig diffOption(String key, Object value, String key2, Object value2) {
             getDiffOptions().put(key, value);
             getDiffOptions().put(key2, value2);
             return this;

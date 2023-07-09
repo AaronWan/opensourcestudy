@@ -5,9 +5,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wansong
@@ -19,40 +17,39 @@ public class ModuleSummary extends BaseSummary {
     @Test
     public void export() {
 //        exportByModuleAndSeason();
-//        exportByModuleAndSeasonCurrentYear();
 //        exportByModuleAndSeasonTongDiff();
 //        exportByModuleAndSeasonChainRatio();
-//
-//        exportByModuleAndMonth();
-//        exportByModuleAndMonthTongDiff();
-//        exportByModuleAndMonthChainRatio();
+
 //        exportByModuleAndMonthCurrentYear();
+//        exportByModuleAndMonthTongDiff();
+//        exportByModuleAndMonthChainRatio(true);
+        exportModuleTrendAndChainRatioByClassify(10);
     }
 
     /**
      *
      * @param lastWeekCount
      */
-    public void exportByClassify(int lastWeekCount) {
-        exportByClassify(true, new ChartDataSupplier() {
+    public void exportModuleTrendAndChainRatioByClassify(int lastWeekCount) {
+        exportModuleTrendAndChainRatioByClassify(true, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
-                return data.getModule();
+                return data.getYearAndWeek();
             }
 
             @Override
             public Comparator<? super String> getClassifyComparator() {
-                return String::compareTo;
+                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
             }
 
             @Override
             public String getTitle(String param) {
-                return "模块异常占比";
+                return param;
             }
 
             @Override
             public List getHeaders() {
-                return Lists.newArrayList("模块");
+                return Lists.newArrayList("周","异常数");
             }
 
             @Override
@@ -66,6 +63,7 @@ public class ModuleSummary extends BaseSummary {
             }
         });
     }
+
     public void exportByModuleAndWeek(int lastWeekCount) {
         exportByModuleAndTime(false, new ChartDataSupplier() {
             @Override
