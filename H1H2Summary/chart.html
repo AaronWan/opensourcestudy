@@ -1,0 +1,624 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages': ['corechart', 'table']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+                var data={}
+                function drawChart() {
+                                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第18周",112],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",765]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_56ce73bd495d4073be5fc56a7d0794d5')).draw(trendData, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_56ce73bd495d4073be5fc56a7d0794d5')).draw(data, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第18周",112],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",765]]);
+                        if ('ComboChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_c95f852954bd4e48b53f460e42cb62af')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                        } else {
+                            new google.visualization.ComboChart(document.getElementById(
+                                    'chart_div_c95f852954bd4e48b53f460e42cb62af')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第18周",112],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",765]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_802c12ecf8964a949ba461e388f42ab4')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"同比","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_802c12ecf8964a949ba461e388f42ab4')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"同比","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023 第18周",95,0,3,0,8,0,6],["2023 第19周",159,0,2,0,9,1,2],["2023 第20周",65,0,1,0,9,5,2],["2023 第21周",74,1,9,0,5,4,1],["2023 第22周",24,0,4,0,14,1,0],["2023 第23周",63,1,6,16,9,4,7],["2023 第24周",34,0,2,0,7,15,9],["2023 第25周",13,1,3,1,10,3,7],["2023 第26周",74,2,2,0,9,0,5],["2023 第27周",106,2,315,0,94,226,22]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_07a1f8255b9b46ddbc042222206d56e0')).draw(trendData, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_07a1f8255b9b46ddbc042222206d56e0')).draw(data, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023 第18周",95,0,3,0,8,0,6],["2023 第19周",159,0,2,0,9,1,2],["2023 第20周",65,0,1,0,9,5,2],["2023 第21周",74,1,9,0,5,4,1],["2023 第22周",24,0,4,0,14,1,0],["2023 第23周",63,1,6,16,9,4,7],["2023 第24周",34,0,2,0,7,15,9],["2023 第25周",13,1,3,1,10,3,7],["2023 第26周",74,2,2,0,9,0,5],["2023 第27周",106,2,315,0,94,226,22]]);
+                        if ('SteppedAreaChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_cf143902181f411e97be624d9d21259f')).draw(trendData, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                        } else {
+                            new google.visualization.SteppedAreaChart(document.getElementById(
+                                    'chart_div_cf143902181f411e97be624d9d21259f')).draw(data, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",95],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_0fe074d4711c41bca7184c593f598133')).draw(trendData, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_0fe074d4711c41bca7184c593f598133')).draw(data, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",95],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_dba2790279df42978632b2d5948ed84e')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_dba2790279df42978632b2d5948ed84e')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",95],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_139f7baf9f8f4fcc8d576c1c75604867')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_139f7baf9f8f4fcc8d576c1c75604867')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_6cf1972a76fa413399f9c303349325bd')).draw(trendData, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_6cf1972a76fa413399f9c303349325bd')).draw(data, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_4960213e577142139c523851e5de376a')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_4960213e577142139c523851e5de376a')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_6c3fdbf68f61426d93b67ea8362451ce')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_6c3fdbf68f61426d93b67ea8362451ce')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",3],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",315]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_0fe83de51e28420ea2d2114b28b1ea0b')).draw(trendData, {"curveType":"function","legend":"left","title":"STAGE"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_0fe83de51e28420ea2d2114b28b1ea0b')).draw(data, {"curveType":"function","legend":"left","title":"STAGE"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",3],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",315]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_c7c26fab43644cc19a0fe14040d529f0')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_c7c26fab43644cc19a0fe14040d529f0')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",3],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",315]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_9748f809bb924fcfac0078356408c424')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_9748f809bb924fcfac0078356408c424')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_307506285cf74a4398c29dbdad7053eb')).draw(trendData, {"curveType":"function","legend":"left","title":"PROCESS"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_307506285cf74a4398c29dbdad7053eb')).draw(data, {"curveType":"function","legend":"left","title":"PROCESS"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_02a360a303454c7c8f6f18d988b3632e')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_02a360a303454c7c8f6f18d988b3632e')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_238b7fe251b04ab19692a559b9cace08')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_238b7fe251b04ab19692a559b9cace08')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",8],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_76c085b0b9904f8aaa0c37720e5d11a1')).draw(trendData, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_76c085b0b9904f8aaa0c37720e5d11a1')).draw(data, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",8],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_4f7092168aec4116aa2ab27f8c8d55c2')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_4f7092168aec4116aa2ab27f8c8d55c2')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",8],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_3a30174cf7c64362806edbe8808e9cf6')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_3a30174cf7c64362806edbe8808e9cf6')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",226]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_f5539da0ea894724b048deaed0aca385')).draw(trendData, {"curveType":"function","legend":"left","title":"BPM"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_f5539da0ea894724b048deaed0aca385')).draw(data, {"curveType":"function","legend":"left","title":"BPM"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",226]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_019fe3d4770642caaa0fe417acf7bf98')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_019fe3d4770642caaa0fe417acf7bf98')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",0],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",226]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_4da20025d1194d3f9888778e1c8ef721')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_4da20025d1194d3f9888778e1c8ef721')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                        }
+                                                                                // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",6],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",22]]);
+                        if ('Table' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_d16b0cf247804ce7b06655357109e064')).draw(trendData, {"curveType":"function","legend":"left","title":"FLOW"});
+                        } else {
+                            new google.visualization.Table(document.getElementById(
+                                    'chart_div_d16b0cf247804ce7b06655357109e064')).draw(data, {"curveType":"function","legend":"left","title":"FLOW"});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",6],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",22]]);
+                        if ('LineChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_3ba5dffd06394b9394baa66115949011')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                        } else {
+                            new google.visualization.LineChart(document.getElementById(
+                                    'chart_div_3ba5dffd06394b9394baa66115949011')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                        }
+                                            // Create the data table.
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第18周",6],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",22]]);
+                        if ('ChainRatioChart' == 'ChainRatioChart') {
+                            var trendData = new google.visualization.DataTable();
+                            trendData.addColumn('string', data.getColumnLabel(0));
+                            trendData.addColumn('number', '增长率');
+                            for (var i = 1; i < data.getNumberOfRows(); i++) {
+                                var current = data.getValue(i, 1);
+                                var previous = data.getValue(i - 1, 1);
+                                var growthRate = (current - previous) / previous;
+                                trendData.addRow([data.getValue(i, 0), growthRate]);
+                            }
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_3a1bd1566abc4b3bb9d90ed0f104aa93')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                        } else {
+                            new google.visualization.ChainRatioChart(document.getElementById(
+                                    'chart_div_3a1bd1566abc4b3bb9d90ed0f104aa93')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                        }
+                                                    }
+
+    </script>
+</head>
+
+<body>
+<h2>展示趋势和环比情况</h2>
+<h3>趋势正常情况下是持续下降趋于平稳；环比是<0是代表降低的，最终趋于平稳</h3>
+<hr/>
+        <h3>总体数据统计</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> 统计数据明细 </h5>
+                    <div id="chart_div_56ce73bd495d4073be5fc56a7d0794d5"></div>
+                </td>
+                            <td>
+                    <h5> 趋势图 </h5>
+                    <div id="chart_div_c95f852954bd4e48b53f460e42cb62af"></div>
+                </td>
+                            <td>
+                    <h5> 同比图 </h5>
+                    <div id="chart_div_802c12ecf8964a949ba461e388f42ab4"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>总体数据统计</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> 数据 </h5>
+                    <div id="chart_div_07a1f8255b9b46ddbc042222206d56e0"></div>
+                </td>
+                            <td>
+                    <h5> 图表 </h5>
+                    <div id="chart_div_cf143902181f411e97be624d9d21259f"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>CRM-FLOW</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> CRM-FLOW数据 </h5>
+                    <div id="chart_div_0fe074d4711c41bca7184c593f598133"></div>
+                </td>
+                            <td>
+                    <h5> CRM-FLOW趋势图 </h5>
+                    <div id="chart_div_dba2790279df42978632b2d5948ed84e"></div>
+                </td>
+                            <td>
+                    <h5> CRM-FLOW环比图 </h5>
+                    <div id="chart_div_139f7baf9f8f4fcc8d576c1c75604867"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>PAASMESSAGE</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> PAASMESSAGE数据 </h5>
+                    <div id="chart_div_6cf1972a76fa413399f9c303349325bd"></div>
+                </td>
+                            <td>
+                    <h5> PAASMESSAGE趋势图 </h5>
+                    <div id="chart_div_4960213e577142139c523851e5de376a"></div>
+                </td>
+                            <td>
+                    <h5> PAASMESSAGE环比图 </h5>
+                    <div id="chart_div_6c3fdbf68f61426d93b67ea8362451ce"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>STAGE</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> STAGE数据 </h5>
+                    <div id="chart_div_0fe83de51e28420ea2d2114b28b1ea0b"></div>
+                </td>
+                            <td>
+                    <h5> STAGE趋势图 </h5>
+                    <div id="chart_div_c7c26fab43644cc19a0fe14040d529f0"></div>
+                </td>
+                            <td>
+                    <h5> STAGE环比图 </h5>
+                    <div id="chart_div_9748f809bb924fcfac0078356408c424"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>PROCESS</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> PROCESS数据 </h5>
+                    <div id="chart_div_307506285cf74a4398c29dbdad7053eb"></div>
+                </td>
+                            <td>
+                    <h5> PROCESS趋势图 </h5>
+                    <div id="chart_div_02a360a303454c7c8f6f18d988b3632e"></div>
+                </td>
+                            <td>
+                    <h5> PROCESS环比图 </h5>
+                    <div id="chart_div_238b7fe251b04ab19692a559b9cace08"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>APPROVAL</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> APPROVAL数据 </h5>
+                    <div id="chart_div_76c085b0b9904f8aaa0c37720e5d11a1"></div>
+                </td>
+                            <td>
+                    <h5> APPROVAL趋势图 </h5>
+                    <div id="chart_div_4f7092168aec4116aa2ab27f8c8d55c2"></div>
+                </td>
+                            <td>
+                    <h5> APPROVAL环比图 </h5>
+                    <div id="chart_div_3a30174cf7c64362806edbe8808e9cf6"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>BPM</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> BPM数据 </h5>
+                    <div id="chart_div_f5539da0ea894724b048deaed0aca385"></div>
+                </td>
+                            <td>
+                    <h5> BPM趋势图 </h5>
+                    <div id="chart_div_019fe3d4770642caaa0fe417acf7bf98"></div>
+                </td>
+                            <td>
+                    <h5> BPM环比图 </h5>
+                    <div id="chart_div_4da20025d1194d3f9888778e1c8ef721"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>FLOW</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> FLOW数据 </h5>
+                    <div id="chart_div_d16b0cf247804ce7b06655357109e064"></div>
+                </td>
+                            <td>
+                    <h5> FLOW趋势图 </h5>
+                    <div id="chart_div_3ba5dffd06394b9394baa66115949011"></div>
+                </td>
+                            <td>
+                    <h5> FLOW环比图 </h5>
+                    <div id="chart_div_3a1bd1566abc4b3bb9d90ed0f104aa93"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+    </body>
+</html>
