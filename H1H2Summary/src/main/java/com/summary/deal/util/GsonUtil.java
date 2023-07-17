@@ -21,4 +21,9 @@ public class GsonUtil {
     public static <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {
         return gson.fromJson(json, classOfT);
     }
+
+    public static void main(String[] args) {
+        StringBuilder sbd = new StringBuilder(512);
+        System.out.println(sbd.length());
+    }
 }

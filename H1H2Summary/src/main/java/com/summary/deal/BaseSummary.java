@@ -62,7 +62,7 @@ public class BaseSummary {
         String line;
         while ((line = br.readLine()) != null) {
             List<String> data = Splitter.on('\t').splitToList(line);
-            consumer.accept(new DataModule(data.get(1), data.get(2), Integer.parseInt(data.get(5))));
+            consumer.accept(new DataModule(data.get(0), data.get(1), Integer.parseInt(data.get(2))));
         }
     }
 
@@ -105,7 +105,7 @@ public class BaseSummary {
             if (onlyCurrentYear && !year.equals(currentYear + "")) {
                 continue;
             }
-            List row = Lists.newArrayList(supplier.getFirstColumnValue(year, Splitter.on("-").splitToList(q).get(1)));
+            List row = Lists.newArrayList(supplier.getFirstColumnValue(q));
             moduleAndQAndCount.forEach((module, value) -> row.add(Objects.isNull(value.get(q)) ? 0 : value.get(q)));
             charData.add(row);
         }
@@ -137,10 +137,7 @@ public class BaseSummary {
         List<List> charData = Lists.newArrayList();
         List<String> headers = supplier.getHeaders();
         charData.add(headers);
-        sortedQ.stream().map(q -> {
-            List<String> times = Splitter.on("-").splitToList(q);
-            return Lists.newArrayList(supplier.getFirstColumnValue(times.get(0),times.get(1)), timeClassifyAndCount.get(q));
-        }).forEach(charData::add);
+        sortedQ.stream().map(q -> Lists.newArrayList(supplier.getFirstColumnValue(q), timeClassifyAndCount.get(q))).forEach(charData::add);
 
         return useScopeFilter(supplier, charData);
     }
@@ -190,7 +187,7 @@ public class BaseSummary {
                 if (onlyCurrentYear && !year.equals(currentYear + "")) {
                     continue;
                 }
-                List row = Lists.newArrayList(supplier.getFirstColumnValue(year, Splitter.on("-").splitToList(q).get(1)));
+                List row = Lists.newArrayList(supplier.getFirstColumnValue(q));
                 row.add(qAndCount.get(q));
                 charData.add(row);
             }
@@ -291,7 +288,7 @@ public class BaseSummary {
                 if (Integer.parseInt(classifyTime) >= currentTime) {
                     continue;
                 }
-                List row = Lists.newArrayList(supplier.getFirstColumnValue(year, classifyTime), Objects.isNull(timeAndCount.get(yearAndSeason)) ? 0 : timeAndCount.get(yearAndSeason));
+                List row = Lists.newArrayList(supplier.getFirstColumnValue(year), Objects.isNull(timeAndCount.get(yearAndSeason)) ? 0 : timeAndCount.get(yearAndSeason));
                 if (year.equals(currentYear + "")) {
                     newCharData.add(row);
                 } else {
@@ -346,9 +343,9 @@ public class BaseSummary {
             }
             String year = Splitter.on("-").splitToList(classify).get(0);
             if (year.equals(currentYear + "")) {
-                newCharData.add(Lists.newArrayList(supplier.getFirstColumnValue(year, season), classifyAndCount.get(classify)));
+                newCharData.add(Lists.newArrayList(supplier.getFirstColumnValue(year), classifyAndCount.get(classify)));
             } else {
-                oldCharData.add(Lists.newArrayList(supplier.getFirstColumnValue(year, season), classifyAndCount.get(classify)));
+                oldCharData.add(Lists.newArrayList(supplier.getFirstColumnValue(year), classifyAndCount.get(classify)));
             }
         }
 
@@ -416,8 +413,9 @@ public class BaseSummary {
             return this.getTitle("");
         }
 
-        public String getFirstColumnValue(String year, String classifyTime) {
-            return year + "-" + classifyTime;
+        public String getFirstColumnValue(String date) {
+            List<String> times = Splitter.on("-").splitToList(date);
+            return times.get(0) + "-" + times.get(1);
         }
 
         /**

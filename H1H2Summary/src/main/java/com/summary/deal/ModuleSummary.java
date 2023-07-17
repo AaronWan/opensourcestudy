@@ -1,5 +1,6 @@
 package com.summary.deal;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.summary.deal.util.ChartUtils;
 import com.summary.deal.util.chart.model.ChartDivConfigGroup;
@@ -69,8 +70,9 @@ public class ModuleSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year+" 第"+classifyTime+"周";
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) +" 第"+times.get(1)+"周";
             }
 
             @Override
@@ -80,6 +82,44 @@ public class ModuleSummary extends BaseSummary {
         });
     }
 
+    /**
+     * 获取环比 图表数据
+     * @param lastDayCount
+     * @return
+     */
+    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassifyByDate(int lastDayCount) {
+        return exportModuleTrendAndChainRatio(true, new ChartDataSupplier() {
+            @Override
+            public String getClassify(DataModule data) {
+                return data.getDate();
+            }
+
+            @Override
+            public Comparator<? super String> getClassifyComparator() {
+                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
+            }
+
+            @Override
+            public String getTitle(String param) {
+                return param;
+            }
+
+            @Override
+            public List getHeaders() {
+                return Lists.newArrayList("天","值");
+            }
+
+            @Override
+            public String getFirstColumnValue(String date) {
+                return date;
+            }
+
+            @Override
+            public Integer getRecordCount() {
+                return lastDayCount;
+            }
+        });
+    }
     public List<List> exportByModuleAndWeek(int lastWeekCount) {
         return exportByModuleAndTime(false, new ChartDataSupplier() {
             @Override
@@ -103,13 +143,48 @@ public class ModuleSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year+" 第"+classifyTime+"周";
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) +" 第"+times.get(1)+"周";
             }
 
             @Override
             public Integer getRecordCount() {
                 return lastWeekCount;
+            }
+        });
+    }
+
+    public List<List> exportByModuleAndDay(int lastDayCount) {
+        return exportByModuleAndTime(false, new ChartDataSupplier() {
+            @Override
+            public String getClassify(DataModule data) {
+                return data.getDate();
+            }
+
+            @Override
+            public Comparator<? super String> getClassifyComparator() {
+                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
+            }
+
+            @Override
+            public String getTitle(String param) {
+                return "按天/模块异常日志情况";
+            }
+
+            @Override
+            public List getHeaders() {
+                return Lists.newArrayList("天");
+            }
+
+            @Override
+            public String getFirstColumnValue(String date) {
+                return date;
+            }
+
+            @Override
+            public Integer getRecordCount() {
+                return lastDayCount;
             }
         });
     }
@@ -165,8 +240,9 @@ public class ModuleSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year+" Q"+classifyTime;
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) +" Q"+times.get(1);
             }
         });
     }
@@ -229,8 +305,9 @@ public class ModuleSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year + " Q" + classifyTime;
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) + " Q" + times.get(1);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.summary.deal;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -79,8 +80,9 @@ public class TotalSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year+"第"+classifyTime+"周";
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) +"第"+times.get(1)+"周";
             }
         });
     }
@@ -112,8 +114,9 @@ public class TotalSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year + "第" + classifyTime+"周";
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) + "第" + times.get(1)+"周";
             }
         });
     }
@@ -225,8 +228,9 @@ public class TotalSummary extends BaseSummary {
             }
 
             @Override
-            public String getFirstColumnValue(String year, String classifyTime) {
-                return year+" Q"+ classifyTime;
+            public String getFirstColumnValue(String date) {
+                List<String> times = Splitter.on("-").splitToList(date);
+                return times.get(0) +" Q"+ times.get(1);
             }
         });
     }
@@ -257,4 +261,37 @@ public class TotalSummary extends BaseSummary {
         });
     }
 
+    public List<List> exportByDay(int day) {
+        return exportByClassify(false, new ChartDataSupplier() {
+            @Override
+            public String getClassify(DataModule data) {
+                return data.getDate();
+            }
+
+            @Override
+            public Comparator<? super String> getClassifyComparator() {
+                return Comparator.comparingInt(o -> Integer.parseInt(o.replaceAll("-", "")));
+            }
+
+            @Override
+            public String getTitle(String param) {
+                return "统计趋势图(天)";
+            }
+
+            @Override
+            public List getHeaders() {
+                return Lists.newArrayList("天", "数量");
+            }
+
+            @Override
+            public Integer getRecordCount() {
+                return day;
+            }
+
+            @Override
+            public String getFirstColumnValue(String date) {
+                return date;
+            }
+        });
+    }
 }

@@ -32,8 +32,35 @@ public class SummaryView {
     @Test
     public void summary() {
         int lastWeekCount = 10;
-        List<List> summaryWeekData = totalSummary.exportByWeek(lastWeekCount);
+        List<ChartDivConfigGroup> chartDivConfigGroups = Lists.newArrayList(
+                new ChartDivConfigGroup("总体数据统计/周", getSummaryChart(totalSummary.exportByWeek(lastWeekCount))),
+                new ChartDivConfigGroup("总体数据统计/天", getSummaryChart(totalSummary.exportByDay(7))));
 
+        chartDivConfigGroups.add(new ChartDivConfigGroup("总体数据统计/周", getSummaryChartConfig(moduleSummary.exportByModuleAndWeek(lastWeekCount))));
+        chartDivConfigGroups.add(new ChartDivConfigGroup("总体数据统计/天", getSummaryChartConfig(moduleSummary.exportByModuleAndDay(7))));
+        //按模块环比 及 趋势
+        chartDivConfigGroups.addAll(moduleSummary.exportModuleTrendAndChainRatioByClassify(lastWeekCount));
+        chartDivConfigGroups.addAll(moduleSummary.exportModuleTrendAndChainRatioByClassifyByDate(7));
+
+        ChartUtils.renderTheme(new ChartDivConfigTheme("展示趋势和环比情况", "趋势正常情况下是持续下降趋于平稳；环比是<0是代表降低的，最终趋于平稳", chartDivConfigGroups), StandardOpenOption.APPEND);
+    }
+
+    private List<ChartDivConfig> getSummaryChartConfig(List<List> moduleWeekData) {
+        List<ChartDivConfig> summaryWeekChartConfig = Lists.newArrayList(
+                new ChartDivConfig("数据", new ChartConfig(ChartType.Table)
+                        .put("title", "数据").put("width", "100%")
+                        .put("vAxis", ImmutableMap.of("title", "周"))
+                        .put("isStacked", true), moduleWeekData),
+                new ChartDivConfig("图表", new ChartConfig(ChartType.SteppedAreaChart)
+                        .put("title", "图表")
+                        .put("height", 400, "width", 500)
+                        .put("vAxis", ImmutableMap.of("title", "周"))
+                        .put("isStacked", true), moduleWeekData)
+        );
+        return summaryWeekChartConfig;
+    }
+
+    private List<ChartDivConfig> getSummaryChart(List<List> summaryWeekData) {
         List<ChartDivConfig> chartDivConfigs = Lists.newArrayList();
 
         chartDivConfigs.add(new ChartDivConfig("统计数据明细", new ChartConfig(ChartType.Table)
@@ -48,32 +75,10 @@ public class SummaryView {
                 .put("curveType", "function"), summaryWeekData));
 
         chartDivConfigs.add(new ChartDivConfig("同比图", new ChartConfig(ChartType.ChainRatioChart)
-                .put("title", "同比")
+                .put("title", "环比")
                 .put("legend", "left")
                 .put("height", 400, "width", 600)
                 .put("curveType", "function"), summaryWeekData));
-
-        List<ChartDivConfigGroup> chartDivConfigGroups = Lists.newArrayList(new ChartDivConfigGroup("总体数据统计", chartDivConfigs));
-
-        List<List> moduleWeekData = moduleSummary.exportByModuleAndWeek(lastWeekCount);
-
-        chartDivConfigs = Lists.newArrayList(
-                new ChartDivConfig("数据", new ChartConfig(ChartType.Table)
-                .put("title", "数据").put("width", "100%")
-                .put("vAxis", ImmutableMap.of("title", "周"))
-                .put("isStacked", true), moduleWeekData),
-                new ChartDivConfig("图表", new ChartConfig(ChartType.SteppedAreaChart)
-                .put("title", "图表")
-                .put("height", 400, "width", 500)
-                .put("vAxis", ImmutableMap.of("title", "周"))
-                .put("isStacked", true), moduleWeekData)
-        );
-
-        chartDivConfigGroups.add(new ChartDivConfigGroup("总体数据统计", chartDivConfigs));
-
-        //按模块环比 及 趋势
-        chartDivConfigGroups.addAll(moduleSummary.exportModuleTrendAndChainRatioByClassify(lastWeekCount));
-
-        ChartUtils.renderTheme(new ChartDivConfigTheme("展示趋势和环比情况", "趋势正常情况下是持续下降趋于平稳；环比是<0是代表降低的，最终趋于平稳", chartDivConfigGroups), StandardOpenOption.APPEND);
+        return chartDivConfigs;
     }
 }
