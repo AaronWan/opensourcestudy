@@ -12,7 +12,7 @@
                 var data={}
                 function drawChart() {
                                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",216],["2023第28周",129]]);
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",132],["2023第28周",107],["2023第29周",6964],["2023第30周",477]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -23,13 +23,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_c4b1b4a8fc014c7c8602686f8fc8c791')).draw(trendData, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_89dd732d36b548de9e239def0d408e0b')).draw(trendData, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_c4b1b4a8fc014c7c8602686f8fc8c791')).draw(data, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                                    'chart_div_89dd732d36b548de9e239def0d408e0b')).draw(data, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",216],["2023第28周",129]]);
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",132],["2023第28周",107],["2023第29周",6964],["2023第30周",477]]);
                         if ('ComboChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -40,13 +40,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_d82a6bbb7a4649f0958db5b8dee204e5')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_1090d02097e74c35abf265313de023b8')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
                         } else {
                             new google.visualization.ComboChart(document.getElementById(
-                                    'chart_div_d82a6bbb7a4649f0958db5b8dee204e5')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                                    'chart_div_1090d02097e74c35abf265313de023b8')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第19周",173],["2023第20周",82],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",216],["2023第28周",129]]);
+                        data = new google.visualization.arrayToDataTable([["周","数量"],["2023第21周",94],["2023第22周",43],["2023第23周",106],["2023第24周",67],["2023第25周",38],["2023第26周",92],["2023第27周",132],["2023第28周",107],["2023第29周",6964],["2023第30周",477]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -57,13 +57,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f61822f67c5e43f78b9a9a34bf995845')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_dfb8f7ff6ac44b12b07ad9b73b2f8c1d')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_f61822f67c5e43f78b9a9a34bf995845')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
+                                    'chart_div_dfb8f7ff6ac44b12b07ad9b73b2f8c1d')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-08",6],["2023-07-09",10],["2023-07-11",22],["2023-07-12",21],["2023-07-13",45],["2023-07-14",31],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-24",251],["2023-07-25",29],["2023-07-26",51],["2023-07-27",62],["2023-07-28",60],["2023-07-29",21],["2023-07-30",11]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -74,13 +74,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_a508aa74773c41ca880c4d0691184c96')).draw(trendData, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_99862e387d014c8db2fc1550157316b8')).draw(trendData, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_a508aa74773c41ca880c4d0691184c96')).draw(data, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
+                                    'chart_div_99862e387d014c8db2fc1550157316b8')).draw(data, {"hAxis":{"title":"模块"},"seriesType":"bars","width":"100%","vAxis":{"title":"周"}});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-08",6],["2023-07-09",10],["2023-07-11",22],["2023-07-12",21],["2023-07-13",45],["2023-07-14",31],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-24",251],["2023-07-25",29],["2023-07-26",51],["2023-07-27",62],["2023-07-28",60],["2023-07-29",21],["2023-07-30",11]]);
                         if ('ComboChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -91,13 +91,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_fec30c2053d444bfb560a4edd0d8930e')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_b47498bcb24c4a1f904bf5314b7d17db')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
                         } else {
                             new google.visualization.ComboChart(document.getElementById(
-                                    'chart_div_fec30c2053d444bfb560a4edd0d8930e')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
+                                    'chart_div_b47498bcb24c4a1f904bf5314b7d17db')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"趋势图","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-08",6],["2023-07-09",10],["2023-07-11",22],["2023-07-12",21],["2023-07-13",45],["2023-07-14",31],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","数量"],["2023-07-24",251],["2023-07-25",29],["2023-07-26",51],["2023-07-27",62],["2023-07-28",60],["2023-07-29",21],["2023-07-30",11]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -108,13 +108,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_268dab3c762e46bf8393d9e22c41808f')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_5bc63acf8f224f1c8d13cae29e3bddf1')).draw(trendData, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_268dab3c762e46bf8393d9e22c41808f')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
+                                    'chart_div_5bc63acf8f224f1c8d13cae29e3bddf1')).draw(data, {"curveType":"function","legend":"left","width":600,"title":"环比","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023 第19周",159,0,2,0,9,1,2],["2023 第20周",65,0,1,0,9,5,2],["2023 第21周",74,1,9,0,5,4,1],["2023 第22周",24,0,4,0,14,1,0],["2023 第23周",63,1,6,16,9,4,7],["2023 第24周",34,0,2,0,7,15,9],["2023 第25周",13,1,3,1,10,3,7],["2023 第26周",74,2,2,0,9,0,5],["2023 第27周",106,2,10,0,94,2,2],["2023 第28周",59,1,15,0,25,29,0]]);
+                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","FLOW","BPM"],["2023 第21周",74,1,9,0,5,1,4],["2023 第22周",24,0,4,0,14,0,1],["2023 第23周",63,1,6,16,9,7,4],["2023 第24周",34,0,2,0,7,9,15],["2023 第25周",13,1,3,1,10,7,3],["2023 第26周",74,2,2,0,9,5,0],["2023 第27周",106,2,10,0,10,2,2],["2023 第28周",77,2,4,0,12,1,11],["2023 第29周",54,0,1,0,6906,3,0],["2023 第30周",115,0,57,1,75,57,172]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -125,13 +125,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f187c4afc29e46659dc023474bb9dc26')).draw(trendData, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_272c59d955d549b28d641819d01e7d03')).draw(trendData, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_f187c4afc29e46659dc023474bb9dc26')).draw(data, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                                    'chart_div_272c59d955d549b28d641819d01e7d03')).draw(data, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023 第19周",159,0,2,0,9,1,2],["2023 第20周",65,0,1,0,9,5,2],["2023 第21周",74,1,9,0,5,4,1],["2023 第22周",24,0,4,0,14,1,0],["2023 第23周",63,1,6,16,9,4,7],["2023 第24周",34,0,2,0,7,15,9],["2023 第25周",13,1,3,1,10,3,7],["2023 第26周",74,2,2,0,9,0,5],["2023 第27周",106,2,10,0,94,2,2],["2023 第28周",59,1,15,0,25,29,0]]);
+                        data = new google.visualization.arrayToDataTable([["周","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","FLOW","BPM"],["2023 第21周",74,1,9,0,5,1,4],["2023 第22周",24,0,4,0,14,0,1],["2023 第23周",63,1,6,16,9,7,4],["2023 第24周",34,0,2,0,7,9,15],["2023 第25周",13,1,3,1,10,7,3],["2023 第26周",74,2,2,0,9,5,0],["2023 第27周",106,2,10,0,10,2,2],["2023 第28周",77,2,4,0,12,1,11],["2023 第29周",54,0,1,0,6906,3,0],["2023 第30周",115,0,57,1,75,57,172]]);
                         if ('SteppedAreaChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -142,13 +142,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_e511035fdd1c41c1a9cf20e77d9e9a9d')).draw(trendData, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_a552aa8599a94a4d82bff9121c4c6b0d')).draw(trendData, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
                         } else {
                             new google.visualization.SteppedAreaChart(document.getElementById(
-                                    'chart_div_e511035fdd1c41c1a9cf20e77d9e9a9d')).draw(data, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                                    'chart_div_a552aa8599a94a4d82bff9121c4c6b0d')).draw(data, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023-07-08",4,0,0,0,0,2,0],["2023-07-09",6,0,0,0,4,0,0],["2023-07-11",8,1,4,0,6,3,0],["2023-07-12",19,0,0,0,0,2,0],["2023-07-13",17,0,3,0,9,16,0],["2023-07-14",9,0,8,0,6,8,0],["2023-07-15",0,0,0,0,0,0,0]]);
+                        data = new google.visualization.arrayToDataTable([["天","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","FLOW","BPM"],["2023-07-24",52,0,35,1,36,56,71],["2023-07-25",13,0,2,0,1,0,13],["2023-07-26",14,0,7,0,18,0,12],["2023-07-27",30,0,3,0,11,1,17],["2023-07-28",6,0,10,0,9,0,35],["2023-07-29",0,0,0,0,0,0,21],["2023-07-30",1,1,3,0,1,3,2]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -159,13 +159,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_6cced35396b244fb8d64b62ce81579b2')).draw(trendData, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_277f3d1216f9469ab68194e67223201d')).draw(trendData, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_6cced35396b244fb8d64b62ce81579b2')).draw(data, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
+                                    'chart_div_277f3d1216f9469ab68194e67223201d')).draw(data, {"width":"100%","isStacked":true,"vAxis":{"title":"周"},"title":"数据"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","BPM","FLOW"],["2023-07-08",4,0,0,0,0,2,0],["2023-07-09",6,0,0,0,4,0,0],["2023-07-11",8,1,4,0,6,3,0],["2023-07-12",19,0,0,0,0,2,0],["2023-07-13",17,0,3,0,9,16,0],["2023-07-14",9,0,8,0,6,8,0],["2023-07-15",0,0,0,0,0,0,0]]);
+                        data = new google.visualization.arrayToDataTable([["天","CRM-FLOW","PAASMESSAGE","STAGE","PROCESS","APPROVAL","FLOW","BPM"],["2023-07-24",52,0,35,1,36,56,71],["2023-07-25",13,0,2,0,1,0,13],["2023-07-26",14,0,7,0,18,0,12],["2023-07-27",30,0,3,0,11,1,17],["2023-07-28",6,0,10,0,9,0,35],["2023-07-29",0,0,0,0,0,0,21],["2023-07-30",1,1,3,0,1,3,2]]);
                         if ('SteppedAreaChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -176,13 +176,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f2b7dd60950944c58ba91e033b166fc6')).draw(trendData, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_e6069cbff322485e9b35c75c7674cee4')).draw(trendData, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
                         } else {
                             new google.visualization.SteppedAreaChart(document.getElementById(
-                                    'chart_div_f2b7dd60950944c58ba91e033b166fc6')).draw(data, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
+                                    'chart_div_e6069cbff322485e9b35c75c7674cee4')).draw(data, {"width":500,"isStacked":true,"vAxis":{"title":"周"},"title":"图表","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",59]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",77],["2023 第29周",54],["2023 第30周",115]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -193,13 +193,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_c5a186962de84eda9d6cf24fefe2c347')).draw(trendData, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_08923435302b48038f97e729172f5675')).draw(trendData, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_c5a186962de84eda9d6cf24fefe2c347')).draw(data, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                                    'chart_div_08923435302b48038f97e729172f5675')).draw(data, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",59]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",77],["2023 第29周",54],["2023 第30周",115]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -210,13 +210,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_7d9a012f763a4a94aff8c5f6bfcabcf9')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_82b51f61399b476aa8379f8fc651e177')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_7d9a012f763a4a94aff8c5f6bfcabcf9')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                                    'chart_div_82b51f61399b476aa8379f8fc651e177')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",159],["2023 第20周",65],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",59]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",74],["2023 第22周",24],["2023 第23周",63],["2023 第24周",34],["2023 第25周",13],["2023 第26周",74],["2023 第27周",106],["2023 第28周",77],["2023 第29周",54],["2023 第30周",115]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -227,13 +227,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_4e7dffe3824848f49d0dc5067458fb20')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_b5a4c6a5382643dcb9ef5be094d1490a')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_4e7dffe3824848f49d0dc5067458fb20')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                                    'chart_div_b5a4c6a5382643dcb9ef5be094d1490a')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",1]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",2],["2023 第29周",0],["2023 第30周",0]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -244,13 +244,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_57328d1d29954d7797674fb0eb6db9a0')).draw(trendData, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_217bfbd1235d4d248a2789cfad951e6d')).draw(trendData, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_57328d1d29954d7797674fb0eb6db9a0')).draw(data, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                                    'chart_div_217bfbd1235d4d248a2789cfad951e6d')).draw(data, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",1]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",2],["2023 第29周",0],["2023 第30周",0]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -261,13 +261,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_33428e98f3434081954757471b037766')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_45f32e7744b24346912a03581014535e')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_33428e98f3434081954757471b037766')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                                    'chart_div_45f32e7744b24346912a03581014535e')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",1]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",1],["2023 第24周",0],["2023 第25周",1],["2023 第26周",2],["2023 第27周",2],["2023 第28周",2],["2023 第29周",0],["2023 第30周",0]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -278,13 +278,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_1369ed523e064651a78ea3e14aea6f62')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_2301c47fb2c34e6d9518d106465dea59')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_1369ed523e064651a78ea3e14aea6f62')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                                    'chart_div_2301c47fb2c34e6d9518d106465dea59')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",15]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",4],["2023 第29周",1],["2023 第30周",57]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -295,13 +295,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_9b76b1b6f52f46a3b0333c569aafbf34')).draw(trendData, {"curveType":"function","legend":"left","title":"STAGE"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_3a01de2b923d443e8c90db9a8a427681')).draw(trendData, {"curveType":"function","legend":"left","title":"STAGE"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_9b76b1b6f52f46a3b0333c569aafbf34')).draw(data, {"curveType":"function","legend":"left","title":"STAGE"});
+                                    'chart_div_3a01de2b923d443e8c90db9a8a427681')).draw(data, {"curveType":"function","legend":"left","title":"STAGE"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",15]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",4],["2023 第29周",1],["2023 第30周",57]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -312,13 +312,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_3f3e5cc78d5241f9b4b40c74b0ff1927')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_7592436d10de42c8af78d49d4c37159d')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_3f3e5cc78d5241f9b4b40c74b0ff1927')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                                    'chart_div_7592436d10de42c8af78d49d4c37159d')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",1],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",15]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",9],["2023 第22周",4],["2023 第23周",6],["2023 第24周",2],["2023 第25周",3],["2023 第26周",2],["2023 第27周",10],["2023 第28周",4],["2023 第29周",1],["2023 第30周",57]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -329,13 +329,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f9627697a67145169502ef8f96540021')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_c2894c0d43134689b751a58025b7e412')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_f9627697a67145169502ef8f96540021')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                                    'chart_div_c2894c0d43134689b751a58025b7e412')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0],["2023 第29周",0],["2023 第30周",1]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -346,13 +346,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_5e1742fcb4964a77b1f308bded98c0a0')).draw(trendData, {"curveType":"function","legend":"left","title":"PROCESS"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_6b8300f5662544dda6668fe2155ef056')).draw(trendData, {"curveType":"function","legend":"left","title":"PROCESS"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_5e1742fcb4964a77b1f308bded98c0a0')).draw(data, {"curveType":"function","legend":"left","title":"PROCESS"});
+                                    'chart_div_6b8300f5662544dda6668fe2155ef056')).draw(data, {"curveType":"function","legend":"left","title":"PROCESS"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0],["2023 第29周",0],["2023 第30周",1]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -363,13 +363,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_682f036ee9394f1eb6dc61d5f89af4ed')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_e5d3fe6884ee41d687ec5a0fb5bd13a2')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_682f036ee9394f1eb6dc61d5f89af4ed')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                                    'chart_div_e5d3fe6884ee41d687ec5a0fb5bd13a2')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",0],["2023 第20周",0],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",0],["2023 第22周",0],["2023 第23周",16],["2023 第24周",0],["2023 第25周",1],["2023 第26周",0],["2023 第27周",0],["2023 第28周",0],["2023 第29周",0],["2023 第30周",1]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -380,13 +380,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_42a86d77f3914c8fbae9572b9496e6c8')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_74310fba5fe54fa5b0d3b6df7612d050')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_42a86d77f3914c8fbae9572b9496e6c8')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                                    'chart_div_74310fba5fe54fa5b0d3b6df7612d050')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94],["2023 第28周",25]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",10],["2023 第28周",12],["2023 第29周",6906],["2023 第30周",75]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -397,13 +397,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_1f53997a59e045aebf4050168e3b1a7e')).draw(trendData, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_444848bd70dc459e928748764bf602ce')).draw(trendData, {"curveType":"function","legend":"left","title":"APPROVAL"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_1f53997a59e045aebf4050168e3b1a7e')).draw(data, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                                    'chart_div_444848bd70dc459e928748764bf602ce')).draw(data, {"curveType":"function","legend":"left","title":"APPROVAL"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94],["2023 第28周",25]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",10],["2023 第28周",12],["2023 第29周",6906],["2023 第30周",75]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -414,13 +414,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_b039f347b3e941b99110eb2a818a7fe4')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_6d0b4c3d69034341b0b647dd346c583b')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_b039f347b3e941b99110eb2a818a7fe4')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                                    'chart_div_6d0b4c3d69034341b0b647dd346c583b')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",9],["2023 第20周",9],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",94],["2023 第28周",25]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",5],["2023 第22周",14],["2023 第23周",9],["2023 第24周",7],["2023 第25周",10],["2023 第26周",9],["2023 第27周",10],["2023 第28周",12],["2023 第29周",6906],["2023 第30周",75]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -431,13 +431,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f0336f418dcc47eeadffb73a3960a1c1')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_437c90129af34e9cb7730dcc3e4f3cce')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_f0336f418dcc47eeadffb73a3960a1c1')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                                    'chart_div_437c90129af34e9cb7730dcc3e4f3cce')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",29]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",1],["2023 第29周",3],["2023 第30周",57]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -448,13 +448,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_e4fdee8d85dd456580bc1a867e24a02c')).draw(trendData, {"curveType":"function","legend":"left","title":"BPM"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_5df288571ff24b0ea3a9b842daab71fb')).draw(trendData, {"curveType":"function","legend":"left","title":"FLOW"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_e4fdee8d85dd456580bc1a867e24a02c')).draw(data, {"curveType":"function","legend":"left","title":"BPM"});
+                                    'chart_div_5df288571ff24b0ea3a9b842daab71fb')).draw(data, {"curveType":"function","legend":"left","title":"FLOW"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",29]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",1],["2023 第29周",3],["2023 第30周",57]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -465,13 +465,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_9bd113f0ffb94931811cb21a847a269d')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_1f85d86dfd0e4141ba96219d85c37a84')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_9bd113f0ffb94931811cb21a847a269d')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                                    'chart_div_1f85d86dfd0e4141ba96219d85c37a84')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",1],["2023 第20周",5],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",29]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",1],["2023 第29周",3],["2023 第30周",57]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -482,13 +482,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_b4169dc38f3a4b01a200ffab3accb65c')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_f64c57c49b684a9fbb0012c2ce2ebfa9')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_b4169dc38f3a4b01a200ffab3accb65c')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                                    'chart_div_f64c57c49b684a9fbb0012c2ce2ebfa9')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",11],["2023 第29周",0],["2023 第30周",172]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -499,13 +499,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_a054946956444d12964034514e66abdf')).draw(trendData, {"curveType":"function","legend":"left","title":"FLOW"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_caff860b078f459592174b09b848311b')).draw(trendData, {"curveType":"function","legend":"left","title":"BPM"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_a054946956444d12964034514e66abdf')).draw(data, {"curveType":"function","legend":"left","title":"FLOW"});
+                                    'chart_div_caff860b078f459592174b09b848311b')).draw(data, {"curveType":"function","legend":"left","title":"BPM"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",11],["2023 第29周",0],["2023 第30周",172]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -516,13 +516,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_7a14664cf7044f1cacd9e00bd610c97e')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_88b003c372a64da9b86de0997840011a')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_7a14664cf7044f1cacd9e00bd610c97e')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                                    'chart_div_88b003c372a64da9b86de0997840011a')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第19周",2],["2023 第20周",2],["2023 第21周",1],["2023 第22周",0],["2023 第23周",7],["2023 第24周",9],["2023 第25周",7],["2023 第26周",5],["2023 第27周",2],["2023 第28周",0]]);
+                        data = new google.visualization.arrayToDataTable([["周","值"],["2023 第21周",4],["2023 第22周",1],["2023 第23周",4],["2023 第24周",15],["2023 第25周",3],["2023 第26周",0],["2023 第27周",2],["2023 第28周",11],["2023 第29周",0],["2023 第30周",172]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -533,13 +533,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_4b51df0a6b044bf1aa51c766bbec2ea8')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_c478276cdd784aae8a5f287c24f4d5b1')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_4b51df0a6b044bf1aa51c766bbec2ea8')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                                    'chart_div_c478276cdd784aae8a5f287c24f4d5b1')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",4],["2023-07-09",6],["2023-07-11",8],["2023-07-12",19],["2023-07-13",17],["2023-07-14",9],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",52],["2023-07-25",13],["2023-07-26",14],["2023-07-27",30],["2023-07-28",6],["2023-07-29",0],["2023-07-30",1]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -550,13 +550,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_5ca17db2d0df4e25ba57757bc3288e61')).draw(trendData, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_539866fab04040089a0945afaa4eb48e')).draw(trendData, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_5ca17db2d0df4e25ba57757bc3288e61')).draw(data, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
+                                    'chart_div_539866fab04040089a0945afaa4eb48e')).draw(data, {"curveType":"function","legend":"left","title":"CRM-FLOW"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",4],["2023-07-09",6],["2023-07-11",8],["2023-07-12",19],["2023-07-13",17],["2023-07-14",9],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",52],["2023-07-25",13],["2023-07-26",14],["2023-07-27",30],["2023-07-28",6],["2023-07-29",0],["2023-07-30",1]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -567,13 +567,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_2a1c33c9399f4a2c962c59745526ab84')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_391f5050b79a411eac76f1c289d678db')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_2a1c33c9399f4a2c962c59745526ab84')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                                    'chart_div_391f5050b79a411eac76f1c289d678db')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",4],["2023-07-09",6],["2023-07-11",8],["2023-07-12",19],["2023-07-13",17],["2023-07-14",9],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",52],["2023-07-25",13],["2023-07-26",14],["2023-07-27",30],["2023-07-28",6],["2023-07-29",0],["2023-07-30",1]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -584,13 +584,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_84858a46d826415c81b448402fcdf213')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_2d079806d64c452094969b471b374a66')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_84858a46d826415c81b448402fcdf213')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
+                                    'chart_div_2d079806d64c452094969b471b374a66')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"CRM-FLOW","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",1],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",0],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",1]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -601,13 +601,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_b6a16e67526144cd91afe776e5068b97')).draw(trendData, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_e0388c8a6bb04afc9d278d97d0f0246a')).draw(trendData, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_b6a16e67526144cd91afe776e5068b97')).draw(data, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
+                                    'chart_div_e0388c8a6bb04afc9d278d97d0f0246a')).draw(data, {"curveType":"function","legend":"left","title":"PAASMESSAGE"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",1],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",0],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",1]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -618,13 +618,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_9af8e11eb1074a2fbdc190466b87d5a2')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_48d9eea0176f49eb86196288a9be0c0e')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_9af8e11eb1074a2fbdc190466b87d5a2')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                                    'chart_div_48d9eea0176f49eb86196288a9be0c0e')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",1],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",0],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",1]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -635,13 +635,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_bc34f9f230264f4abb5dc969d7289f82')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_393f0a9b27124b23b967d03fe881fdc4')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_bc34f9f230264f4abb5dc969d7289f82')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
+                                    'chart_div_393f0a9b27124b23b967d03fe881fdc4')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PAASMESSAGE","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",4],["2023-07-12",0],["2023-07-13",3],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",35],["2023-07-25",2],["2023-07-26",7],["2023-07-27",3],["2023-07-28",10],["2023-07-29",0],["2023-07-30",3]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -652,13 +652,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_48053959f7d64fb59f05cfe752b06757')).draw(trendData, {"curveType":"function","legend":"left","title":"STAGE"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_dd383678e44640e38fbf403d5dae1e29')).draw(trendData, {"curveType":"function","legend":"left","title":"STAGE"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_48053959f7d64fb59f05cfe752b06757')).draw(data, {"curveType":"function","legend":"left","title":"STAGE"});
+                                    'chart_div_dd383678e44640e38fbf403d5dae1e29')).draw(data, {"curveType":"function","legend":"left","title":"STAGE"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",4],["2023-07-12",0],["2023-07-13",3],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",35],["2023-07-25",2],["2023-07-26",7],["2023-07-27",3],["2023-07-28",10],["2023-07-29",0],["2023-07-30",3]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -669,13 +669,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_a9094c43c3a74129994891353607f8d4')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_33cd1354d63747c5a1406c21388e7cb1')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_a9094c43c3a74129994891353607f8d4')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                                    'chart_div_33cd1354d63747c5a1406c21388e7cb1')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",4],["2023-07-12",0],["2023-07-13",3],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",35],["2023-07-25",2],["2023-07-26",7],["2023-07-27",3],["2023-07-28",10],["2023-07-29",0],["2023-07-30",3]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -686,13 +686,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_f82859415d9f4cd6b7220d82ccb43de9')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_ad3996ab48bb40bc8302e92bb53ffe6f')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_f82859415d9f4cd6b7220d82ccb43de9')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
+                                    'chart_div_ad3996ab48bb40bc8302e92bb53ffe6f')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"STAGE","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",1],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",0]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -703,13 +703,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_1cde4403f77f45388cbdb9dcd7734b4d')).draw(trendData, {"curveType":"function","legend":"left","title":"PROCESS"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_ae09b8ba04f147b09dc824aaa6dbfec9')).draw(trendData, {"curveType":"function","legend":"left","title":"PROCESS"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_1cde4403f77f45388cbdb9dcd7734b4d')).draw(data, {"curveType":"function","legend":"left","title":"PROCESS"});
+                                    'chart_div_ae09b8ba04f147b09dc824aaa6dbfec9')).draw(data, {"curveType":"function","legend":"left","title":"PROCESS"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",1],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",0]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -720,13 +720,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_cb1c59e255df4d48827e44630e759c04')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_ee77488d4cac4ab08e6e8a8fb5943781')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_cb1c59e255df4d48827e44630e759c04')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                                    'chart_div_ee77488d4cac4ab08e6e8a8fb5943781')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",1],["2023-07-25",0],["2023-07-26",0],["2023-07-27",0],["2023-07-28",0],["2023-07-29",0],["2023-07-30",0]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -737,13 +737,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_5ca1c299c21c4ebf8467b27ee70ecbb6')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_cdc9970204d24f298965132aa53fdab7')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_5ca1c299c21c4ebf8467b27ee70ecbb6')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
+                                    'chart_div_cdc9970204d24f298965132aa53fdab7')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"PROCESS","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",4],["2023-07-11",6],["2023-07-12",0],["2023-07-13",9],["2023-07-14",6],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",36],["2023-07-25",1],["2023-07-26",18],["2023-07-27",11],["2023-07-28",9],["2023-07-29",0],["2023-07-30",1]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -754,13 +754,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_ea89bd40cb9344aa9b4bb32cda75bdb9')).draw(trendData, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_f35385316b3b4d2ea57e930bd73d5463')).draw(trendData, {"curveType":"function","legend":"left","title":"APPROVAL"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_ea89bd40cb9344aa9b4bb32cda75bdb9')).draw(data, {"curveType":"function","legend":"left","title":"APPROVAL"});
+                                    'chart_div_f35385316b3b4d2ea57e930bd73d5463')).draw(data, {"curveType":"function","legend":"left","title":"APPROVAL"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",4],["2023-07-11",6],["2023-07-12",0],["2023-07-13",9],["2023-07-14",6],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",36],["2023-07-25",1],["2023-07-26",18],["2023-07-27",11],["2023-07-28",9],["2023-07-29",0],["2023-07-30",1]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -771,13 +771,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_45f13a4dae5643899f0114c5dd0f6fa8')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_54dcf3c0f46b4f12b11d3b37b607d229')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_45f13a4dae5643899f0114c5dd0f6fa8')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                                    'chart_div_54dcf3c0f46b4f12b11d3b37b607d229')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",4],["2023-07-11",6],["2023-07-12",0],["2023-07-13",9],["2023-07-14",6],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",36],["2023-07-25",1],["2023-07-26",18],["2023-07-27",11],["2023-07-28",9],["2023-07-29",0],["2023-07-30",1]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -788,13 +788,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_eee2f149bc904844bae8f4cd2066652c')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_3efaff73ef44475ea626c323b463e81c')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_eee2f149bc904844bae8f4cd2066652c')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
+                                    'chart_div_3efaff73ef44475ea626c323b463e81c')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"APPROVAL","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",2],["2023-07-09",0],["2023-07-11",3],["2023-07-12",2],["2023-07-13",16],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",56],["2023-07-25",0],["2023-07-26",0],["2023-07-27",1],["2023-07-28",0],["2023-07-29",0],["2023-07-30",3]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -805,13 +805,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_afcb61d0602d46ca8e7247a83ec281e6')).draw(trendData, {"curveType":"function","legend":"left","title":"BPM"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_28b9df3e0f294e56995b6606d901f57e')).draw(trendData, {"curveType":"function","legend":"left","title":"FLOW"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_afcb61d0602d46ca8e7247a83ec281e6')).draw(data, {"curveType":"function","legend":"left","title":"BPM"});
+                                    'chart_div_28b9df3e0f294e56995b6606d901f57e')).draw(data, {"curveType":"function","legend":"left","title":"FLOW"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",2],["2023-07-09",0],["2023-07-11",3],["2023-07-12",2],["2023-07-13",16],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",56],["2023-07-25",0],["2023-07-26",0],["2023-07-27",1],["2023-07-28",0],["2023-07-29",0],["2023-07-30",3]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -822,13 +822,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_cc85f62481d047bfac446c7e3ee299bc')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_cb13aebe974b4352b97214161d2a4250')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_cc85f62481d047bfac446c7e3ee299bc')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                                    'chart_div_cb13aebe974b4352b97214161d2a4250')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",2],["2023-07-09",0],["2023-07-11",3],["2023-07-12",2],["2023-07-13",16],["2023-07-14",8],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",56],["2023-07-25",0],["2023-07-26",0],["2023-07-27",1],["2023-07-28",0],["2023-07-29",0],["2023-07-30",3]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -839,13 +839,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_12dc69411b6d45d8afb8563f9c4f4012')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_5b3da62518524beb93aae4c8a0fcc71b')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_12dc69411b6d45d8afb8563f9c4f4012')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
+                                    'chart_div_5b3da62518524beb93aae4c8a0fcc71b')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
                         }
                                                                                 // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",71],["2023-07-25",13],["2023-07-26",12],["2023-07-27",17],["2023-07-28",35],["2023-07-29",21],["2023-07-30",2]]);
                         if ('Table' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -856,13 +856,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_5177038526a241da90637d2d1b32cbab')).draw(trendData, {"curveType":"function","legend":"left","title":"FLOW"});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_99b3970765df4f8bb859beaf49864368')).draw(trendData, {"curveType":"function","legend":"left","title":"BPM"});
                         } else {
                             new google.visualization.Table(document.getElementById(
-                                    'chart_div_5177038526a241da90637d2d1b32cbab')).draw(data, {"curveType":"function","legend":"left","title":"FLOW"});
+                                    'chart_div_99b3970765df4f8bb859beaf49864368')).draw(data, {"curveType":"function","legend":"left","title":"BPM"});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",71],["2023-07-25",13],["2023-07-26",12],["2023-07-27",17],["2023-07-28",35],["2023-07-29",21],["2023-07-30",2]]);
                         if ('LineChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -873,13 +873,13 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_831e18dd05a942dcb1eeed19534a1816')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_945bc587680d40329f57948ed040cdec')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         } else {
                             new google.visualization.LineChart(document.getElementById(
-                                    'chart_div_831e18dd05a942dcb1eeed19534a1816')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                                    'chart_div_945bc587680d40329f57948ed040cdec')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         }
                                             // Create the data table.
-                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-08",0],["2023-07-09",0],["2023-07-11",0],["2023-07-12",0],["2023-07-13",0],["2023-07-14",0],["2023-07-15",0]]);
+                        data = new google.visualization.arrayToDataTable([["天","值"],["2023-07-24",71],["2023-07-25",13],["2023-07-26",12],["2023-07-27",17],["2023-07-28",35],["2023-07-29",21],["2023-07-30",2]]);
                         if ('ChainRatioChart' == 'ChainRatioChart') {
                             var trendData = new google.visualization.DataTable();
                             trendData.addColumn('string', data.getColumnLabel(0));
@@ -890,10 +890,10 @@
                                 var growthRate = (current - previous) / previous;
                                 trendData.addRow([data.getValue(i, 0), growthRate]);
                             }
-                            new google.visualization.ColumnChart(document.getElementById('chart_div_a72fad2ec0944978a0ab146e6c7f614b')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                            new google.visualization.ColumnChart(document.getElementById('chart_div_034e2eba219b4d20b9b51470fb5cddd8')).draw(trendData, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         } else {
                             new google.visualization.ChainRatioChart(document.getElementById(
-                                    'chart_div_a72fad2ec0944978a0ab146e6c7f614b')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"FLOW","height":400});
+                                    'chart_div_034e2eba219b4d20b9b51470fb5cddd8')).draw(data, {"curveType":"function","legend":"left","width":500,"title":"BPM","height":400});
                         }
                                                     }
 
@@ -909,15 +909,15 @@
         <tr>
                             <td>
                     <h5> 统计数据明细 </h5>
-                    <div id="chart_div_c4b1b4a8fc014c7c8602686f8fc8c791"></div>
+                    <div id="chart_div_89dd732d36b548de9e239def0d408e0b"></div>
                 </td>
                             <td>
                     <h5> 趋势图 </h5>
-                    <div id="chart_div_d82a6bbb7a4649f0958db5b8dee204e5"></div>
+                    <div id="chart_div_1090d02097e74c35abf265313de023b8"></div>
                 </td>
                             <td>
                     <h5> 同比图 </h5>
-                    <div id="chart_div_f61822f67c5e43f78b9a9a34bf995845"></div>
+                    <div id="chart_div_dfb8f7ff6ac44b12b07ad9b73b2f8c1d"></div>
                 </td>
                     </tr>
     </table>
@@ -927,15 +927,15 @@
         <tr>
                             <td>
                     <h5> 统计数据明细 </h5>
-                    <div id="chart_div_a508aa74773c41ca880c4d0691184c96"></div>
+                    <div id="chart_div_99862e387d014c8db2fc1550157316b8"></div>
                 </td>
                             <td>
                     <h5> 趋势图 </h5>
-                    <div id="chart_div_fec30c2053d444bfb560a4edd0d8930e"></div>
+                    <div id="chart_div_b47498bcb24c4a1f904bf5314b7d17db"></div>
                 </td>
                             <td>
                     <h5> 同比图 </h5>
-                    <div id="chart_div_268dab3c762e46bf8393d9e22c41808f"></div>
+                    <div id="chart_div_5bc63acf8f224f1c8d13cae29e3bddf1"></div>
                 </td>
                     </tr>
     </table>
@@ -945,11 +945,11 @@
         <tr>
                             <td>
                     <h5> 数据 </h5>
-                    <div id="chart_div_f187c4afc29e46659dc023474bb9dc26"></div>
+                    <div id="chart_div_272c59d955d549b28d641819d01e7d03"></div>
                 </td>
                             <td>
                     <h5> 图表 </h5>
-                    <div id="chart_div_e511035fdd1c41c1a9cf20e77d9e9a9d"></div>
+                    <div id="chart_div_a552aa8599a94a4d82bff9121c4c6b0d"></div>
                 </td>
                     </tr>
     </table>
@@ -959,11 +959,11 @@
         <tr>
                             <td>
                     <h5> 数据 </h5>
-                    <div id="chart_div_6cced35396b244fb8d64b62ce81579b2"></div>
+                    <div id="chart_div_277f3d1216f9469ab68194e67223201d"></div>
                 </td>
                             <td>
                     <h5> 图表 </h5>
-                    <div id="chart_div_f2b7dd60950944c58ba91e033b166fc6"></div>
+                    <div id="chart_div_e6069cbff322485e9b35c75c7674cee4"></div>
                 </td>
                     </tr>
     </table>
@@ -973,15 +973,15 @@
         <tr>
                             <td>
                     <h5> CRM-FLOW数据 </h5>
-                    <div id="chart_div_c5a186962de84eda9d6cf24fefe2c347"></div>
+                    <div id="chart_div_08923435302b48038f97e729172f5675"></div>
                 </td>
                             <td>
                     <h5> CRM-FLOW趋势图 </h5>
-                    <div id="chart_div_7d9a012f763a4a94aff8c5f6bfcabcf9"></div>
+                    <div id="chart_div_82b51f61399b476aa8379f8fc651e177"></div>
                 </td>
                             <td>
                     <h5> CRM-FLOW环比图 </h5>
-                    <div id="chart_div_4e7dffe3824848f49d0dc5067458fb20"></div>
+                    <div id="chart_div_b5a4c6a5382643dcb9ef5be094d1490a"></div>
                 </td>
                     </tr>
     </table>
@@ -991,15 +991,15 @@
         <tr>
                             <td>
                     <h5> PAASMESSAGE数据 </h5>
-                    <div id="chart_div_57328d1d29954d7797674fb0eb6db9a0"></div>
+                    <div id="chart_div_217bfbd1235d4d248a2789cfad951e6d"></div>
                 </td>
                             <td>
                     <h5> PAASMESSAGE趋势图 </h5>
-                    <div id="chart_div_33428e98f3434081954757471b037766"></div>
+                    <div id="chart_div_45f32e7744b24346912a03581014535e"></div>
                 </td>
                             <td>
                     <h5> PAASMESSAGE环比图 </h5>
-                    <div id="chart_div_1369ed523e064651a78ea3e14aea6f62"></div>
+                    <div id="chart_div_2301c47fb2c34e6d9518d106465dea59"></div>
                 </td>
                     </tr>
     </table>
@@ -1009,15 +1009,15 @@
         <tr>
                             <td>
                     <h5> STAGE数据 </h5>
-                    <div id="chart_div_9b76b1b6f52f46a3b0333c569aafbf34"></div>
+                    <div id="chart_div_3a01de2b923d443e8c90db9a8a427681"></div>
                 </td>
                             <td>
                     <h5> STAGE趋势图 </h5>
-                    <div id="chart_div_3f3e5cc78d5241f9b4b40c74b0ff1927"></div>
+                    <div id="chart_div_7592436d10de42c8af78d49d4c37159d"></div>
                 </td>
                             <td>
                     <h5> STAGE环比图 </h5>
-                    <div id="chart_div_f9627697a67145169502ef8f96540021"></div>
+                    <div id="chart_div_c2894c0d43134689b751a58025b7e412"></div>
                 </td>
                     </tr>
     </table>
@@ -1027,15 +1027,15 @@
         <tr>
                             <td>
                     <h5> PROCESS数据 </h5>
-                    <div id="chart_div_5e1742fcb4964a77b1f308bded98c0a0"></div>
+                    <div id="chart_div_6b8300f5662544dda6668fe2155ef056"></div>
                 </td>
                             <td>
                     <h5> PROCESS趋势图 </h5>
-                    <div id="chart_div_682f036ee9394f1eb6dc61d5f89af4ed"></div>
+                    <div id="chart_div_e5d3fe6884ee41d687ec5a0fb5bd13a2"></div>
                 </td>
                             <td>
                     <h5> PROCESS环比图 </h5>
-                    <div id="chart_div_42a86d77f3914c8fbae9572b9496e6c8"></div>
+                    <div id="chart_div_74310fba5fe54fa5b0d3b6df7612d050"></div>
                 </td>
                     </tr>
     </table>
@@ -1045,33 +1045,15 @@
         <tr>
                             <td>
                     <h5> APPROVAL数据 </h5>
-                    <div id="chart_div_1f53997a59e045aebf4050168e3b1a7e"></div>
+                    <div id="chart_div_444848bd70dc459e928748764bf602ce"></div>
                 </td>
                             <td>
                     <h5> APPROVAL趋势图 </h5>
-                    <div id="chart_div_b039f347b3e941b99110eb2a818a7fe4"></div>
+                    <div id="chart_div_6d0b4c3d69034341b0b647dd346c583b"></div>
                 </td>
                             <td>
                     <h5> APPROVAL环比图 </h5>
-                    <div id="chart_div_f0336f418dcc47eeadffb73a3960a1c1"></div>
-                </td>
-                    </tr>
-    </table>
-    <hr/>
-        <h3>BPM</h3>
-    <table >
-        <tr>
-                            <td>
-                    <h5> BPM数据 </h5>
-                    <div id="chart_div_e4fdee8d85dd456580bc1a867e24a02c"></div>
-                </td>
-                            <td>
-                    <h5> BPM趋势图 </h5>
-                    <div id="chart_div_9bd113f0ffb94931811cb21a847a269d"></div>
-                </td>
-                            <td>
-                    <h5> BPM环比图 </h5>
-                    <div id="chart_div_b4169dc38f3a4b01a200ffab3accb65c"></div>
+                    <div id="chart_div_437c90129af34e9cb7730dcc3e4f3cce"></div>
                 </td>
                     </tr>
     </table>
@@ -1081,15 +1063,33 @@
         <tr>
                             <td>
                     <h5> FLOW数据 </h5>
-                    <div id="chart_div_a054946956444d12964034514e66abdf"></div>
+                    <div id="chart_div_5df288571ff24b0ea3a9b842daab71fb"></div>
                 </td>
                             <td>
                     <h5> FLOW趋势图 </h5>
-                    <div id="chart_div_7a14664cf7044f1cacd9e00bd610c97e"></div>
+                    <div id="chart_div_1f85d86dfd0e4141ba96219d85c37a84"></div>
                 </td>
                             <td>
                     <h5> FLOW环比图 </h5>
-                    <div id="chart_div_4b51df0a6b044bf1aa51c766bbec2ea8"></div>
+                    <div id="chart_div_f64c57c49b684a9fbb0012c2ce2ebfa9"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>BPM</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> BPM数据 </h5>
+                    <div id="chart_div_caff860b078f459592174b09b848311b"></div>
+                </td>
+                            <td>
+                    <h5> BPM趋势图 </h5>
+                    <div id="chart_div_88b003c372a64da9b86de0997840011a"></div>
+                </td>
+                            <td>
+                    <h5> BPM环比图 </h5>
+                    <div id="chart_div_c478276cdd784aae8a5f287c24f4d5b1"></div>
                 </td>
                     </tr>
     </table>
@@ -1099,15 +1099,15 @@
         <tr>
                             <td>
                     <h5> CRM-FLOW数据 </h5>
-                    <div id="chart_div_5ca17db2d0df4e25ba57757bc3288e61"></div>
+                    <div id="chart_div_539866fab04040089a0945afaa4eb48e"></div>
                 </td>
                             <td>
                     <h5> CRM-FLOW趋势图 </h5>
-                    <div id="chart_div_2a1c33c9399f4a2c962c59745526ab84"></div>
+                    <div id="chart_div_391f5050b79a411eac76f1c289d678db"></div>
                 </td>
                             <td>
                     <h5> CRM-FLOW环比图 </h5>
-                    <div id="chart_div_84858a46d826415c81b448402fcdf213"></div>
+                    <div id="chart_div_2d079806d64c452094969b471b374a66"></div>
                 </td>
                     </tr>
     </table>
@@ -1117,15 +1117,15 @@
         <tr>
                             <td>
                     <h5> PAASMESSAGE数据 </h5>
-                    <div id="chart_div_b6a16e67526144cd91afe776e5068b97"></div>
+                    <div id="chart_div_e0388c8a6bb04afc9d278d97d0f0246a"></div>
                 </td>
                             <td>
                     <h5> PAASMESSAGE趋势图 </h5>
-                    <div id="chart_div_9af8e11eb1074a2fbdc190466b87d5a2"></div>
+                    <div id="chart_div_48d9eea0176f49eb86196288a9be0c0e"></div>
                 </td>
                             <td>
                     <h5> PAASMESSAGE环比图 </h5>
-                    <div id="chart_div_bc34f9f230264f4abb5dc969d7289f82"></div>
+                    <div id="chart_div_393f0a9b27124b23b967d03fe881fdc4"></div>
                 </td>
                     </tr>
     </table>
@@ -1135,15 +1135,15 @@
         <tr>
                             <td>
                     <h5> STAGE数据 </h5>
-                    <div id="chart_div_48053959f7d64fb59f05cfe752b06757"></div>
+                    <div id="chart_div_dd383678e44640e38fbf403d5dae1e29"></div>
                 </td>
                             <td>
                     <h5> STAGE趋势图 </h5>
-                    <div id="chart_div_a9094c43c3a74129994891353607f8d4"></div>
+                    <div id="chart_div_33cd1354d63747c5a1406c21388e7cb1"></div>
                 </td>
                             <td>
                     <h5> STAGE环比图 </h5>
-                    <div id="chart_div_f82859415d9f4cd6b7220d82ccb43de9"></div>
+                    <div id="chart_div_ad3996ab48bb40bc8302e92bb53ffe6f"></div>
                 </td>
                     </tr>
     </table>
@@ -1153,15 +1153,15 @@
         <tr>
                             <td>
                     <h5> PROCESS数据 </h5>
-                    <div id="chart_div_1cde4403f77f45388cbdb9dcd7734b4d"></div>
+                    <div id="chart_div_ae09b8ba04f147b09dc824aaa6dbfec9"></div>
                 </td>
                             <td>
                     <h5> PROCESS趋势图 </h5>
-                    <div id="chart_div_cb1c59e255df4d48827e44630e759c04"></div>
+                    <div id="chart_div_ee77488d4cac4ab08e6e8a8fb5943781"></div>
                 </td>
                             <td>
                     <h5> PROCESS环比图 </h5>
-                    <div id="chart_div_5ca1c299c21c4ebf8467b27ee70ecbb6"></div>
+                    <div id="chart_div_cdc9970204d24f298965132aa53fdab7"></div>
                 </td>
                     </tr>
     </table>
@@ -1171,33 +1171,15 @@
         <tr>
                             <td>
                     <h5> APPROVAL数据 </h5>
-                    <div id="chart_div_ea89bd40cb9344aa9b4bb32cda75bdb9"></div>
+                    <div id="chart_div_f35385316b3b4d2ea57e930bd73d5463"></div>
                 </td>
                             <td>
                     <h5> APPROVAL趋势图 </h5>
-                    <div id="chart_div_45f13a4dae5643899f0114c5dd0f6fa8"></div>
+                    <div id="chart_div_54dcf3c0f46b4f12b11d3b37b607d229"></div>
                 </td>
                             <td>
                     <h5> APPROVAL环比图 </h5>
-                    <div id="chart_div_eee2f149bc904844bae8f4cd2066652c"></div>
-                </td>
-                    </tr>
-    </table>
-    <hr/>
-        <h3>BPM</h3>
-    <table >
-        <tr>
-                            <td>
-                    <h5> BPM数据 </h5>
-                    <div id="chart_div_afcb61d0602d46ca8e7247a83ec281e6"></div>
-                </td>
-                            <td>
-                    <h5> BPM趋势图 </h5>
-                    <div id="chart_div_cc85f62481d047bfac446c7e3ee299bc"></div>
-                </td>
-                            <td>
-                    <h5> BPM环比图 </h5>
-                    <div id="chart_div_12dc69411b6d45d8afb8563f9c4f4012"></div>
+                    <div id="chart_div_3efaff73ef44475ea626c323b463e81c"></div>
                 </td>
                     </tr>
     </table>
@@ -1207,15 +1189,33 @@
         <tr>
                             <td>
                     <h5> FLOW数据 </h5>
-                    <div id="chart_div_5177038526a241da90637d2d1b32cbab"></div>
+                    <div id="chart_div_28b9df3e0f294e56995b6606d901f57e"></div>
                 </td>
                             <td>
                     <h5> FLOW趋势图 </h5>
-                    <div id="chart_div_831e18dd05a942dcb1eeed19534a1816"></div>
+                    <div id="chart_div_cb13aebe974b4352b97214161d2a4250"></div>
                 </td>
                             <td>
                     <h5> FLOW环比图 </h5>
-                    <div id="chart_div_a72fad2ec0944978a0ab146e6c7f614b"></div>
+                    <div id="chart_div_5b3da62518524beb93aae4c8a0fcc71b"></div>
+                </td>
+                    </tr>
+    </table>
+    <hr/>
+        <h3>BPM</h3>
+    <table >
+        <tr>
+                            <td>
+                    <h5> BPM数据 </h5>
+                    <div id="chart_div_99b3970765df4f8bb859beaf49864368"></div>
+                </td>
+                            <td>
+                    <h5> BPM趋势图 </h5>
+                    <div id="chart_div_945bc587680d40329f57948ed040cdec"></div>
+                </td>
+                            <td>
+                    <h5> BPM环比图 </h5>
+                    <div id="chart_div_034e2eba219b4d20b9b51470fb5cddd8"></div>
                 </td>
                     </tr>
     </table>

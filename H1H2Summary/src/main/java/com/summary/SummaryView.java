@@ -19,6 +19,9 @@ import java.util.List;
  * @apiNote
  **/
 public class SummaryView {
+
+    public static final String FCP_DETAILS_TXT = "/details.txt";
+
     @BeforeClass
     public static void beforeClass() {
         Paths.get("chart.html").toFile().delete();
@@ -33,8 +36,8 @@ public class SummaryView {
     public void summary() {
         int lastWeekCount = 10;
         List<ChartDivConfigGroup> chartDivConfigGroups = Lists.newArrayList(
-                new ChartDivConfigGroup("总体数据统计/周", getSummaryChart(totalSummary.exportByWeek(lastWeekCount))),
-                new ChartDivConfigGroup("总体数据统计/天", getSummaryChart(totalSummary.exportByDay(7))));
+                new ChartDivConfigGroup("总体数据统计/周", getSummaryChart(totalSummary.exportByWeek(FCP_DETAILS_TXT, lastWeekCount))),
+                new ChartDivConfigGroup("总体数据统计/天", getSummaryChart(totalSummary.exportByDay(FCP_DETAILS_TXT, 7))));
 
         chartDivConfigGroups.add(new ChartDivConfigGroup("总体数据统计/周", getSummaryChartConfig(moduleSummary.exportByModuleAndWeek(lastWeekCount))));
         chartDivConfigGroups.add(new ChartDivConfigGroup("总体数据统计/天", getSummaryChartConfig(moduleSummary.exportByModuleAndDay(7))));

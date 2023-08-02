@@ -79,7 +79,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        });
+        }, "/details.txt");
     }
 
     /**
@@ -118,7 +118,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastDayCount;
             }
-        });
+        }, "/details.txt");
     }
     public List<List> exportByModuleAndWeek(int lastWeekCount) {
         return exportByModuleAndTime(false, new ChartDataSupplier() {
@@ -152,7 +152,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        });
+        }, "/details.txt");
     }
 
     public List<List> exportByModuleAndDay(int lastDayCount) {
@@ -186,7 +186,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastDayCount;
             }
-        });
+        }, "/details.txt");
     }
 
     public void exportByModuleAndSeason() {
@@ -244,7 +244,7 @@ public class ModuleSummary extends BaseSummary {
                 List<String> times = Splitter.on("-").splitToList(date);
                 return times.get(0) +" Q"+times.get(1);
             }
-        });
+        }, "/details.txt");
     }
 
     /**
@@ -275,7 +275,7 @@ public class ModuleSummary extends BaseSummary {
             public List getHeaders() {
                 return Lists.newArrayList("月");
             }
-        });
+        }, "/details.txt");
     }
 
     /**
@@ -309,7 +309,7 @@ public class ModuleSummary extends BaseSummary {
                 List<String> times = Splitter.on("-").splitToList(date);
                 return times.get(0) + " Q" + times.get(1);
             }
-        });
+        }, "/details.txt");
     }
 
     /**
@@ -337,7 +337,7 @@ public class ModuleSummary extends BaseSummary {
             public List getHeaders() {
                 return Lists.newArrayList("月");
             }
-        });
+        }, "/details.txt");
     }
 
     public void exportByModuleAndWeekTongDiff(int lastWeekCount) {
@@ -366,7 +366,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        });
+        }, "/details.txt");
     }
 
 }
