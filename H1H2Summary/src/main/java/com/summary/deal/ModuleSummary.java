@@ -9,6 +9,9 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.nio.file.StandardOpenOption;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -21,6 +24,7 @@ import java.util.List;
  **/
 @Slf4j
 public class ModuleSummary extends BaseSummary {
+    @SneakyThrows
     @Test
     public void export() {
 //        exportByModuleAndSeason();
@@ -30,15 +34,23 @@ public class ModuleSummary extends BaseSummary {
 //        exportByModuleAndMonthCurrentYear();
 //        exportByModuleAndMonthTongDiff();
 //        exportByModuleAndMonthChainRatio(true);
-        exportModuleTrendAndChainRatioByClassify();
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(BaseSummary.class.getResource("/details.txt").getPath())));
+        String line;
+        List<DataModule> dataList=Lists.newArrayList();
+        while ((line = br.readLine()) != null) {
+            List<String> data = Splitter.on('\t').splitToList(line);
+            dataList.add(new DataModule(data.get(0), data.get(1), Integer.parseInt(data.get(2))));
+        }
+        exportModuleTrendAndChainRatioByClassify(dataList);
     }
 
     /**
      * 模块的统计：
      * 数据，趋势，环比
+     * @param dataModuleList
      */
-    public void exportModuleTrendAndChainRatioByClassify(){
-        List<ChartDivConfigGroup> data = exportModuleTrendAndChainRatioByClassify(10);
+    public void exportModuleTrendAndChainRatioByClassify(List<DataModule> dataModuleList){
+        List<ChartDivConfigGroup> data = exportModuleTrendAndChainRatioByClassify(10,dataModuleList);
         ChartUtils.renderTheme(new ChartDivConfigTheme("按模块展示趋势和环比情况","趋势正常情况下是持续下降趋于平稳；环比是<0是代表降低的，最终趋于平稳",data), StandardOpenOption.APPEND);
     }
 
@@ -47,7 +59,7 @@ public class ModuleSummary extends BaseSummary {
      * @param lastWeekCount
      * @return
      */
-    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassify(int lastWeekCount) {
+    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassify(int lastWeekCount,List<DataModule> dataModuleList) {
         return exportModuleTrendAndChainRatio(true, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -79,7 +91,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
     /**
@@ -87,7 +99,7 @@ public class ModuleSummary extends BaseSummary {
      * @param lastDayCount
      * @return
      */
-    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassifyByDate(int lastDayCount) {
+    public List<ChartDivConfigGroup> exportModuleTrendAndChainRatioByClassifyByDate(int lastDayCount,List<DataModule> dataModuleList) {
         return exportModuleTrendAndChainRatio(true, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -118,9 +130,9 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastDayCount;
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
-    public List<List> exportByModuleAndWeek(int lastWeekCount) {
+    public List<List> exportByModuleAndWeek(int lastWeekCount,List<DataModule> dataModuleList) {
         return exportByModuleAndTime(false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -152,10 +164,10 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
-    public List<List> exportByModuleAndDay(int lastDayCount) {
+    public List<List> exportByModuleAndDay(int lastDayCount,List<DataModule> dataModuleList) {
         return exportByModuleAndTime(false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -186,30 +198,31 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastDayCount;
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
-    public void exportByModuleAndSeason() {
-        exportByModuleAndSeason(false);
+    public void exportByModuleAndSeason(List<DataModule> dataModuleList) {
+        exportByModuleAndSeason(false,dataModuleList);
     }
 
-    public void exportByModuleAndSeasonCurrentYear() {
-        exportByModuleAndSeason(true);
+    public void exportByModuleAndSeasonCurrentYear(List<DataModule> dataModuleList) {
+        exportByModuleAndSeason(true,dataModuleList);
     }
     /**
      * 按模块和月 输出
      * 面积图
      * 趋势图
      * 详情信息
+     * @param dataModuleList
      */
     @SneakyThrows
-    public void exportByModuleAndMonth() {
-        exportByModuleAndMonth(false);
+    public void exportByModuleAndMonth(List<DataModule> dataModuleList) {
+        exportByModuleAndMonth(false,dataModuleList);
     }
 
     @SneakyThrows
-    public void exportByModuleAndMonthCurrentYear() {
-        exportByModuleAndMonth(true);
+    public void exportByModuleAndMonthCurrentYear(List<DataModule> dataModuleList) {
+        exportByModuleAndMonth(true,dataModuleList);
     }
 
     /**
@@ -217,7 +230,7 @@ public class ModuleSummary extends BaseSummary {
      * 饼图
      */
     @SneakyThrows
-    public void exportByModuleAndSeason(boolean onlyCurrentYear) {
+    public void exportByModuleAndSeason(boolean onlyCurrentYear,List<DataModule> dataModuleList) {
         exportByModuleAndTime(onlyCurrentYear, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -244,7 +257,7 @@ public class ModuleSummary extends BaseSummary {
                 List<String> times = Splitter.on("-").splitToList(date);
                 return times.get(0) +" Q"+times.get(1);
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
     /**
@@ -254,7 +267,7 @@ public class ModuleSummary extends BaseSummary {
      * 详情信息
      */
     @SneakyThrows
-    public void exportByModuleAndMonth(boolean onlyCurrentYear) {
+    public void exportByModuleAndMonth(boolean onlyCurrentYear,List<DataModule> dataModuleList) {
         exportByModuleAndTime(onlyCurrentYear, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -275,14 +288,14 @@ public class ModuleSummary extends BaseSummary {
             public List getHeaders() {
                 return Lists.newArrayList("月");
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
     /**
      * 按季度同比
      */
     @SneakyThrows
-    public void exportByModuleAndSeasonTongDiff() {
+    public void exportByModuleAndSeasonTongDiff(List<DataModule> dataModuleList) {
         exportByModuleAndTimeTongDiff((int) Math.ceil((Calendar.getInstance().get(Calendar.MONTH) + 1) / 3.0), new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -309,14 +322,14 @@ public class ModuleSummary extends BaseSummary {
                 List<String> times = Splitter.on("-").splitToList(date);
                 return times.get(0) + " Q" + times.get(1);
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
     /**
      * 按月同比
      */
     @SneakyThrows
-    public void exportByModuleAndMonthTongDiff() {
+    public void exportByModuleAndMonthTongDiff(List<DataModule> dataModuleList) {
         exportByModuleAndTimeTongDiff(Calendar.getInstance().get(Calendar.MONTH) + 1, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -337,10 +350,10 @@ public class ModuleSummary extends BaseSummary {
             public List getHeaders() {
                 return Lists.newArrayList("月");
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
-    public void exportByModuleAndWeekTongDiff(int lastWeekCount) {
+    public void exportByModuleAndWeekTongDiff(int lastWeekCount,List<DataModule> dataModuleList) {
         exportByModuleAndTimeTongDiff(getCurrentWeek(), new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
@@ -366,7 +379,7 @@ public class ModuleSummary extends BaseSummary {
             public Integer getRecordCount() {
                 return lastWeekCount;
             }
-        }, "/details.txt");
+        }, dataModuleList);
     }
 
 }

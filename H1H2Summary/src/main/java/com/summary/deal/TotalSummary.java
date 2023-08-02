@@ -6,6 +6,9 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.List;
 
@@ -16,20 +19,28 @@ import java.util.List;
  **/
 @Slf4j
 public class TotalSummary extends BaseSummary {
+    @SneakyThrows
     @Test
     public void exportTotalSummary() {
-        exportBySeason();
-        exportBySeasonDiff("/details.txt");
-        exportBySeasonChainRatio("/details.txt");
-        exportByMonth("/details.txt");
-        exportByMonthDiff("/details.txt");
-        exportByMonthOfChainRatio("/details.txt");
-        exportByWeekOfChainRatio("/details.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(BaseSummary.class.getResource("/details.txt").getPath())));
+        String line;
+        List<DataModule> dataList=Lists.newArrayList();
+        while ((line = br.readLine()) != null) {
+            List<String> data = Splitter.on('\t').splitToList(line);
+            dataList.add(new DataModule(data.get(0), data.get(1), Integer.parseInt(data.get(2))));
+        }
+        exportBySeason(dataList);
+        exportBySeasonDiff(dataList);
+        exportBySeasonChainRatio(dataList);
+        exportByMonth(dataList);
+        exportByMonthDiff(dataList);
+        exportByMonthOfChainRatio(dataList);
+        exportByWeekOfChainRatio(dataList);
     }
 
     @SneakyThrows
-    public void exportBySeason() {
-        exportByClassify("/details.txt", false, new ChartDataSupplier() {
+    public void exportBySeason(List<DataModule> dataModuleList) {
+        exportByClassify(dataModuleList, false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndQ();
@@ -52,8 +63,8 @@ public class TotalSummary extends BaseSummary {
         });
     }
 
-    public List<List> exportByWeek(String dataFilePath, int lastWeekCount) {
-        return exportByClassify(dataFilePath, false, new ChartDataSupplier() {
+    public List<List> exportByWeek(List<DataModule> dataModuleList, int lastWeekCount) {
+        return exportByClassify(dataModuleList, false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndWeek();
@@ -89,11 +100,11 @@ public class TotalSummary extends BaseSummary {
 
     /**
      * 环比
-     * @param dataFilePath
+     * @param dataModuleList
      */
     @SneakyThrows
-    public void exportByWeekOfChainRatio(String dataFilePath) {
-        exportChainRatio(dataFilePath, new ChartDataSupplier() {
+    public void exportByWeekOfChainRatio(List<DataModule> dataModuleList) {
+        exportChainRatio(dataModuleList, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndWeek();
@@ -123,11 +134,11 @@ public class TotalSummary extends BaseSummary {
     }
     /**
      * 环比
-     * @param dataFilePath
+     * @param dataModuleList
      */
     @SneakyThrows
-    public void exportByMonthOfChainRatio(String dataFilePath) {
-        exportChainRatio(dataFilePath, new ChartDataSupplier() {
+    public void exportByMonthOfChainRatio(List<DataModule> dataModuleList) {
+        exportChainRatio(dataModuleList, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndQ();
@@ -150,8 +161,8 @@ public class TotalSummary extends BaseSummary {
         });
     }
 
-    public void exportBySeasonChainRatio(String dataFilePath) {
-        exportChainRatio(dataFilePath, new ChartDataSupplier() {
+    public void exportBySeasonChainRatio(List<DataModule> dataModuleList) {
+        exportChainRatio(dataModuleList, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndQ();
@@ -176,11 +187,11 @@ public class TotalSummary extends BaseSummary {
 
     /**
      * 按月输出整体趋势图
-     * @param dataFilePath
+     * @param dataModuleList
      */
     @SneakyThrows
-    public void exportByMonth(String dataFilePath) {
-        exportByClassify(dataFilePath, false, new ChartDataSupplier() {
+    public void exportByMonth(List<DataModule> dataModuleList) {
+        exportByClassify(dataModuleList, false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getYearAndMonth();
@@ -205,12 +216,12 @@ public class TotalSummary extends BaseSummary {
 
     /**
      * 整体 季度环比
-     * @param dataFilePath
+     * @param dataModuleList
      */
     @Test
     @SneakyThrows
-    public void exportBySeasonDiff(String dataFilePath) {
-        exportByTongDiff(dataFilePath, getCurrentSeason(), new ChartDataSupplier() {
+    public void exportBySeasonDiff(List<DataModule> dataModuleList) {
+        exportByTongDiff(dataModuleList, getCurrentSeason(), new ChartDataSupplier() {
             @Override
             String getClassify(DataModule data) {
                 return data.getYearAndQ();
@@ -240,8 +251,8 @@ public class TotalSummary extends BaseSummary {
     }
 
     @SneakyThrows
-    public void exportByMonthDiff(String dataFilePath) {
-        exportByTongDiff(dataFilePath, getCurrentMonth(), new ChartDataSupplier() {
+    public void exportByMonthDiff(List<DataModule> dataModuleList) {
+        exportByTongDiff(dataModuleList, getCurrentMonth(), new ChartDataSupplier() {
             @Override
             String getClassify(DataModule data) {
                 return data.getYearAndMonth();
@@ -265,8 +276,8 @@ public class TotalSummary extends BaseSummary {
         });
     }
 
-    public List<List> exportByDay(String dataFilePath, int day) {
-        return exportByClassify(dataFilePath, false, new ChartDataSupplier() {
+    public List<List> exportByDay(List<DataModule> dataModuleList, int day) {
+        return exportByClassify(dataModuleList, false, new ChartDataSupplier() {
             @Override
             public String getClassify(DataModule data) {
                 return data.getDate();

@@ -57,13 +57,8 @@ public class BaseSummary {
     }
 
     @SneakyThrows
-    public void scanData(String dataFilePath, Consumer<DataModule> consumer) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(BaseSummary.class.getResource(dataFilePath).getPath())));
-        String line;
-        while ((line = br.readLine()) != null) {
-            List<String> data = Splitter.on('\t').splitToList(line);
-            consumer.accept(new DataModule(data.get(0), data.get(1), Integer.parseInt(data.get(2))));
-        }
+    public void scanData(List<DataModule> dataList, Consumer<DataModule> consumer) {
+        dataList.stream().forEach(item->consumer.accept(item));
     }
 
     /**
@@ -72,11 +67,11 @@ public class BaseSummary {
      * @return
      */
     @SneakyThrows
-    protected List<List> exportByModuleAndTime(boolean onlyCurrentYear, ChartDataSupplier supplier, String dataFilePath) {
+    protected List<List> exportByModuleAndTime(boolean onlyCurrentYear, ChartDataSupplier supplier, List<DataModule> dataList) {
         Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
         Set<String> classifyList = Sets.newHashSet();
         Map<String, Map<String, Integer>> moduleAndQAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             Map<String, Integer> moduleData = moduleAndQAndCount.get(data.getModule());
             String classify = supplier.getClassify(data);
             if (Objects.nonNull(moduleData)) {
@@ -114,11 +109,11 @@ public class BaseSummary {
     }
 
     @SneakyThrows
-    protected List<List> exportByClassify(String dataFilePath, boolean onlyCurrentYear, ChartDataSupplier supplier) {
+    protected List<List> exportByClassify(List<DataModule> dataList, boolean onlyCurrentYear, ChartDataSupplier supplier) {
         Set<String> classifyList = Sets.newHashSet();
         int currentYear = getCurrentYear();
         Map<String, Integer> timeClassifyAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             String classify = supplier.getClassify(data);
             String year = Splitter.on("-").splitToList(classify).get(0);
             if (onlyCurrentYear && !year.equals(currentYear + "")) {
@@ -147,11 +142,11 @@ public class BaseSummary {
      * @return
      */
     @SneakyThrows
-    protected List<ChartDivConfigGroup> exportModuleTrendAndChainRatio(boolean onlyCurrentYear, ChartDataSupplier supplier, String dataFilePath) {
+    protected List<ChartDivConfigGroup> exportModuleTrendAndChainRatio(boolean onlyCurrentYear, ChartDataSupplier supplier, List<DataModule> dataList) {
         Integer currentYear = getCurrentYear();
         Set<String> classifyList = Sets.newHashSet();
         Map<String, Map<String, Integer>> moduleAndTimeClassifyAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             Map<String, Integer> moduleData = moduleAndTimeClassifyAndCount.get(data.getModule());
             String classify = supplier.getClassify(data);
             if (Objects.nonNull(moduleData)) {
@@ -218,13 +213,13 @@ public class BaseSummary {
      * 环比
      */
     @SneakyThrows
-    protected void exportChainRatio(String dataFilePath, ChartDataSupplier supplier) {
+    protected void exportChainRatio(List<DataModule> dataList, ChartDataSupplier supplier) {
         List<List> charData = Lists.newArrayList();
         charData.add(supplier.getHeaders());
         Set<String> timeClassifyList = Sets.newHashSet();
 
         Map<String, Integer> classifyAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             String classify = supplier.getClassify(data);
             Integer count = classifyAndCount.get(classify);
             if (Objects.nonNull(count)) {
@@ -250,11 +245,11 @@ public class BaseSummary {
      * 按季度同比
      */
     @SneakyThrows
-    protected void exportByModuleAndTimeTongDiff(Integer currentTime, ChartDataSupplier supplier, String dataFilePath) {
+    protected void exportByModuleAndTimeTongDiff(Integer currentTime, ChartDataSupplier supplier,List<DataModule> dataList) {
         Integer currentYear = getCurrentYear();
         Set<String> seasonList = Sets.newHashSet();
         Map<String, Map<String, Integer>> moduleAndTimeAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             Map<String, Integer> moduleData = moduleAndTimeAndCount.get(data.getModule());
             String classify = supplier.getClassify(data);
             if (Objects.nonNull(moduleData)) {
@@ -313,12 +308,12 @@ public class BaseSummary {
      * 整体 季度环比
      */
     @SneakyThrows
-    protected void exportByTongDiff(String dataFilePath, Integer currentTime, ChartDataSupplier supplier) {
+    protected void exportByTongDiff(List<DataModule> dataList, Integer currentTime, ChartDataSupplier supplier) {
         Integer currentYear = getCurrentYear();
 
         Set<String> qList = Sets.newHashSet();
         Map<String, Integer> classifyAndCount = Maps.newHashMap();
-        scanData(dataFilePath, data -> {
+        scanData(dataList, data -> {
             String classify = supplier.getClassify(data);
             Integer count = classifyAndCount.get(classify);
             if (Objects.nonNull(count)) {
@@ -371,7 +366,7 @@ public class BaseSummary {
     }
 
     @Data
-    protected class DataModule {
+    public static class DataModule {
         String date;
         String yearAndMonth;
         String yearAndWeek;
