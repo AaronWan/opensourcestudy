@@ -22,7 +22,7 @@
         <!--<module>id</module>-->
         <!--<module>distributionlock</module>-->
         <!--<module>commontest</module>-->
-        <!--    <module>thread</module>-->
+            <module>thread</module>
         <!--   <module>netty</module>-->
         <!--<module>rest-proxy-client</module>-->
         <!--<module>event</module>-->

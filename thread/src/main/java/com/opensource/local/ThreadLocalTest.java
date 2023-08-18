@@ -1,7 +1,7 @@
 package com.opensource.local;
 
 import com.google.common.collect.Sets;
-import sun.jvm.hotspot.utilities.Assert;
+import org.junit.Assert;
 
 import java.util.Set;
 import java.util.concurrent.*;
@@ -46,7 +46,7 @@ public class ThreadLocalTest {
             executor.execute(() -> {
                 System.out.println("-------------start-----------------");
                 LogRequest request = LogRequest.getInstance();
-                Assert.that(requests.add(request),"有重复");
+                Assert.assertTrue("有重复",requests.add(request));
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {

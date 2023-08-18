@@ -1,8 +1,6 @@
 package com.opensource.local;
 
 import com.google.common.collect.Sets;
-import org.apache.curator.utils.ThreadUtils;
-import sun.jvm.hotspot.utilities.Assert;
 
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
